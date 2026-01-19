@@ -2,9 +2,6 @@ const SAMPLE = {
     "cv": {
         "name": "John Doe",
         "location": "San Francisco, CA",
-        "email": "john.doe@example.com",
-        "phone": "+1 (555) 123-4567",
-        "website": "https://johndoe.dev",
         "social_networks": [
             {
                 "network": "LinkedIn",

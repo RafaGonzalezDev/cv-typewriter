@@ -1,56 +1,47 @@
 import React from "react";
 import CVContent from "./CVContent";
 
-export default function PreviewPanel({ cv, numPages, pageMetrics, printRef, contentRef, spacers }) {
+export default function PreviewPanel({ cv, pagedBlocks, allBlocks, numPages, pageMetrics, printRef, contentRef }) {
     return (
         <div className="p-4 md:p-8 flex justify-center overflow-y-auto relative">
             <div
                 className="absolute opacity-0 pointer-events-none overflow-hidden"
                 style={{
                     width: `${pageMetrics.widthPx}px`,
+                    paddingTop: `${pageMetrics.topPx}px`,
+                    paddingBottom: `${pageMetrics.bottomPx}px`,
                     paddingLeft: `${pageMetrics.leftPx}px`,
                     paddingRight: `${pageMetrics.rightPx}px`
                 }}
             >
-                <CVContent ref={contentRef} cv={cv} spacers={spacers} />
+                <CVContent ref={contentRef} cv={cv} paged layoutBlocks={allBlocks} />
             </div>
 
             <div ref={printRef} className="flex flex-col items-center">
-                {Array.from({ length: numPages }).map((_, i) => (
-                    <div
-                        key={i}
-                        className="print-container bg-white outline outline-1 outline-slate-200 shadow-sm mb-8 last:mb-0 relative overflow-hidden"
-                        style={{
-                            width: `${pageMetrics.widthPx}px`,
-                            height: `${pageMetrics.heightPx}px`,
-                            boxSizing: "border-box"
-                        }}
-                    >
+                {(pagedBlocks.length ? pagedBlocks : Array.from({ length: numPages }).map(() => []))
+                    .map((blocks, i) => (
                         <div
-                            className="cv-content box-border"
+                            key={i}
+                            className="print-container bg-white outline outline-1 outline-slate-200 shadow-sm mb-8 last:mb-0 relative"
                             style={{
-                                paddingTop: `${pageMetrics.topPx}px`,
-                                paddingBottom: `${pageMetrics.bottomPx}px`,
-                                paddingLeft: `${pageMetrics.leftPx}px`,
-                                paddingRight: `${pageMetrics.rightPx}px`,
-                                height: "100%",
-                                position: "relative"
+                                width: `${pageMetrics.widthPx}px`,
+                                height: `${pageMetrics.heightPx}px`,
+                                boxSizing: "border-box"
                             }}
                         >
                             <div
+                                className="cv-content box-border h-full"
                                 style={{
-                                    transform: `translateY(-${i * pageMetrics.contentHeightPx}px)`,
-                                    position: "absolute",
-                                    top: `${pageMetrics.topPx}px`,
-                                    left: `${pageMetrics.leftPx}px`,
-                                    right: `${pageMetrics.rightPx}px`
+                                    paddingTop: `${pageMetrics.topPx}px`,
+                                    paddingBottom: `${pageMetrics.bottomPx}px`,
+                                    paddingLeft: `${pageMetrics.leftPx}px`,
+                                    paddingRight: `${pageMetrics.rightPx}px`
                                 }}
                             >
-                                <CVContent cv={cv} spacers={spacers} />
+                                <CVContent cv={cv} paged layoutBlocks={blocks} pageIndex={i} />
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
             </div>
         </div>
     );

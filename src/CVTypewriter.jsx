@@ -74,6 +74,12 @@ export default function CVTypewriter() {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+            .no-print {
+                display: none !important;
+            }
+            .print-root {
+                background: #fff !important;
+            }
             .print-container {
                 width: 210mm !important;
                 height: 297mm !important;
@@ -120,21 +126,213 @@ export default function CVTypewriter() {
     });
 
 
+    const [pagedBlocks, setPagedBlocks] = useState([]);
     const [numPages, setNumPages] = useState(1);
     const contentRef = useRef(null);
 
+    const buildBlocks = () => {
+        const blocks = [];
+        let cursor = 0;
+
+
+        const push = (block) => {
+            blocks.push({ ...block, order: cursor });
+            cursor += 1;
+        };
+
+        push({ id: "header", type: "header" });
+
+        const pushSectionHeader = (id, title) => {
+            push({ id: `section-${id}`, type: "section-header", title });
+        };
+
+
+        const pushSummary = () => {
+            pushSectionHeader("summary", "Professional Summary");
+            cv.sections.summary.forEach((text, index) => {
+                push({
+                    id: `summary-${index}`,
+                    type: "summary-paragraph",
+                    content: text
+                });
+            });
+        };
+
+        const pushExperience = () => {
+            pushSectionHeader("experience", "Experience");
+            cv.sections.experience.forEach((entry, entryIndex) => {
+                const entryId = `experience-${entryIndex}`;
+                push({
+                    id: entryId,
+                    type: "experience-entry",
+                    entry,
+                    entryIndex,
+                    splitHighlights: true
+                });
+
+                const highlights = Array.isArray(entry.highlights) ? entry.highlights : [];
+                highlights.forEach((text, highlightIndex) => {
+                    push({
+                        id: `${entryId}-highlight-${highlightIndex}`,
+                        type: "experience-highlight",
+                        entryId,
+                        index: highlightIndex,
+                        content: text
+                    });
+                });
+            });
+        };
+
+        const pushTechnologies = () => {
+            pushSectionHeader("technologies", "Technical Expertise");
+            cv.sections.technologies.forEach((item, index) => {
+                push({
+                    id: `tech-${index}`,
+                    type: "tech-item",
+                    item
+                });
+            });
+        };
+
+        const pushProjects = () => {
+            pushSectionHeader("projects", "Featured Projects");
+            cv.sections.projects.slice(0, 2).forEach((entry, entryIndex) => {
+                const entryId = `project-${entryIndex}`;
+                const highlights = Array.isArray(entry.highlights) ? entry.highlights.slice(0, 1) : [];
+                push({
+                    id: entryId,
+                    type: "project-entry",
+                    entry: { ...entry, highlights },
+                    entryIndex,
+                    splitHighlights: true
+                });
+
+                highlights.forEach((text, highlightIndex) => {
+                    push({
+                        id: `${entryId}-highlight-${highlightIndex}`,
+                        type: "project-highlight",
+                        entryId,
+                        index: highlightIndex,
+                        content: text
+                    });
+                });
+            });
+        };
+
+        const pushEducation = () => {
+            pushSectionHeader("education", "Education");
+            cv.sections.education.forEach((entry, index) => {
+                push({
+                    id: `education-${index}`,
+                    type: "education-entry",
+                    entry
+                });
+            });
+        };
+
+        if (cv.sections.summary.length) pushSummary();
+        if (cv.sections.experience.length) pushExperience();
+        if (cv.sections.technologies.length) pushTechnologies();
+        if (cv.sections.projects.length) pushProjects();
+        if (cv.sections.education.length) pushEducation();
+
+        return blocks;
+    };
+
+    const allBlocks = useMemo(() => buildBlocks(), [cv]);
+
     useEffect(() => {
-        if (contentRef.current) {
-            const height = contentRef.current.scrollHeight;
-            const pages = Math.ceil(height / pageMetrics.contentHeightPx);
-            setNumPages(pages || 1);
+        const blocks = allBlocks;
+        setPagedBlocks([]);
+
+        if (!contentRef.current) {
+            setNumPages(1);
+            return;
         }
-    }, [cv, pageMetrics, jsonText]); // Added jsonText to trigger on every edit
 
+        const elements = Array.from(contentRef.current.querySelectorAll("[data-block-id]"));
+        if (!elements.length) {
+            setNumPages(1);
+            return;
+        }
 
+        const heights = new Map();
+        elements.forEach((el) => {
+            const id = el.getAttribute("data-block-id");
+            const rect = el.getBoundingClientRect();
+            const computed = window.getComputedStyle(el);
+            const marginTop = Number.parseFloat(computed.marginTop) || 0;
+            const marginBottom = Number.parseFloat(computed.marginBottom) || 0;
+            heights.set(id, rect.height + marginTop + marginBottom);
+        });
 
+        const pages = [];
+        let current = [];
+        let currentHeight = 0;
+
+        const flush = () => {
+            pages.push(current);
+            current = [];
+            currentHeight = 0;
+        };
+
+        const pushBlock = (block, height) => {
+            if (block.type === "header") {
+                if (pages.length > 0) {
+                    return;
+                }
+                current.push(block);
+                currentHeight += height;
+                return;
+            }
+
+            if (current.length === 0 && height > pageMetrics.contentHeightPx) {
+                current.push(block);
+                flush();
+                return;
+            }
+
+            if (currentHeight + height > pageMetrics.contentHeightPx) {
+                flush();
+            }
+
+            current.push(block);
+            currentHeight += height;
+        };
+
+        const getNextContentHeight = (startIndex) => {
+            for (let j = startIndex + 1; j < blocks.length; j += 1) {
+                const next = blocks[j];
+                if (next.type === "section-header" || next.type === "section-end" || next.type === "header") {
+                    if (next.type === "section-header" || next.type === "section-end") return 0;
+                    continue;
+                }
+                return heights.get(next.id) ?? 0;
+            }
+            return 0;
+        };
+
+        blocks.forEach((block, index) => {
+            const height = heights.get(block.id) ?? 0;
+
+            if (block.type === "section-header") {
+                const nextHeight = getNextContentHeight(index);
+                if (nextHeight > 0 && currentHeight > 0 && currentHeight + height + nextHeight > pageMetrics.contentHeightPx) {
+                    flush();
+                }
+            }
+
+            pushBlock(block, height);
+        });
+
+        if (current.length) flush();
+
+        setPagedBlocks(pages);
+        setNumPages(pages.length || 1);
+    }, [allBlocks, pageMetrics, jsonText]);
 
     return (
+
         <div className="min-h-screen w-full bg-[#f8fafc] print-root">
             <div className="flex flex-col lg:grid lg:grid-cols-[1fr_auto_1fr] min-h-screen">
                 <EditorPanel
@@ -149,6 +347,8 @@ export default function CVTypewriter() {
                 />
                 <PreviewPanel
                     cv={cv}
+                    pagedBlocks={pagedBlocks}
+                    allBlocks={allBlocks}
                     numPages={numPages}
                     pageMetrics={pageMetrics}
                     printRef={printRef}

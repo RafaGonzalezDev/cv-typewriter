@@ -1,7 +1,7 @@
 import React from "react";
 import { asArray, formatDateRange, joinNonEmpty, nonEmpty, renderTextWithLinks } from "../../cvUtils.jsx";
 
-export default function ExperienceEntry({ entry }) {
+export default function ExperienceEntry({ entry, withHighlights = true }) {
     const title = nonEmpty(entry.position) ? entry.position : "";
     const org = nonEmpty(entry.company) ? entry.company : "";
     const location = nonEmpty(entry.location) ? entry.location : "";
@@ -19,15 +19,15 @@ export default function ExperienceEntry({ entry }) {
                         </span>
                     ) : null}
                 </div>
-                {asArray(entry.highlights).length ? (
-                    <ul className="mt-2 list-disc pl-5 space-y-1 text-[13px] leading-snug text-foreground/80">
+                {withHighlights && asArray(entry.highlights).length ? (
+                    <ul className="mt-2 list-disc pl-5 space-y-[1.25px] text-[13px] leading-[1.25] text-foreground/80">
                         {entry.highlights.map((h, i) => (
                             <li key={i}>{renderTextWithLinks(h)}</li>
                         ))}
                     </ul>
                 ) : null}
             </div>
-            <div className="text-[12.5px] font-semibold text-primary/70 whitespace-nowrap pt-0.5">{date}</div>
+            <div className="text-[12.5px] font-semibold italic text-primary/70 whitespace-nowrap pt-0.5">{date}</div>
         </div>
     );
 }

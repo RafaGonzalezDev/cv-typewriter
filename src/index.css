@@ -33,14 +33,38 @@
     --ring: 222.2 84% 4.9%;
  
     --radius: 0.5rem;
-    --cv-section-gap: 1.75rem;
-    --cv-section-title-gap: 0.25rem;
-    --cv-section-body-gap: 0.65rem;
+    --cv-section-gap: 1.2rem;
+    --cv-section-title-gap: 0.35rem;
+    --cv-section-body-gap: 0.5rem;
     --cv-section-title-top-gap: 0rem;
     --cv-section-title-bottom-gap: 0rem;
-    --cv-entry-pad-y: 0.4rem;
+    --cv-entry-pad-y: 0.32rem;
     --cv-list-gap: calc(var(--cv-entry-pad-y) * 2);
+    --cv-block-gap: 0.5rem;
+    --cv-bullet-gap: 0.2rem;
+    --cv-bullet-first-gap: 0.4rem;
   }
+
+  .paged-content > * {
+    margin-top: var(--cv-block-gap);
+  }
+
+  .paged-content > *:first-child {
+    margin-top: 0;
+  }
+
+  .paged-content > .section-header-block {
+    margin-top: var(--cv-section-gap);
+  }
+
+  .paged-content > .bullet-block {
+    margin-top: var(--cv-bullet-gap);
+  }
+
+  .paged-content > .bullet-block--first {
+    margin-top: var(--cv-bullet-first-gap);
+  }
+
  
   .dark {
     --background: 222.2 84% 4.9%;
