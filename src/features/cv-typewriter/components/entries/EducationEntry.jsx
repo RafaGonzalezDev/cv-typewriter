@@ -20,7 +20,7 @@ export default function EducationEntry({ entry }) {
                     ) : null}
                 </div>
             </div>
-            <div className="text-[12.5px] font-semibold text-primary/70 whitespace-nowrap pt-0.5">{date}</div>
+            <div className="text-[12.5px] font-medium text-muted-foreground italic whitespace-nowrap pt-0.5">{date}</div>
         </div>
     );
 }

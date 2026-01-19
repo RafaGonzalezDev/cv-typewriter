@@ -18,7 +18,8 @@ import {
 // ---------------------------
 export default function CVTypewriter() {
     const [jsonText, setJsonText] = useState(() => JSON.stringify(SAMPLE, null, 2));
-    const [fileName, setFileName] = useState("Untitled");
+    const [fileName, setFileName] = useState("CV");
+
     const parsed = useMemo(() => safeJsonParse(jsonText), [jsonText]);
     const cv = useMemo(() => normalizeCV(parsed.ok ? parsed.value : SAMPLE), [parsed.ok, parsed.value]);
     const printRef = useRef(null);
@@ -114,7 +115,8 @@ export default function CVTypewriter() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = `${fileName || "Untitled"}.json`;
+        a.download = `${fileName || "CV"}.json`;
+
         document.body.appendChild(a);
         a.click();
         a.remove();
@@ -125,7 +127,8 @@ export default function CVTypewriter() {
 
     const handlePrint = useReactToPrint({
         contentRef: printRef,
-        documentTitle: fileName || "Untitled",
+        documentTitle: fileName || "CV",
+
         pageStyle: printCss,
     });
 

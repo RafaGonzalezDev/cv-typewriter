@@ -1,10 +1,36 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Download, Printer, RotateCcw, FileJson } from "lucide-react";
+import CodeMirror from "@uiw/react-codemirror";
+import { json } from "@codemirror/lang-json";
+import { EditorView } from "@codemirror/view";
+
+const jsonEditorTheme = EditorView.theme({
+    "&": {
+        backgroundColor: "#ffffff",
+        color: "#0f172a"
+    },
+    ".cm-content": {
+        caretColor: "#0f172a"
+    },
+    ".cm-gutters": {
+        backgroundColor: "#f8fafc",
+        color: "#94a3b8",
+        border: "none"
+    },
+    ".cm-activeLine": {
+        backgroundColor: "#f8fafc"
+    },
+    ".cm-selectionBackground": {
+        backgroundColor: "#e2e8f0"
+    },
+    "&.cm-focused .cm-selectionBackground": {
+        backgroundColor: "#e2e8f0"
+    }
+});
 
 export default function EditorPanel({
     fileName,
@@ -40,7 +66,7 @@ export default function EditorPanel({
                                 <Input
                                     value={fileName}
                                     onChange={onFileNameChange}
-                                    placeholder="Untitled"
+                                    placeholder="CV"
                                     className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-primary focus-visible:border-none text-base font-medium w-full"
                                 />
                             </div>
@@ -78,17 +104,24 @@ export default function EditorPanel({
                                 <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">JSON Editor</label>
                                 <Badge
                                     variant="outline"
-                                    className="bg-white/50 backdrop-blur-sm border-slate-200 text-slate-400 font-mono text-[10px]"
+                                    className="bg-white/50 backdrop-blur-sm border-slate-200 text-slate-400 text-[10px] font-jetbrains-mono"
                                 >
                                     {jsonText.length} chars
                                 </Badge>
                             </div>
-                            <div className="relative group overflow-hidden border border-slate-200 bg-slate-50 flex-1 min-h-0">
-                                <Textarea
-                                    className="font-mono text-[13px] p-6 bg-transparent border-none resize-none focus-visible:ring-0 leading-relaxed scrollbar-thin scrollbar-thumb-slate-200 w-full h-full"
+                            <div className="relative group overflow-hidden border border-slate-200 bg-white flex-1 min-h-0 json-editor font-jetbrains-mono">
+                                <CodeMirror
                                     value={jsonText}
-                                    onChange={onJsonTextChange}
-                                    spellCheck={false}
+                                    height="100%"
+                                    extensions={[json(), jsonEditorTheme]}
+                                    onChange={(value) => onJsonTextChange({ target: { value } })}
+                                    basicSetup={{
+                                        lineNumbers: true,
+                                        foldGutter: false,
+                                        highlightActiveLine: false,
+                                        highlightActiveLineGutter: false
+                                    }}
+                                    className="h-full text-[13px]"
                                 />
                             </div>
                             {!parsed.ok && (

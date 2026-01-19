@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,6 +65,15 @@
 
   .paged-content > .bullet-block--first {
     margin-top: var(--cv-bullet-first-gap);
+  }
+
+  .font-jetbrains-mono {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .json-editor .cm-editor,
+  .json-editor .cm-scroller {
+    font-family: inherit;
   }
 
  
