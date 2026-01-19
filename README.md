@@ -7,6 +7,10 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![ShadcnUI](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
 
+<p align="center">
+  <img src="preview.png" alt="CV Typewriter preview" width="900" />
+</p>
+
 ## Key Features
 
 - **Live JSON Editor**: Real-time CV updates as you edit your data.
