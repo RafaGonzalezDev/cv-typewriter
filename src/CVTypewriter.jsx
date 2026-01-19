@@ -1,13 +1,14 @@
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Download, Printer, RotateCcw, FileJson } from "lucide-react";
+import { useReactToPrint } from 'react-to-print';
+
 
 // ---------------------------
 // Helpers
@@ -41,6 +42,32 @@ function formatDateRange(start, end) {
     if (!s && e) return e;
     return `${s} – ${e}`;
 }
+
+function parseCm(value, fallback) {
+    if (typeof value === "string" && value.trim().endsWith("cm")) {
+        const parsed = Number.parseFloat(value);
+        return Number.isFinite(parsed) ? parsed : fallback;
+    }
+    if (typeof value === "number" && Number.isFinite(value)) {
+        return value;
+    }
+    return fallback;
+}
+
+function cmToPx(cm) {
+    const pxPerMm = 96 / 25.4;
+    return cm * 10 * pxPerMm;
+}
+
+function mmToPx(mm) {
+    const pxPerMm = 96 / 25.4;
+    return mm * pxPerMm;
+}
+
+function toPx(value) {
+    return `${value.toFixed(2)}px`;
+}
+
 
 function renderTextWithLinks(text) {
     if (!text) return "";
@@ -92,15 +119,16 @@ function normalizeCV(raw) {
 
 function Section({ title, children }) {
     return (
-        <section className="mt-8 first:mt-0">
+        <section className="mt-8 first:mt-0 break-inside-avoid">
             <div className="flex items-end justify-between">
                 <h2 className="text-[13px] font-bold tracking-[0.15em] uppercase text-primary/80">{title}</h2>
             </div>
-            <Separator className="mt-2 bg-primary/20 h-[1.5px]" />
+            <Separator className="mt-1 bg-primary/20 h-px" />
             <div className="mt-4">{children}</div>
         </section>
     );
 }
+
 
 function ExperienceEntry({ entry }) {
     const title = nonEmpty(entry.position) ? entry.position : "";
@@ -112,10 +140,16 @@ function ExperienceEntry({ entry }) {
     return (
         <div className="grid grid-cols-[1fr_auto] gap-3 py-3 text-left">
             <div>
-                <div className="text-[14px] font-bold leading-snug text-foreground">{renderTextWithLinks(title)}</div>
-                {sub ? <div className="text-[12.5px] font-medium text-muted-foreground mt-0.5 italic">{sub}</div> : null}
+                <div className="text-[14px] font-bold leading-snug text-foreground">
+                    {renderTextWithLinks(title)}
+                    {sub ? (
+                        <span className="text-[12.5px] font-medium text-muted-foreground italic ml-2">
+                            {sub}
+                        </span>
+                    ) : null}
+                </div>
                 {asArray(entry.highlights).length ? (
-                    <ul className="mt-2 list-disc pl-5 space-y-1.5 text-[13px] leading-relaxed text-foreground/80">
+                    <ul className="mt-2 list-disc pl-5 space-y-1 text-[13px] leading-snug text-foreground/80">
                         {entry.highlights.map((h, i) => (
                             <li key={i}>{renderTextWithLinks(h)}</li>
                         ))}
@@ -125,6 +159,7 @@ function ExperienceEntry({ entry }) {
             <div className="text-[12.5px] font-semibold text-primary/70 whitespace-nowrap pt-0.5">{date}</div>
         </div>
     );
+
 }
 
 function EducationEntry({ entry }) {
@@ -137,13 +172,20 @@ function EducationEntry({ entry }) {
     return (
         <div className="grid grid-cols-[1fr_auto] gap-3 py-2 text-left">
             <div>
-                <div className="text-[14px] font-bold leading-snug">{title}</div>
-                {sub ? <div className="text-[12.5px] font-medium text-muted-foreground mt-0.5 italic">{sub}</div> : null}
+                <div className="text-[14px] font-bold leading-snug">
+                    {title}
+                    {sub ? (
+                        <span className="text-[12.5px] font-medium text-muted-foreground italic ml-2">
+                            {sub}
+                        </span>
+                    ) : null}
+                </div>
             </div>
             <div className="text-[12.5px] font-semibold text-primary/70 whitespace-nowrap pt-0.5">{date}</div>
         </div>
     );
 }
+
 
 function ProjectEntry({ entry }) {
     const name = nonEmpty(entry.name) ? entry.name : "";
@@ -294,10 +336,11 @@ const SAMPLE = {
         "theme": "engineeringresumes",
         "page": {
             "size": "a4",
-            "top_margin": "2cm",
-            "bottom_margin": "2cm",
-            "left_margin": "2cm",
-            "right_margin": "2cm",
+            "top_margin": "1.0cm",
+            "bottom_margin": "1.5cm",
+            "left_margin": "1.5cm",
+            "right_margin": "1.5cm",
+
             "show_page_numbering": false,
             "show_last_updated_date": true
         }
@@ -358,25 +401,82 @@ export default function CVTypewriter() {
     const [fileName, setFileName] = useState("Untitled");
     const parsed = useMemo(() => safeJsonParse(jsonText), [jsonText]);
     const cv = useMemo(() => normalizeCV(parsed.ok ? parsed.value : SAMPLE), [parsed.ok, parsed.value]);
+    const printRef = useRef(null);
 
-    useEffect(() => {
-        const id = "oxford-cv-print-css";
-        if (document.getElementById(id)) return;
-        const style = document.createElement("style");
-        style.id = id;
-        style.innerHTML = `
-      @media print {
-        html, body { height: auto; }
-        .no-print { display: none !important; }
-        .print-root { background: white !important; }
-        .print-card { box-shadow: none !important; border: none !important; margin: 0 !important; }
-        a { color: inherit !important; text-decoration: none !important; }
-        * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        @page { size: A4; margin: 15mm 15mm 15mm 15mm; }
-      }
+    const pageConfig = useMemo(() => {
+
+        const raw = parsed.ok ? parsed.value : SAMPLE;
+        const design = raw && typeof raw === "object" ? raw.design : null;
+        const page = design && typeof design === "object" ? design.page : null;
+        const topCm = parseCm(page?.top_margin, 2);
+        const bottomCm = parseCm(page?.bottom_margin, 2);
+        const leftCm = parseCm(page?.left_margin, 2);
+        const rightCm = parseCm(page?.right_margin, 2);
+        return {
+            topCm,
+            bottomCm,
+            leftCm,
+            rightCm
+        };
+    }, [parsed.ok, parsed.value]);
+
+    const pageMetrics = useMemo(() => {
+        const pageWidthMm = 210;
+        const pageHeightMm = 297;
+        const topPx = cmToPx(pageConfig.topCm);
+        const bottomPx = cmToPx(pageConfig.bottomCm);
+        const leftPx = cmToPx(pageConfig.leftCm);
+        const rightPx = cmToPx(pageConfig.rightCm);
+        const widthPx = mmToPx(pageWidthMm);
+        const heightPx = mmToPx(pageHeightMm);
+        const contentHeightPx = heightPx - topPx - bottomPx;
+        return {
+            topPx,
+            bottomPx,
+            leftPx,
+            rightPx,
+            widthPx,
+            heightPx,
+            contentHeightPx
+        };
+    }, [pageConfig]);
+
+    const printCss = useMemo(() => {
+        return `
+        @page { 
+            size: A4; 
+            margin: 0; 
+        }
+        @media print {
+            html, body {
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .print-container {
+                width: 210mm !important;
+                height: 297mm !important;
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                break-after: page;
+            }
+            .cv-content {
+                padding-top: ${pageConfig.topCm}cm !important;
+                padding-bottom: ${pageConfig.bottomCm}cm !important;
+                padding-left: ${pageConfig.leftCm}cm !important;
+                padding-right: ${pageConfig.rightCm}cm !important;
+                box-sizing: border-box !important;
+            }
+        }
+        @media screen {
+            .print-container {
+                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            }
+        }
     `;
-        document.head.appendChild(style);
-    }, []);
+    }, [pageConfig, pageMetrics]);
 
     const downloadJson = () => {
         const blob = new Blob([jsonText], { type: "application/json;charset=utf-8" });
@@ -391,206 +491,240 @@ export default function CVTypewriter() {
     };
 
     const loadSample = () => setJsonText(JSON.stringify(SAMPLE, null, 2));
-    const printPDF = () => window.print();
+
+    const handlePrint = useReactToPrint({
+        contentRef: printRef,
+        documentTitle: fileName || "Untitled",
+        pageStyle: printCss,
+    });
+
+
+    const [numPages, setNumPages] = useState(1);
+    const contentRef = useRef(null);
+
+    useEffect(() => {
+        if (contentRef.current) {
+            const height = contentRef.current.scrollHeight;
+            const pages = Math.ceil(height / pageMetrics.contentHeightPx);
+            setNumPages(pages || 1);
+        }
+    }, [cv, pageMetrics, jsonText]); // Added jsonText to trigger on every edit
 
     const contactLine = joinNonEmpty(
-        [cv.basics.location, cv.basics.email, cv.basics.phone, cv.basics.website],
+        [cv.basics.email, cv.basics.phone, cv.basics.website],
         " | "
     );
 
-    return (
-        <div className="min-h-screen w-full bg-[#f8fafc] p-4 md:p-8 print-root pb-20">
-            <div className="mx-auto max-w-4xl flex flex-col gap-8">
-                {/* Editor Card (Top) */}
-                <Card className="no-print shadow-xl border-none overflow-hidden bg-white/80 backdrop-blur-md">
-                    <CardHeader className="bg-slate-900 text-white p-6">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-primary rounded-lg">
-                                <FileJson className="w-6 h-6" />
-                            </div>
-                            <div>
-                                <CardTitle className="text-xl font-bold tracking-tight">CV Typewriter</CardTitle>
-                                <div className="text-xs text-slate-400 font-medium uppercase tracking-[0.2em] mt-1">AI-Powered YAML/JSON Editor</div>
-                            </div>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="p-6 space-y-8">
-                        <div className="flex flex-col md:flex-row items-end gap-6">
-                            <div className="w-full md:flex-1 space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Document Name</label>
-                                <Input
-                                    value={fileName}
-                                    onChange={(e) => setFileName(e.target.value)}
-                                    placeholder="Untitled"
-                                    className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-primary focus-visible:border-none text-base font-medium"
-                                />
-                            </div>
-                            <div className="w-full md:w-auto space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Quick Actions</label>
-                                <div className="flex flex-wrap gap-2">
-                                    <Button onClick={printPDF} className="h-12 px-6 shadow-md hover:shadow-lg transition-all gap-2 font-bold">
-                                        <Printer className="w-4 h-4" />
-                                        Print PDF
-                                    </Button>
-                                    <Button variant="secondary" onClick={downloadJson} className="h-12 px-5 gap-2 font-bold bg-slate-100 hover:bg-slate-200 transition-colors">
-                                        <Download className="w-4 h-4" />
-                                        JSON
-                                    </Button>
-                                    <Button variant="ghost" onClick={loadSample} className="h-12 px-4 gap-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all font-semibold">
-                                        <RotateCcw className="w-4 h-4" />
-                                        Reset
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
+    const renderCVContent = () => (
+        <div ref={contentRef} className="cv-content-inner">
+            <div className="text-center">
+                <div className="text-[30px] sm:text-[34px] font-semibold text-slate-900 leading-[1.15] mb-5 tracking-tight">{cv.basics.name}</div>
 
-                        <Tabs defaultValue="json" className="w-full">
-                            <TabsList className="grid w-full grid-cols-2 p-1 bg-slate-100 rounded-xl h-14">
-                                <TabsTrigger value="json" className="rounded-lg h-12 text-sm font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">EDITOR CONTENT</TabsTrigger>
-                                <TabsTrigger value="schema" className="rounded-lg h-12 text-sm font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">DOCUMENTATION</TabsTrigger>
-                            </TabsList>
-                            <TabsContent value="json" className="mt-6 space-y-4">
-                                <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-100 transition-all focus-within:border-primary/20 bg-slate-50">
-                                    <Textarea
-                                        className="font-mono text-[13px] min-h-[450px] p-6 bg-transparent border-none resize-y focus-visible:ring-0 leading-relaxed scrollbar-thin scrollbar-thumb-slate-200"
-                                        value={jsonText}
-                                        onChange={(e) => setJsonText(e.target.value)}
-                                        spellCheck={false}
-                                    />
-                                    <div className="absolute top-4 right-4 flex gap-2">
+                {contactLine ? (
+                    <div className="text-[13px] text-slate-500 font-bold mb-3 tracking-wide">{contactLine}</div>
+                ) : null}
+                <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-[12.5px] mb-5">
+                    {cv.basics.location ? (
+                        <span className="flex items-center text-slate-600 font-medium">
+                            <span className="font-bold text-slate-900">Location:</span>
+                            <span className="ml-1">{cv.basics.location}</span>
+                        </span>
+                    ) : null}
+                    {asArray(cv.basics.social).map((s, i) => {
+                        const url = getSocialUrl(s.network, s.username);
+                        const content = (
+                            <>
+                                <span className="font-bold text-slate-900">{s.network}:</span>
+                                <span className="text-slate-600 font-medium ml-1">{s.username}</span>
+                            </>
+                        );
+                        return url ? (
+                            <a
+                                key={i}
+                                href={url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="hover:text-primary transition-all flex items-center"
+                            >
+                                {content}
+                            </a>
+                        ) : (
+                            <span key={i} className="flex items-center">
+                                {content}
+                            </span>
+                        );
+                    })}
+                </div>
+            </div>
+
+            {/* Sections */}
+            <div className="space-y-6">
+                {cv.sections.summary.length ? (
+                    <Section title="Professional Summary">
+                        <div className="text-[13.5px] text-left leading-[1.6] text-slate-800 font-medium tracking-tight">
+                            {cv.sections.summary.map((s, i) => (
+                                <p key={i}>{s}</p>
+                            ))}
+                        </div>
+                    </Section>
+                ) : null}
+
+                {cv.sections.experience.length ? (
+                    <Section title="Experience">
+                        <div className="space-y-0 line-clamp-none">
+                            {cv.sections.experience.map((e, i) => (
+                                <ExperienceEntry key={i} entry={e} />
+                            ))}
+                        </div>
+                    </Section>
+                ) : null}
+
+                {cv.sections.technologies.length ? (
+                    <Section title="Technical Expertise">
+                        <TechBlock items={cv.sections.technologies} />
+                    </Section>
+                ) : null}
+
+                {cv.sections.projects.length ? (
+                    <Section title="Featured Projects">
+                        {cv.sections.projects.map((p, i) => (
+                            <ProjectEntry key={i} entry={p} />
+                        ))}
+                    </Section>
+                ) : null}
+
+                {cv.sections.education.length ? (
+                    <Section title="Education">
+                        <div className="space-y-2">
+                            {cv.sections.education.map((e, i) => (
+                                <EducationEntry key={i} entry={e} />
+                            ))}
+                        </div>
+                    </Section>
+                ) : null}
+            </div>
+        </div>
+    );
+
+
+    return (
+        <div className="min-h-screen w-full bg-[#f8fafc] print-root">
+            <div className="flex flex-col lg:grid lg:grid-cols-[1fr_auto_1fr] min-h-screen">
+                {/* Left Column: Editor */}
+                <div className="flex justify-center lg:justify-end p-4 md:p-8 no-print">
+                    <div className="w-full max-w-md lg:w-[400px] xl:w-[450px]">
+                        <Card className="shadow-xl border-none overflow-hidden bg-white/80 backdrop-blur-md sticky top-8 max-h-[calc(100vh-4rem)] flex flex-col">
+                            <CardHeader className="bg-white/80 text-slate-900 p-5 border-b border-slate-200/70">
+                                <div className="flex items-center justify-between">
+                                    <CardTitle className="text-base font-semibold tracking-tight">CV Typewriter</CardTitle>
+                                    <FileJson className="w-4 h-4 text-slate-400" />
+                                </div>
+                            </CardHeader>
+                            <CardContent className="p-6 space-y-6 overflow-y-auto flex-grow">
+                                <div className="space-y-5">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Document Name</label>
+                                        <Input
+                                            value={fileName}
+                                            onChange={(e) => setFileName(e.target.value)}
+                                            placeholder="Untitled"
+                                            className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-primary focus-visible:border-none text-base font-medium w-full"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Quick Actions</label>
+                                        <div className="grid grid-cols-1 gap-2">
+                                            <Button onClick={handlePrint} className="h-12 px-4 shadow-md hover:shadow-lg transition-all gap-2 font-bold">
+                                                <Printer className="w-4 h-4" />
+                                                Export PDF
+                                            </Button>
+                                            <div className="grid grid-cols-2 gap-2">
+                                                <Button variant="secondary" onClick={downloadJson} className="h-12 px-4 gap-2 font-bold bg-slate-100 hover:bg-slate-200 transition-colors">
+                                                    <Download className="w-4 h-4" />
+                                                    JSON
+                                                </Button>
+                                                <Button variant="ghost" onClick={loadSample} className="h-12 px-4 gap-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all font-semibold">
+                                                    <RotateCcw className="w-4 h-4" />
+                                                    Reset
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">JSON Editor</label>
                                         <Badge variant="outline" className="bg-white/50 backdrop-blur-sm border-slate-200 text-slate-400 font-mono text-[10px]">
                                             {jsonText.length} chars
                                         </Badge>
                                     </div>
-                                </div>
-                                {!parsed.ok && (
-                                    <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-lg text-sm text-red-700 font-semibold animate-in fade-in slide-in-from-top-2">
-                                        ⚠️ SYNTAX ERROR: {parsed.error}
+                                    <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-100 transition-all focus-within:border-primary/20 bg-slate-50 flex-grow">
+                                        <Textarea
+                                            className="font-mono text-[13px] min-h-[400px] p-6 bg-transparent border-none resize-y focus-visible:ring-0 leading-relaxed scrollbar-thin scrollbar-thumb-slate-200 w-full h-full"
+                                            value={jsonText}
+                                            onChange={(e) => setJsonText(e.target.value)}
+                                            spellCheck={false}
+                                        />
                                     </div>
-                                )}
-                            </TabsContent>
-                            <TabsContent value="schema" className="mt-6 text-sm space-y-6 p-8 bg-slate-50/50 rounded-2xl border border-slate-100">
-                                <div className="space-y-3">
-                                    <h3 className="font-bold text-slate-900 text-lg">About RenderCV Schema</h3>
-                                    <p className="text-slate-600 leading-relaxed">This editor follows the standardized RenderCV structure. This allows you to export your data and use it with other tools in the ecosystem.</p>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-4">
-                                        <div className="flex items-center gap-3">
-                                            <Badge variant="secondary" className="bg-slate-200 text-slate-700 w-8 h-8 rounded-full flex items-center justify-center p-0">1</Badge>
-                                            <span className="font-bold text-slate-800">Identify basics</span>
+                                    {!parsed.ok && (
+                                        <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-lg text-sm text-red-700 font-semibold animate-in fade-in slide-in-from-top-2">
+                                            ⚠️ SYNTAX ERROR: {parsed.error}
                                         </div>
-                                        <p className="text-xs text-slate-500 ml-11">Name, social networks (GitHub, LinkedIn), and general location info.</p>
-                                    </div>
-                                    <div className="space-y-4">
-                                        <div className="flex items-center gap-3">
-                                            <Badge variant="secondary" className="bg-slate-200 text-slate-700 w-8 h-8 rounded-full flex items-center justify-center p-0">2</Badge>
-                                            <span className="font-bold text-slate-800">Define sections</span>
-                                        </div>
-                                        <p className="text-xs text-slate-500 ml-11">Group your experience, education, and projects under <code>sections</code>.</p>
-                                    </div>
+                                    )}
                                 </div>
-
-                                <div className="p-4 bg-primary/5 rounded-xl border border-primary/10">
-                                    <p className="text-[12px] text-primary font-bold">💡 PRO TIP</p>
-                                    <p className="text-[12px] text-primary/80 mt-1 italic">Use Markdown syntax `[title](url)` anywhere in highlights to create links.</p>
-                                </div>
-                            </TabsContent>
-                        </Tabs>
-                    </CardContent>
-                </Card>
-
-                {/* Preview Card (Bottom) */}
-                <Card className="print-card shadow-2xl border-none bg-white rounded-none">
-                    <CardContent className="p-12 md:p-20">
-                        <div className="text-center mb-10">
-                            <div className="text-[38px] font-semibold text-slate-900 leading-tight mb-2 tracking-tight">{cv.basics.name}</div>
-                            {contactLine ? (
-                                <div className="text-[13px] text-slate-500 font-bold mb-3 tracking-wide">{contactLine}</div>
-                            ) : null}
-                            {asArray(cv.basics.social).length ? (
-                                <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-                                    {cv.basics.social.map((s, i) => {
-                                        const url = getSocialUrl(s.network, s.username);
-                                        const content = (
-                                            <>
-                                                <span className="font-bold text-slate-900">{s.network}:</span>
-                                                <span className="text-slate-600 font-medium ml-1">{s.username}</span>
-                                            </>
-                                        );
-                                        return url ? (
-                                            <a
-                                                key={i}
-                                                href={url}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="text-[12.5px] hover:text-primary transition-all flex items-center"
-                                            >
-                                                {content}
-                                            </a>
-                                        ) : (
-                                            <span key={i} className="text-[12.5px] flex items-center">
-                                                {content}
-                                            </span>
-                                        );
-                                    })}
-                                </div>
-                            ) : null}
-                        </div>
-
-                        {/* Sections */}
-                        <div className="space-y-6">
-                            {cv.sections.summary.length ? (
-                                <Section title="Professional Summary">
-                                    <div className="text-[13.5px] text-left leading-[1.6] text-slate-800 font-medium tracking-tight">
-                                        {cv.sections.summary.map((s, i) => (
-                                            <p key={i}>{s}</p>
-                                        ))}
-                                    </div>
-                                </Section>
-                            ) : null}
-
-                            {cv.sections.experience.length ? (
-                                <Section title="Experience">
-                                    <div className="space-y-0 line-clamp-none">
-                                        {cv.sections.experience.map((e, i) => (
-                                            <ExperienceEntry key={i} entry={e} />
-                                        ))}
-                                    </div>
-                                </Section>
-                            ) : null}
-
-                            {cv.sections.technologies.length ? (
-                                <Section title="Technical Expertise">
-                                    <TechBlock items={cv.sections.technologies} />
-                                </Section>
-                            ) : null}
-
-                            {cv.sections.projects.length ? (
-                                <Section title="Featured Projects">
-                                    {cv.sections.projects.map((p, i) => (
-                                        <ProjectEntry key={i} entry={p} />
-                                    ))}
-                                </Section>
-                            ) : null}
-
-                            {cv.sections.education.length ? (
-                                <Section title="Education">
-                                    <div className="space-y-2">
-                                        {cv.sections.education.map((e, i) => (
-                                            <EducationEntry key={i} entry={e} />
-                                        ))}
-                                    </div>
-                                </Section>
-                            ) : null}
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <div className="no-print mt-4 mb-20 text-center text-xs font-bold text-slate-400 tracking-[0.2em] uppercase">
-                    Final Output Optimized for A4 Standards
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
+
+                {/* Middle Column: CV Preview */}
+                <div className="p-4 md:p-8 flex justify-center bg-slate-100/50 overflow-y-auto relative">
+                    {/* Hidden measurer to calculate number of pages */}
+                    <div className="absolute opacity-0 pointer-events-none overflow-hidden" style={{ 
+                        width: `${pageMetrics.widthPx}px`,
+                        paddingLeft: `${pageMetrics.leftPx}px`,
+                        paddingRight: `${pageMetrics.rightPx}px`,
+                    }}>
+                        {renderCVContent()}
+                    </div>
+
+                    <div ref={printRef} className="flex flex-col items-center">
+                        {Array.from({ length: numPages }).map((_, i) => (
+                            <div
+                                key={i}
+                                className="print-container bg-white outline outline-1 outline-slate-200 shadow-sm mb-8 last:mb-0 relative overflow-hidden"
+                                style={{
+                                    width: `${pageMetrics.widthPx}px`,
+                                    height: `${pageMetrics.heightPx}px`,
+                                    boxSizing: 'border-box'
+                                }}
+                            >
+                                <div className="cv-content box-border" style={{
+                                    paddingTop: `${pageMetrics.topPx}px`,
+                                    paddingBottom: `${pageMetrics.bottomPx}px`,
+                                    paddingLeft: `${pageMetrics.leftPx}px`,
+                                    paddingRight: `${pageMetrics.rightPx}px`,
+                                    height: '100%',
+                                    position: 'relative'
+                                }}>
+                                    <div style={{ 
+                                        transform: `translateY(-${i * pageMetrics.contentHeightPx}px)`,
+                                        position: 'absolute',
+                                        top: `${pageMetrics.topPx}px`,
+                                        left: `${pageMetrics.leftPx}px`,
+                                        right: `${pageMetrics.rightPx}px`
+                                    }}>
+                                        {renderCVContent()}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Right Column: Spacer to center Middle Column */}
+                <div className="no-print hidden lg:block" />
             </div>
         </div>
     );
