@@ -12,9 +12,11 @@
 - **Live JSON Editor**: Real-time CV updates as you edit your data.
 - **RenderCV Compatibility**: Uses a standardized schema, making your data portable across other CV tools.
 - **Oxford-Inspired Design**: Professional, clean typography focused on hierarchy and readability.
-- **A4 Print Optimized**: Dedicated CSS ensures flawless PDF generation directly from your browser.
+- **A4 Print Optimized**: Dedicated CSS and paginated preview ensure clean PDF output.
+- **Smart Page Splitting**: Content blocks are measured and flowed across pages to avoid awkward splits.
 - **Markdown Support**: Use standard Markdown syntax (e.g., `[Title](Link)`) in your descriptions to generate clickable links.
 - **Git Friendly**: Your CV is just a JSON file. Track changes, branch, and pull request your career updates.
+
 
 ## Getting Started
 
@@ -54,10 +56,11 @@
 ## How to Use
 
 1. **Edit**: Modify the JSON content in the editor at the top.
-2. **Preview**: See the live results in the A4 canvas at the bottom.
+2. **Preview**: See the live results in the A4 canvas with real page breaks.
 3. **Export**: 
-   - Click **"Print PDF"** and save using your browser's native print-to-PDF feature (Optimized for A4).
-   - Click **"Download JSON"** to save your raw data as a portable file.
+   - Click **"Export PDF"** and save using your browser's native print-to-PDF feature (Optimized for A4).
+   - Click **"JSON"** to save your raw data as a portable file.
+
 
 ## Contributing
 
