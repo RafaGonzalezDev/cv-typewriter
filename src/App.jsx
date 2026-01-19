@@ -1,9 +1,7 @@
-import CVTypewriter from "./CVTypewriter";
+import CVTypewriter from './CVTypewriter';
 
 function App() {
-  return (
-    <CVTypewriter />
-  );
+  return <CVTypewriter />;
 }
 
 export default App;

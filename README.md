@@ -17,7 +17,6 @@
 - **Markdown Support**: Use standard Markdown syntax (e.g., `[Title](Link)`) in your descriptions to generate clickable links.
 - **Git Friendly**: Your CV is just a JSON file. Track changes, branch, and pull request your career updates.
 
-
 ## Getting Started
 
 ### Prerequisites
@@ -28,17 +27,20 @@
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/RafaGonzalezDev/cv-typewriter.git
    cd cv-typewriter
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Start the development server:
+
    ```bash
    npm run dev
    ```
@@ -57,10 +59,9 @@
 
 1. **Edit**: Modify the JSON content in the editor at the top.
 2. **Preview**: See the live results in the A4 canvas with real page breaks.
-3. **Export**: 
+3. **Export**:
    - Click **"Export PDF"** and save using your browser's native print-to-PDF feature (Optimized for A4).
    - Click **"JSON"** to save your raw data as a portable file.
-
 
 ## Contributing
 
