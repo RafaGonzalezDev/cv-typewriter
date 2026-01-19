@@ -77,6 +77,10 @@ export default function CVTypewriter() {
             .no-print {
                 display: none !important;
             }
+            .no-print,
+            .print-root {
+                box-sizing: border-box;
+            }
             .print-root {
                 background: #fff !important;
             }
@@ -334,27 +338,34 @@ export default function CVTypewriter() {
     return (
 
         <div className="min-h-screen w-full bg-[#f8fafc] print-root">
-            <div className="flex flex-col lg:grid lg:grid-cols-[1fr_auto_1fr] min-h-screen">
-                <EditorPanel
-                    fileName={fileName}
-                    onFileNameChange={(e) => setFileName(e.target.value)}
-                    jsonText={jsonText}
-                    onJsonTextChange={(e) => setJsonText(e.target.value)}
-                    parsed={parsed}
-                    onPrint={handlePrint}
-                    onDownloadJson={downloadJson}
-                    onLoadSample={loadSample}
-                />
-                <PreviewPanel
-                    cv={cv}
-                    pagedBlocks={pagedBlocks}
-                    allBlocks={allBlocks}
-                    numPages={numPages}
-                    pageMetrics={pageMetrics}
-                    printRef={printRef}
-                    contentRef={contentRef}
-                />
-                <div className="no-print hidden lg:block" />
+            <div className="flex justify-center px-6 py-8">
+                <div
+                    className="grid gap-10"
+                    style={{
+                        gridTemplateColumns: `${pageMetrics.widthPx}px ${pageMetrics.widthPx}px`
+                    }}
+                >
+                    <EditorPanel
+                        fileName={fileName}
+                        onFileNameChange={(e) => setFileName(e.target.value)}
+                        jsonText={jsonText}
+                        onJsonTextChange={(e) => setJsonText(e.target.value)}
+                        parsed={parsed}
+                        onPrint={handlePrint}
+                        onDownloadJson={downloadJson}
+                        onLoadSample={loadSample}
+                        pageMetrics={pageMetrics}
+                    />
+                    <PreviewPanel
+                        cv={cv}
+                        pagedBlocks={pagedBlocks}
+                        allBlocks={allBlocks}
+                        numPages={numPages}
+                        pageMetrics={pageMetrics}
+                        printRef={printRef}
+                        contentRef={contentRef}
+                    />
+                </div>
             </div>
         </div>
 

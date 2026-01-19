@@ -3,7 +3,7 @@ import CVContent from "./CVContent";
 
 export default function PreviewPanel({ cv, pagedBlocks, allBlocks, numPages, pageMetrics, printRef, contentRef }) {
     return (
-        <div className="p-4 md:p-8 flex justify-center overflow-y-auto relative">
+        <div className="relative">
             <div
                 className="absolute opacity-0 pointer-events-none overflow-hidden"
                 style={{

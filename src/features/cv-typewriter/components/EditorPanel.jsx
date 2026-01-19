@@ -14,19 +14,26 @@ export default function EditorPanel({
     parsed,
     onPrint,
     onDownloadJson,
-    onLoadSample
+    onLoadSample,
+    pageMetrics
 }) {
     return (
-        <div className="flex justify-center lg:justify-end p-4 md:p-8 no-print">
-            <div className="w-full max-w-md lg:w-[400px] xl:w-[450px]">
-                <Card className="shadow-xl border-none overflow-hidden bg-white/80 backdrop-blur-md sticky top-8 max-h-[calc(100vh-4rem)] flex flex-col">
-                    <CardHeader className="bg-white/80 text-slate-900 p-5 border-b border-slate-200/70">
+        <div className="no-print">
+            <div
+                className="w-full"
+                style={{
+                    width: `${pageMetrics.widthPx}px`,
+                    height: `${pageMetrics.heightPx}px`
+                }}
+            >
+                <Card className="border border-slate-200 shadow-none rounded-none overflow-hidden bg-white h-full w-full flex flex-col">
+                    <CardHeader className="bg-white text-slate-900 p-5 border-b border-slate-200/70">
                         <div className="flex items-center justify-between">
                             <CardTitle className="text-base font-semibold tracking-tight">CV Typewriter</CardTitle>
                             <FileJson className="w-4 h-4 text-slate-400" />
                         </div>
                     </CardHeader>
-                    <CardContent className="p-6 space-y-6 overflow-y-auto flex-grow">
+                    <CardContent className="p-6 space-y-6 flex-1 overflow-hidden flex flex-col">
                         <div className="space-y-5">
                             <div className="space-y-2">
                                 <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Document Name</label>
@@ -48,7 +55,7 @@ export default function EditorPanel({
                                         <Button
                                             variant="secondary"
                                             onClick={onDownloadJson}
-                                            className="h-12 px-4 gap-2 font-bold bg-slate-100 hover:bg-slate-200 transition-colors"
+                                            className="h-12 px-4 gap-2 font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition-colors"
                                         >
                                             <Download className="w-4 h-4" />
                                             JSON
@@ -56,7 +63,7 @@ export default function EditorPanel({
                                         <Button
                                             variant="ghost"
                                             onClick={onLoadSample}
-                                            className="h-12 px-4 gap-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all font-semibold"
+                                            className="h-12 px-4 gap-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all font-semibold"
                                         >
                                             <RotateCcw className="w-4 h-4" />
                                             Reset
@@ -66,7 +73,7 @@ export default function EditorPanel({
                             </div>
                         </div>
 
-                        <div className="space-y-4">
+                        <div className="space-y-4 flex-1 flex flex-col min-h-0">
                             <div className="flex items-center justify-between">
                                 <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">JSON Editor</label>
                                 <Badge
@@ -76,9 +83,9 @@ export default function EditorPanel({
                                     {jsonText.length} chars
                                 </Badge>
                             </div>
-                            <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-100 transition-all focus-within:border-primary/20 bg-slate-50 flex-grow">
+                            <div className="relative group overflow-hidden border border-slate-200 bg-slate-50 flex-1 min-h-0">
                                 <Textarea
-                                    className="font-mono text-[13px] min-h-[400px] p-6 bg-transparent border-none resize-y focus-visible:ring-0 leading-relaxed scrollbar-thin scrollbar-thumb-slate-200 w-full h-full"
+                                    className="font-mono text-[13px] p-6 bg-transparent border-none resize-none focus-visible:ring-0 leading-relaxed scrollbar-thin scrollbar-thumb-slate-200 w-full h-full"
                                     value={jsonText}
                                     onChange={onJsonTextChange}
                                     spellCheck={false}

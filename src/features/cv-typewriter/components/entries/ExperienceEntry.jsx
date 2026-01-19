@@ -27,7 +27,7 @@ export default function ExperienceEntry({ entry, withHighlights = true }) {
                     </ul>
                 ) : null}
             </div>
-            <div className="text-[12.5px] font-semibold italic text-primary/70 whitespace-nowrap pt-0.5">{date}</div>
+            <div className="text-[12.5px] font-medium text-muted-foreground italic whitespace-nowrap pt-0.5">{date}</div>
         </div>
     );
 }
