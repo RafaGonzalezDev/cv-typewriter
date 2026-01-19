@@ -33,6 +33,13 @@
     --ring: 222.2 84% 4.9%;
  
     --radius: 0.5rem;
+    --cv-section-gap: 1.75rem;
+    --cv-section-title-gap: 0.25rem;
+    --cv-section-body-gap: 0.65rem;
+    --cv-section-title-top-gap: 0rem;
+    --cv-section-title-bottom-gap: 0rem;
+    --cv-entry-pad-y: 0.4rem;
+    --cv-list-gap: calc(var(--cv-entry-pad-y) * 2);
   }
  
   .dark {
