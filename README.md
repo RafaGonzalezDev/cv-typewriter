@@ -1,6 +1,6 @@
 # CV Typewriter
 
-**CV Typewriter** is a minimalist, developer-focused web application for crafting professional CVs using a **data-first approach**. By decoupling your career data from its visual representation, it ensures your CV remains portable, version-controllable, and always looks perfect.
+CV Typewriter is a data-first CV editor for maintaining a professional resume as structured JSON and previewing it as a polished A4 document before export. It is designed for developers who want version-controlled CV content, bilingual variants, predictable print output, and a clean engineering-resume aesthetic.
 
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -11,70 +11,141 @@
   <img src="preview.png" alt="CV Typewriter preview" width="900" />
 </p>
 
-## Key Features
+## Highlights
 
-- **Live JSON Editor**: Real-time CV updates as you edit your data.
-- **RenderCV Compatibility**: Uses a standardized schema, making your data portable across other CV tools.
-- **Oxford-Inspired Design**: Professional, clean typography focused on hierarchy and readability.
-- **A4 Print Optimized**: Dedicated CSS and paginated preview ensure clean PDF output.
-- **Smart Page Splitting**: Content blocks are measured and flowed across pages to avoid awkward splits.
-- **Markdown Support**: Use standard Markdown syntax (e.g., `[Title](Link)`) in your descriptions to generate clickable links.
-- **Git Friendly**: Your CV is just a JSON file. Track changes, branch, and pull request your career updates.
+- **Data-first CV content**: maintain the CV as JSON instead of coupling content to layout.
+- **Bilingual preview**: switch between Spanish and English CV variants from the editor panel.
+- **Oxford-inspired resume layout**: compact header, minimal section treatment, and readable hierarchy.
+- **A4 print preview**: render fixed-size A4 pages in the browser before exporting.
+- **Smart pagination**: measure content blocks and avoid awkward page splits across entries and technical sections.
+- **PDF export**: export the selected language variant through the browser print-to-PDF flow.
+- **JSON export**: download the underlying structured CV data for backup or version control.
+- **Markdown-style links**: use `[Label](https://example.com)` in supported text fields.
 
-## Getting Started
+## Use cases
+
+- Keep CV content under version control.
+- Maintain separate Spanish and English CV variants in one source file.
+- Preview page breaks before exporting a PDF.
+- Tailor a developer CV toward software engineering, AI tooling, automation, or platform roles.
+- Iterate on content while preserving a consistent print layout.
+
+## Tech stack
+
+- **React 19** — UI runtime.
+- **Vite** — development server and production build.
+- **Tailwind CSS** — styling and print layout utilities.
+- **shadcn/ui-style primitives** — buttons, cards, inputs, badges and separators.
+- **CodeMirror** — JSON editor.
+- **react-to-print** — print/PDF export flow.
+- **Lucide React** — iconography.
+
+## Project structure
+
+```txt
+src/
+├── CVTypewriter.jsx                       # Feature orchestrator
+├── features/cv-typewriter/
+│   ├── components/                        # Editor, preview and CV rendering components
+│   ├── hooks/                             # CV state, pagination, page config and printing
+│   ├── services/                          # Block building and file operations
+│   ├── cvUtils.jsx                        # Parsing, localization, normalization and formatting
+│   └── sample.js                          # Bilingual sample CV data
+└── components/ui/                         # Shared UI primitives
+```
+
+Additional documentation lives in:
+
+```txt
+docs/
+├── adr/                                   # Architecture Decision Records
+├── changelog/                             # Documentation and content changes
+├── overview/                              # Architecture overview
+└── handoff.md                             # Professional positioning and continuation context
+```
+
+## Getting started
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
-- npm or yarn
+- Node.js 18 or newer
+- npm
 
-### Installation
+### Install
 
-1. Clone the repository:
+```bash
+npm install
+```
 
-   ```bash
-   git clone https://github.com/RafaGonzalezDev/cv-typewriter.git
-   cd cv-typewriter
-   ```
+### Run locally
 
-2. Install dependencies:
+```bash
+npm run dev
+```
 
-   ```bash
-   npm install
-   ```
+Open the local Vite URL, usually:
 
-3. Start the development server:
+```txt
+http://localhost:5173
+```
 
-   ```bash
-   npm run dev
-   ```
+### Build
 
-4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+```bash
+npm run build
+```
 
-## Tech Stack
+### Validate
 
-- **React 18** - UI Framework
-- **Vite** - Build Tool & Development Server
-- **Tailwind CSS** - Styling
-- **Shadcn/UI** - Premium UI Components
-- **Lucide React** - Iconography
+```bash
+npm run lint:check
+npm run format:check
+```
 
-## How to Use
+## How to use
 
-1. **Edit**: Modify the JSON content in the editor at the top.
-2. **Preview**: See the live results in the A4 canvas with real page breaks.
-3. **Export**:
-   - Click **"Export PDF"** and save using your browser's native print-to-PDF feature (Optimized for A4).
-   - Click **"JSON"** to save your raw data as a portable file.
+1. Edit the JSON content in the left panel.
+2. Use the language selector to preview `ES` or `EN`.
+3. Review the paginated A4 preview on the right.
+4. Export the selected language as PDF.
+5. Download the JSON source when you want a portable backup.
 
-## Contributing
+## Bilingual JSON model
 
-Contributions are welcome. Feel free to open an issue or submit a pull request if you have ideas for new templates or features.
+The sample CV stores localized content under `cv.languages`:
 
-## License
+```js
+cv: {
+  active_language: 'es',
+  languages: {
+    es: { /* Spanish CV */ },
+    en: { /* English CV */ }
+  }
+}
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Each language can define its own:
 
----
+- personal details,
+- localized section labels,
+- professional summary,
+- experience entries,
+- technical stack,
+- selected projects,
+- education.
 
-Crafted by [Rafa González](https://github.com/RafaGonzalezDev)
+The app still supports older single-language JSON files by falling back to the legacy `cv.sections` shape.
+
+## Documentation
+
+Useful references:
+
+- [`docs/overview/cv-typewriter.md`](docs/overview/cv-typewriter.md)
+- [`docs/adr/ADR-0001-client-side-pagination-for-cv-rendering.md`](docs/adr/ADR-0001-client-side-pagination-for-cv-rendering.md)
+- [`docs/handoff.md`](docs/handoff.md)
+
+## Notes
+
+- PDF export depends on the browser print dialog. Use A4 and disable browser headers/footers for best results.
+- Large editor dependencies can produce a Vite chunk-size warning during build; the build still completes successfully.
+- The current JSON export downloads the full source JSON, including both language variants.
