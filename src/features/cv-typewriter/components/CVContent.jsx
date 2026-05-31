@@ -6,56 +6,73 @@ import ProjectEntry from './entries/ProjectEntry';
 import TechBlock from './blocks/TechBlock';
 import Section, { SectionHeader } from './sections/Section';
 
+function getDisplayUrl(url) {
+  return String(url)
+    .replace(/^https?:\/\//, '')
+    .replace(/\/$/, '');
+}
+
+function getSocialDisplay(network, username) {
+  const net = String(network).toLowerCase();
+  if (net.includes('linkedin')) return `linkedin.com/in/${username}`;
+  if (net.includes('github')) return `github.com/${username}`;
+  return `${network}: ${username}`;
+}
+
 const CVContent = forwardRef(function CVContent(
   { cv, paged = false, layoutBlocks = [], pageIndex = 0 },
   ref
 ) {
   const blocks = paged ? layoutBlocks : null;
+  const contactItems = [
+    cv.basics.location ? { label: cv.basics.location } : null,
+    cv.basics.email ? { label: cv.basics.email, href: `mailto:${cv.basics.email}` } : null,
+    cv.basics.phone ? { label: cv.basics.phone, href: `tel:${cv.basics.phone}` } : null,
+    cv.basics.website ? { label: getDisplayUrl(cv.basics.website), href: cv.basics.website } : null,
+    ...asArray(cv.basics.social).map((social) => {
+      const url = getSocialUrl(social.network, social.username);
+      return {
+        label: getSocialDisplay(social.network, social.username),
+        href: url,
+      };
+    }),
+  ].filter(Boolean);
 
   return (
     <div ref={ref} lang={cv.language} className="cv-content-inner">
       {(!paged || pageIndex === 0) && (
         <div
-          className="text-center"
+          className="mb-5 text-center"
           data-block="header"
           data-block-id="header"
           data-section="header"
         >
-          <div className="text-[30px] sm:text-[34px] font-semibold text-slate-900 leading-[1.15] mb-5 tracking-tight">
+          <div className="mb-2 text-[27px] font-bold leading-none tracking-[-0.015em] text-slate-950">
             {cv.basics.name}
           </div>
 
-          <div className="flex flex-wrap justify-between text-[12.5px] mb-3 w-full">
-            {cv.basics.location ? (
-              <span className="flex items-center text-slate-600 font-medium">
-                <span className="font-bold text-slate-900">{cv.labels.location}:</span>
-                <span className="ml-1">{cv.basics.location}</span>
+          <div className="flex flex-wrap justify-center gap-x-2 gap-y-1 text-[11.5px] font-medium leading-snug text-slate-700">
+            {contactItems.map((item, index) => (
+              <span key={`${item.label}-${index}`} className="inline-flex items-center gap-x-2">
+                {index > 0 ? (
+                  <span aria-hidden="true" className="text-slate-400">
+                    |
+                  </span>
+                ) : null}
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                    className="underline-offset-2 hover:text-primary hover:underline"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <span>{item.label}</span>
+                )}
               </span>
-            ) : null}
-            {asArray(cv.basics.social).map((s, i) => {
-              const url = getSocialUrl(s.network, s.username);
-              const content = (
-                <>
-                  <span className="font-bold text-slate-900">{s.network}:</span>
-                  <span className="text-slate-600 font-medium ml-1">{s.username}</span>
-                </>
-              );
-              return url ? (
-                <a
-                  key={i}
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-primary transition-all flex items-center"
-                >
-                  {content}
-                </a>
-              ) : (
-                <span key={i} className="flex items-center">
-                  {content}
-                </span>
-              );
-            })}
+            ))}
           </div>
         </div>
       )}
