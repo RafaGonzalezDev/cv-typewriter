@@ -1,3 +1,9 @@
+## 2026-05-31 — Clarify frontend role titles
+
+**What**: Updated previous role titles from generic software developer labels to frontend-focused titles that better reflect the actual responsibilities performed.  
+**Where**: `src/features/cv-typewriter/sample.js`  
+**Why**: Improve clarity and alignment with frontend engineering, AI tooling, and developer automation roles.
+
 ## 2026-05-31 — Simplify summary presentation
 
 **What**: Shortened the professional summary and removed its visible section header so the CV starts with a direct positioning paragraph below the personal header.  

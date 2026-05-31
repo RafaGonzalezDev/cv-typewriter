@@ -32,7 +32,7 @@ const SAMPLE = {
         },
         {
           company: 'Banco Santander',
-          position: 'Software Developer (Interno)',
+          position: 'Frontend Engineer',
           start_date: '2025-09',
           end_date: '2026-03',
           location: 'Madrid, España',
@@ -49,7 +49,7 @@ const SAMPLE = {
         },
         {
           company: 'UST Global | Banco Santander',
-          position: 'Software Developer',
+          position: 'Frontend Engineer',
           start_date: '2023-11',
           end_date: '2025-08',
           location: 'Madrid, España · En remoto',
@@ -64,7 +64,7 @@ const SAMPLE = {
         },
         {
           company: 'GrayHats',
-          position: 'Software Developer (Contrato de prácticas)',
+          position: 'Frontend Developer Intern',
           start_date: '2023-03',
           end_date: '2023-08',
           location: 'Córdoba, España · Presencial',
