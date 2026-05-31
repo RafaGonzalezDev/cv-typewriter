@@ -1,8 +1,20 @@
-## 2026-05-31 — Add Banc Sabadell agentic pipeline POC
+## 2026-05-31 — Improve ATS positioning and tech pagination
 
-**What**: Renamed the current client reference to Banc Sabadell and added a concise POC highlight about integrating OpenCode into a Linux runner inside Bitbucket Pipelines for PR review, Bitbucket/JIRA audit workflows, and issue-resolution actions triggered through agent mentions.  
+**What**: Added ATS-oriented keywords around AI Developer Tooling, Developer Automation, Model Context Protocol, Playwright, and local LLM inference. Reordered featured projects to prioritize a public LLM automation CLI and grouped technical expertise rows during pagination so the section moves as one unit when needed.  
+**Where**: `src/features/cv-typewriter/sample.js`, `src/features/cv-typewriter/hooks/usePagination.jsx`  
+**Why**: Improve automated CV screening relevance and avoid splitting the technical expertise section across pages.
+
+## 2026-05-31 — Reframe sensitive agentic automation work
+
+**What**: Reworded the current-role agentic automation highlight to avoid exposing sensitive POC details, and added Banco Santander automated E2E validation work using an agent with Playwright MCP.  
 **Where**: `src/features/cv-typewriter/sample.js`  
-**Why**: Reflect applied AI tooling work performed in the current role while keeping the wording clearly scoped as a POC.
+**Why**: Preserve the value of applied AI tooling work while avoiding premature disclosure of internal integration details.
+
+## 2026-05-31 — Add Banc Sabadell agentic automation context
+
+**What**: Renamed the current client reference to Banc Sabadell and added a concise, generic highlight about exploring agentic automation in enterprise CI/CD and collaborative tooling workflows.  
+**Where**: `src/features/cv-typewriter/sample.js`  
+**Why**: Reflect applied AI tooling work performed in the current role without exposing sensitive internal integration details.
 
 ## 2026-05-31 — Clarify frontend role titles
 

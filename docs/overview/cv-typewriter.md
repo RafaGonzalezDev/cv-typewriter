@@ -4,21 +4,21 @@ CV Typewriter is a single-page React application that lets users craft professio
 
 ## Key components
 
-| File | Description |
-|---|---|
-| `src/App.jsx` | Application entry point. Mounts the `CVTypewriter` feature root. |
-| `src/CVTypewriter.jsx` | Feature orchestrator. Composes hooks and panels into the main layout grid. |
-| `src/features/cv-typewriter/hooks/useCVData.jsx` | Manages JSON text state, file name, safe parsing, and normalized CV object. |
-| `src/features/cv-typewriter/hooks/usePageConfig.jsx` | Derives A4 page metrics (margins, content height) and generates `@media print` CSS. |
-| `src/features/cv-typewriter/hooks/usePagination.jsx` | Measures DOM block heights and distributes content across pages to avoid awkward splits. |
-| `src/features/cv-typewriter/hooks/usePrint.jsx` | Thin wrapper around `react-to-print` for PDF export. |
-| `src/features/cv-typewriter/services/blockBuilder.js` | Transforms normalized CV data into a flat list of typed blocks (header, section-header, entries, highlights, tech items). |
-| `src/features/cv-typewriter/services/fileOperations.js` | Provides JSON download and sample data reset. |
-| `src/features/cv-typewriter/components/EditorPanel.jsx` | Left-side panel with file name input, quick action buttons, and the CodeMirror JSON editor. |
-| `src/features/cv-typewriter/components/PreviewPanel.jsx` | Right-side panel that renders a hidden measurement DOM tree and the visible paginated A4 pages. |
-| `src/features/cv-typewriter/components/CVContent.jsx` | Renders CV content in two modes: non-paged (for measurement) and paged (for display). |
-| `src/features/cv-typewriter/cvUtils.jsx` | Utility functions for safe JSON parsing, date formatting, Markdown link rendering, unit conversion (cm/mm to px), and CV normalization. |
-| `src/features/cv-typewriter/sample.js` | Default sample data compatible with the RenderCV schema. |
+| File                                                     | Description                                                                                                                             |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/App.jsx`                                            | Application entry point. Mounts the `CVTypewriter` feature root.                                                                        |
+| `src/CVTypewriter.jsx`                                   | Feature orchestrator. Composes hooks and panels into the main layout grid.                                                              |
+| `src/features/cv-typewriter/hooks/useCVData.jsx`         | Manages JSON text state, file name, safe parsing, and normalized CV object.                                                             |
+| `src/features/cv-typewriter/hooks/usePageConfig.jsx`     | Derives A4 page metrics (margins, content height) and generates `@media print` CSS.                                                     |
+| `src/features/cv-typewriter/hooks/usePagination.jsx`     | Measures DOM block heights and distributes content across pages to avoid awkward splits.                                                |
+| `src/features/cv-typewriter/hooks/usePrint.jsx`          | Thin wrapper around `react-to-print` for PDF export.                                                                                    |
+| `src/features/cv-typewriter/services/blockBuilder.js`    | Transforms normalized CV data into a flat list of typed blocks (header, section-header, entries, highlights, tech items).               |
+| `src/features/cv-typewriter/services/fileOperations.js`  | Provides JSON download and sample data reset.                                                                                           |
+| `src/features/cv-typewriter/components/EditorPanel.jsx`  | Left-side panel with file name input, quick action buttons, and the CodeMirror JSON editor.                                             |
+| `src/features/cv-typewriter/components/PreviewPanel.jsx` | Right-side panel that renders a hidden measurement DOM tree and the visible paginated A4 pages.                                         |
+| `src/features/cv-typewriter/components/CVContent.jsx`    | Renders CV content in two modes: non-paged (for measurement) and paged (for display).                                                   |
+| `src/features/cv-typewriter/cvUtils.jsx`                 | Utility functions for safe JSON parsing, date formatting, Markdown link rendering, unit conversion (cm/mm to px), and CV normalization. |
+| `src/features/cv-typewriter/sample.js`                   | Default sample data compatible with the RenderCV schema.                                                                                |
 
 ## Dependencies
 
