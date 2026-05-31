@@ -38,6 +38,9 @@ export default function EditorPanel({
   jsonText,
   onJsonTextChange,
   parsed,
+  language,
+  availableLanguages = [],
+  onLanguageChange,
   onPrint,
   onDownloadJson,
   onLoadSample,
@@ -74,6 +77,33 @@ export default function EditorPanel({
                   className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-primary focus-visible:border-none text-base font-medium w-full"
                 />
               </div>
+              <fieldset className="space-y-2">
+                <legend className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
+                  Preview Language
+                </legend>
+                <div className="grid grid-cols-2 gap-2">
+                  {availableLanguages.map((option) => {
+                    const isActive = option.code === language;
+                    return (
+                      <Button
+                        key={option.code}
+                        type="button"
+                        variant={isActive ? 'default' : 'outline'}
+                        aria-pressed={isActive}
+                        onClick={() => onLanguageChange(option.code)}
+                        className="h-11 px-3 gap-1.5 font-bold"
+                      >
+                        <span>{option.label}</span>
+                        <span
+                          className={isActive ? 'text-white/80 text-xs' : 'text-slate-500 text-xs'}
+                        >
+                          {option.name}
+                        </span>
+                      </Button>
+                    );
+                  })}
+                </div>
+              </fieldset>
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
                   Quick Actions
@@ -84,7 +114,7 @@ export default function EditorPanel({
                     className="h-12 px-4 shadow-md hover:shadow-lg transition-all gap-2 font-bold"
                   >
                     <Printer className="w-4 h-4" />
-                    Export PDF
+                    Export PDF ({language.toUpperCase()})
                   </Button>
                   <div className="grid grid-cols-2 gap-2">
                     <Button

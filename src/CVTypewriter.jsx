@@ -16,7 +16,17 @@ export default function CVTypewriter() {
   const printRef = useRef(null);
   const contentRef = useRef(null);
 
-  const { jsonText, setJsonText, fileName, setFileName, parsed, cv } = useCVData();
+  const {
+    jsonText,
+    setJsonText,
+    fileName,
+    setFileName,
+    parsed,
+    language,
+    setLanguage,
+    availableLanguages,
+    cv,
+  } = useCVData();
 
   const { pageMetrics, printCss } = usePageConfig(parsed);
 
@@ -26,7 +36,7 @@ export default function CVTypewriter() {
 
   const handlePrint = usePrint({
     contentRef: printRef,
-    documentTitle: fileName || 'CV',
+    documentTitle: `${fileName || 'CV'}-${language.toUpperCase()}`,
     pageStyle: printCss,
   });
 
@@ -48,6 +58,9 @@ export default function CVTypewriter() {
             jsonText={jsonText}
             onJsonTextChange={(e) => setJsonText(e.target.value)}
             parsed={parsed}
+            language={language}
+            availableLanguages={availableLanguages}
+            onLanguageChange={setLanguage}
             onPrint={handlePrint}
             onDownloadJson={handleDownloadJson}
             onLoadSample={handleLoadSample}

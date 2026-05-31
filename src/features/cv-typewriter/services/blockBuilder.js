@@ -15,7 +15,6 @@ export function buildBlocks(cv) {
   };
 
   const pushSummary = () => {
-    pushSectionHeader('summary', 'Professional Summary');
     cv.sections.summary.forEach((text, index) => {
       push({
         id: `summary-${index}`,
@@ -26,7 +25,7 @@ export function buildBlocks(cv) {
   };
 
   const pushExperience = () => {
-    pushSectionHeader('experience', 'Experience');
+    pushSectionHeader('experience', cv.labels.sections.experience);
     cv.sections.experience.forEach((entry, entryIndex) => {
       const entryId = `experience-${entryIndex}`;
       push({
@@ -51,7 +50,7 @@ export function buildBlocks(cv) {
   };
 
   const pushTechnologies = () => {
-    pushSectionHeader('technologies', 'Technical Expertise');
+    pushSectionHeader('technologies', cv.labels.sections.technologies);
     cv.sections.technologies.forEach((item, index) => {
       push({
         id: `tech-${index}`,
@@ -62,8 +61,8 @@ export function buildBlocks(cv) {
   };
 
   const pushProjects = () => {
-    pushSectionHeader('projects', 'Featured Projects');
-    cv.sections.projects.slice(0, 2).forEach((entry, entryIndex) => {
+    pushSectionHeader('projects', cv.labels.sections.projects);
+    cv.sections.projects.slice(0, 3).forEach((entry, entryIndex) => {
       const entryId = `project-${entryIndex}`;
       const highlights = Array.isArray(entry.highlights) ? entry.highlights.slice(0, 1) : [];
       push({
@@ -87,7 +86,7 @@ export function buildBlocks(cv) {
   };
 
   const pushEducation = () => {
-    pushSectionHeader('education', 'Education');
+    pushSectionHeader('education', cv.labels.sections.education);
     cv.sections.education.forEach((entry, index) => {
       push({
         id: `education-${index}`,

@@ -1,11 +1,11 @@
 import React from 'react';
 import { formatDateRange, joinNonEmpty, nonEmpty } from '../../cvUtils.jsx';
 
-export default function EducationEntry({ entry }) {
+export default function EducationEntry({ entry, labels }) {
   const title = nonEmpty(entry.degree) ? entry.degree : '';
   const org = nonEmpty(entry.institution) ? entry.institution : '';
   const area = nonEmpty(entry.area) ? entry.area : '';
-  const date = formatDateRange(entry.start_date, entry.end_date);
+  const date = formatDateRange(entry.start_date, entry.end_date, labels?.present);
   const sub = joinNonEmpty([org, area]);
 
   return (

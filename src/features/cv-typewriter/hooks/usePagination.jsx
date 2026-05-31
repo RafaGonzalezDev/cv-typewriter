@@ -39,62 +39,116 @@ export function usePagination(allBlocks, pageMetrics, contentRef) {
       currentHeight = 0;
     };
 
-    const pushBlock = (block, height) => {
-      if (block.type === 'header') {
-        if (pages.length > 0) {
-          return;
+    const getGroup = (startIndex) => {
+      const block = blocks[startIndex];
+      const h = heights.get(block.id) ?? 0;
+
+      if (block.type === 'experience-entry') {
+        let total = h;
+        let j = startIndex + 1;
+        while (j < blocks.length) {
+          const next = blocks[j];
+          if (next.type === 'experience-highlight' && next.entryId === block.id) {
+            total += heights.get(next.id) ?? 0;
+            j++;
+          } else break;
         }
-        current.push(block);
-        currentHeight += height;
-        return;
+        return { blocks: blocks.slice(startIndex, j), height: total, nextIndex: j };
       }
 
-      if (current.length === 0 && height > pageMetrics.contentHeightPx) {
-        current.push(block);
-        flush();
-        return;
+      if (block.type === 'project-entry') {
+        let total = h;
+        let j = startIndex + 1;
+        while (j < blocks.length) {
+          const next = blocks[j];
+          if (next.type === 'project-highlight' && next.entryId === block.id) {
+            total += heights.get(next.id) ?? 0;
+            j++;
+          } else break;
+        }
+        return { blocks: blocks.slice(startIndex, j), height: total, nextIndex: j };
       }
 
-      if (currentHeight + height > pageMetrics.contentHeightPx) {
-        flush();
+      if (block.type === 'summary-paragraph') {
+        let total = h;
+        let j = startIndex + 1;
+        while (j < blocks.length && blocks[j].type === 'summary-paragraph') {
+          total += heights.get(blocks[j].id) ?? 0;
+          j++;
+        }
+        return { blocks: blocks.slice(startIndex, j), height: total, nextIndex: j };
       }
 
-      current.push(block);
-      currentHeight += height;
+      if (block.type === 'tech-item') {
+        let total = h;
+        let j = startIndex + 1;
+        while (j < blocks.length && blocks[j].type === 'tech-item') {
+          total += heights.get(blocks[j].id) ?? 0;
+          j++;
+        }
+        return { blocks: blocks.slice(startIndex, j), height: total, nextIndex: j };
+      }
+
+      return { blocks: [block], height: h, nextIndex: startIndex + 1 };
     };
 
-    const getNextContentHeight = (startIndex) => {
-      for (let j = startIndex + 1; j < blocks.length; j += 1) {
+    const getNextGroupHeight = (startIndex) => {
+      for (let j = startIndex + 1; j < blocks.length; j++) {
         const next = blocks[j];
-        if (
-          next.type === 'section-header' ||
-          next.type === 'section-end' ||
-          next.type === 'header'
-        ) {
-          if (next.type === 'section-header' || next.type === 'section-end') return 0;
+        if (next.type === 'section-header' || next.type === 'header') {
           continue;
         }
-        return heights.get(next.id) ?? 0;
+        return getGroup(j).height;
       }
       return 0;
     };
 
-    blocks.forEach((block, index) => {
-      const height = heights.get(block.id) ?? 0;
+    let i = 0;
+    while (i < blocks.length) {
+      const block = blocks[i];
+      const group = getGroup(i);
+
+      if (block.type === 'header') {
+        if (pages.length > 0) {
+          i = group.nextIndex;
+          continue;
+        }
+        current.push(...group.blocks);
+        currentHeight += group.height;
+        i = group.nextIndex;
+        continue;
+      }
 
       if (block.type === 'section-header') {
-        const nextHeight = getNextContentHeight(index);
+        const nextGroupHeight = getNextGroupHeight(i);
         if (
-          nextHeight > 0 &&
+          nextGroupHeight > 0 &&
           currentHeight > 0 &&
-          currentHeight + height + nextHeight > pageMetrics.contentHeightPx
+          currentHeight + group.height + nextGroupHeight > pageMetrics.contentHeightPx
         ) {
           flush();
         }
+        current.push(...group.blocks);
+        currentHeight += group.height;
+        i = group.nextIndex;
+        continue;
       }
 
-      pushBlock(block, height);
-    });
+      if (current.length === 0 && group.height > pageMetrics.contentHeightPx) {
+        current.push(...group.blocks);
+        flush();
+        i = group.nextIndex;
+        continue;
+      }
+
+      if (currentHeight + group.height > pageMetrics.contentHeightPx) {
+        flush();
+      }
+
+      current.push(...group.blocks);
+      currentHeight += group.height;
+      i = group.nextIndex;
+    }
 
     if (current.length) flush();
 

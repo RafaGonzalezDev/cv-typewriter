@@ -1,143 +1,316 @@
+const socialNetworks = [
+  {
+    network: 'LinkedIn',
+    username: 'rafa-gonzález-rubio-2977aa171',
+  },
+  {
+    network: 'GitHub',
+    username: 'RafaGonzalezDev',
+  },
+];
+
 const SAMPLE = {
   cv: {
-    name: 'John Doe',
-    location: 'San Francisco, CA',
-    social_networks: [
-      {
-        network: 'LinkedIn',
-        username: 'johndoe',
+    active_language: 'es',
+    languages: {
+      es: {
+        name: 'Rafa González Rubio',
+        location: 'Córdoba, España (ES)',
+        social_networks: socialNetworks,
+        labels: {
+          present: 'Actualidad',
+          location: 'Ubicación',
+          sections: {
+            experience: 'Experiencia',
+            technologies: 'Stack técnico',
+            projects: 'Proyectos destacados',
+            education: 'Formación',
+          },
+        },
+        sections: {
+          professional_summary: [
+            'Frontend Engineer en entornos enterprise bancarios, enfocado en AI Developer Tooling y Developer Automation. Trabajo con Angular, TypeScript y microfrontends, aplicando agentic workflows, Model Context Protocol (MCP), Playwright e inferencia local con LLMs para acelerar análisis técnico, testing, documentación y entrega continua.',
+          ],
+          experience: [
+            {
+              company: '.es formación y consultoría',
+              position: 'Frontend Architect - Banc Sabadell',
+              start_date: '2026-03',
+              end_date: 'present',
+              location: 'Madrid, España · En remoto',
+              summary: null,
+              highlights: [
+                'Incorporación al equipo de Arquitectura Frontend con responsabilidad en la definición y gobernanza del ecosistema técnico del banco.',
+                'Rol híbrido que combina diseño estratégico de arquitecturas con implementación hands-on en entornos enterprise.',
+                'Uso de workflows agénticos propios con Pi/OpenCode, MCPs y extensiones custom para acelerar análisis de código, documentación técnica, revisión de cambios y tareas recurrentes de arquitectura frontend.',
+                'Exploración de automatizaciones agénticas aplicadas a flujos de CI/CD, revisión de cambios e integración con herramientas colaborativas en entornos enterprise.',
+              ],
+            },
+            {
+              company: 'Banco Santander',
+              position: 'Frontend Engineer',
+              start_date: '2025-09',
+              end_date: '2026-03',
+              location: 'Madrid, España',
+              summary: null,
+              highlights: [
+                'Ownership end-to-end de 2 microfrontends: desarrollo, mantenimiento, releases y despliegues.',
+                'Diseño y evolución de soluciones frontend en entorno bancario de alta disponibilidad con Angular y TypeScript.',
+                'Diseño e implementación de una herramienta CLI (Node.js + TypeScript) para i18n end-to-end de microfrontends, basada en pipeline .xlf → CSV → traducción por batches vía API → consolidación → generación de locales.',
+                'Reducción drástica del esfuerzo de internacionalización de días a minutos, habilitando entregas rápidas y adopción transversal en el equipo.',
+                'Implementación de testing automatizado asistido por agente mediante Playwright MCP para validar flujos E2E y reforzar la calidad funcional.',
+                'Colaboración transversal con equipos de QA, desarrollo y negocio para asegurar calidad y entrega continua.',
+                'Aplicación de tooling agéntico propio para acelerar tareas de análisis, documentación, generación de cambios y automatización dentro del ciclo de desarrollo frontend.',
+                'Mentorización 1:1 a compañeros para estandarizar y agilizar procesos de desarrollo mediante workflows con MCPs y agentes de coding.',
+              ],
+            },
+            {
+              company: 'UST Global | Banco Santander',
+              position: 'Frontend Engineer',
+              start_date: '2023-11',
+              end_date: '2025-08',
+              location: 'Madrid, España · En remoto',
+              summary: null,
+              highlights: [
+                'Lideré el desarrollo integral y optimización de un micro frontend con Angular y TypeScript.',
+                'Implementé NgRx y un sistema de estado propio, mejorando rendimiento y consistencia.',
+                'Diseñé un sistema de routing a medida para micro frontends encapsulados mediante Module Federation.',
+                'Mejoré estabilidad y calidad del microfrontend reforzando el testing unitario (Jasmine/Karma) para cumplir con quality gates de SonarQube y validaciones del pipeline (Jenkins).',
+                'Onboarding y mentorización de una nueva incorporación, facilitando ramp-up técnico y alineación con estándares del proyecto.',
+              ],
+            },
+            {
+              company: 'GrayHats',
+              position: 'Frontend Developer Intern',
+              start_date: '2023-03',
+              end_date: '2023-08',
+              location: 'Córdoba, España · Presencial',
+              summary: null,
+              highlights: [
+                'Diseñé soluciones avanzadas con React y GraphQL, optimizando la eficiencia operativa.',
+                'Desarrollé servicios backend con AWS Amplify, asegurando integración segura y escalabilidad.',
+              ],
+            },
+          ],
+          technologies: [
+            {
+              label: 'Frontend',
+              details: 'Angular, TypeScript, React, NgRx',
+            },
+            {
+              label: 'Arquitectura',
+              details: 'Microfrontends, Module Federation',
+            },
+            {
+              label: 'Backend / Cloud',
+              details: 'Node.js, GraphQL/REST, AWS',
+            },
+            {
+              label: 'AI Tooling',
+              details:
+                'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, prompt systems, tool permissions',
+            },
+            {
+              label: 'Local LLM Inference',
+              details:
+                'llama.cpp, local model serving, concurrency control, token budgeting, CPU/GPU layer tuning, KV cache reuse, MTP configuration',
+            },
+            {
+              label: 'Developer Tooling',
+              details:
+                'Node.js, TypeScript, CLI tools, Ink, automation workflows, audit logging, secret redaction',
+            },
+          ],
+          projects: [
+            {
+              name: 'Stride Agent',
+              highlights: [
+                'Diseño e implementación de un coding-agent MVP en TypeScript/Node.js con provider OpenAI-compatible, CLI auditable, ejecución de herramientas bajo política y salida JSON estable para automatización.',
+                'Implementación de runtime con herramientas de filesystem/bash, permisos allow/ask/deny, sesiones append-only, audit logging, redacción de secretos y soporte para plugins.',
+              ],
+            },
+            {
+              name: 'Angular i18n Translator',
+              highlights: [
+                'CLI en Node.js para automatizar traducciones Angular XLF con LLMs, batch processing, preservación de interpolaciones y soporte multi-provider.',
+              ],
+            },
+            {
+              name: 'Agentic Developer Tooling',
+              highlights: [
+                'Desarrollo de extensiones Pi y frameworks OpenCode para integrar MCPs, agentes especializados, security guards, renderers compactos y workflows multiagente de desarrollo.',
+              ],
+            },
+            {
+              name: 'Local LLM Inference Lab',
+              highlights: [
+                'Experimentación sirviendo modelos locales con llama.cpp para varios usuarios en la misma red, controlando concurrencia, presupuesto de tokens, reparto CPU/GPU, KV cache reuse y MTP.',
+              ],
+            },
+          ],
+          education: [
+            {
+              institution: 'MEDAC',
+              area: 'Desarrollo de Aplicaciones Web',
+              degree: 'C.F.G.S.',
+              start_date: '2021-09',
+              end_date: '2023-06',
+              location: '',
+              summary: null,
+              highlights: [],
+            },
+          ],
+        },
       },
-      {
-        network: 'GitHub',
-        username: 'johndoe',
+      en: {
+        name: 'Rafa González Rubio',
+        location: 'Córdoba, Spain (ES)',
+        social_networks: socialNetworks,
+        labels: {
+          present: 'Present',
+          location: 'Location',
+          sections: {
+            experience: 'Experience',
+            technologies: 'Technical Stack',
+            projects: 'Selected Projects',
+            education: 'Education',
+          },
+        },
+        sections: {
+          professional_summary: [
+            'Frontend Engineer in enterprise banking environments, focused on AI Developer Tooling and Developer Automation. I work with Angular, TypeScript and microfrontends, applying agentic workflows, Model Context Protocol (MCP), Playwright and local LLM inference to accelerate technical analysis, testing, documentation and continuous delivery.',
+          ],
+          experience: [
+            {
+              company: '.es formación y consultoría',
+              position: 'Frontend Architect - Banc Sabadell',
+              start_date: '2026-03',
+              end_date: 'present',
+              location: 'Madrid, Spain · Remote',
+              summary: null,
+              highlights: [
+                "Joined the Frontend Architecture team with responsibility for defining and governing the bank's technical frontend ecosystem.",
+                'Hybrid role combining strategic architecture design with hands-on implementation in enterprise environments.',
+                'Used custom agentic workflows with Pi/OpenCode, MCPs and custom extensions to accelerate code analysis, technical documentation, change review and recurring frontend architecture tasks.',
+                'Explored agentic automations applied to CI/CD workflows, change review and integrations with collaborative tools in enterprise environments.',
+              ],
+            },
+            {
+              company: 'Banco Santander',
+              position: 'Frontend Engineer',
+              start_date: '2025-09',
+              end_date: '2026-03',
+              location: 'Madrid, Spain',
+              summary: null,
+              highlights: [
+                'End-to-end ownership of 2 microfrontends: development, maintenance, releases and deployments.',
+                'Designed and evolved frontend solutions in a high-availability banking environment with Angular and TypeScript.',
+                'Designed and implemented a CLI tool (Node.js + TypeScript) for end-to-end microfrontend i18n, based on an .xlf → CSV → batch API translation → consolidation → locale generation pipeline.',
+                'Reduced internationalization effort from days to minutes, enabling faster deliveries and broader adoption across the team.',
+                'Implemented agent-assisted automated testing with Playwright MCP to validate E2E flows and strengthen functional quality.',
+                'Collaborated cross-functionally with QA, development and business teams to ensure quality and continuous delivery.',
+                'Applied custom agentic tooling to accelerate analysis, documentation, change generation and automation within the frontend development lifecycle.',
+                'Provided 1:1 mentoring to standardize and speed up development processes through MCP workflows and coding agents.',
+              ],
+            },
+            {
+              company: 'UST Global | Banco Santander',
+              position: 'Frontend Engineer',
+              start_date: '2023-11',
+              end_date: '2025-08',
+              location: 'Madrid, Spain · Remote',
+              summary: null,
+              highlights: [
+                'Led end-to-end development and optimization of an Angular and TypeScript microfrontend.',
+                'Implemented NgRx and a custom state management system, improving performance and consistency.',
+                'Designed a custom routing system for encapsulated microfrontends using Module Federation.',
+                'Improved microfrontend stability and quality by reinforcing unit testing (Jasmine/Karma) to meet SonarQube quality gates and Jenkins pipeline validations.',
+                'Onboarded and mentored a new team member, accelerating technical ramp-up and alignment with project standards.',
+              ],
+            },
+            {
+              company: 'GrayHats',
+              position: 'Frontend Developer Intern',
+              start_date: '2023-03',
+              end_date: '2023-08',
+              location: 'Córdoba, Spain · On-site',
+              summary: null,
+              highlights: [
+                'Designed advanced solutions with React and GraphQL, optimizing operational efficiency.',
+                'Developed backend services with AWS Amplify, ensuring secure integration and scalability.',
+              ],
+            },
+          ],
+          technologies: [
+            {
+              label: 'Frontend',
+              details: 'Angular, TypeScript, React, NgRx',
+            },
+            {
+              label: 'Architecture',
+              details: 'Microfrontends, Module Federation',
+            },
+            {
+              label: 'Backend / Cloud',
+              details: 'Node.js, GraphQL/REST, AWS',
+            },
+            {
+              label: 'AI Tooling',
+              details:
+                'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, prompt systems, tool permissions',
+            },
+            {
+              label: 'Local LLM Inference',
+              details:
+                'llama.cpp, local model serving, concurrency control, token budgeting, CPU/GPU layer tuning, KV cache reuse, MTP configuration',
+            },
+            {
+              label: 'Developer Tooling',
+              details:
+                'Node.js, TypeScript, CLI tools, Ink, automation workflows, audit logging, secret redaction',
+            },
+          ],
+          projects: [
+            {
+              name: 'Stride Agent',
+              highlights: [
+                'Designed and implemented a TypeScript/Node.js coding-agent MVP with an OpenAI-compatible provider, auditable CLI, policy-gated tool execution and stable JSON output for automation.',
+                'Implemented a runtime with filesystem/bash tools, allow/ask/deny permissions, append-only sessions, audit logging, secret redaction and plugin support.',
+              ],
+            },
+            {
+              name: 'Angular i18n Translator',
+              highlights: [
+                'Node.js CLI for automating Angular XLF translations with LLMs, batch processing, interpolation preservation and multi-provider support.',
+              ],
+            },
+            {
+              name: 'Agentic Developer Tooling',
+              highlights: [
+                'Built Pi extensions and OpenCode frameworks to integrate MCPs, specialized agents, security guards, compact renderers and multi-agent development workflows.',
+              ],
+            },
+            {
+              name: 'Local LLM Inference Lab',
+              highlights: [
+                'Experimented with local model serving through llama.cpp for multiple users on the same network, tuning concurrency, token budgets, CPU/GPU offload, KV cache reuse and MTP.',
+              ],
+            },
+          ],
+          education: [
+            {
+              institution: 'MEDAC',
+              area: 'Web Application Development',
+              degree: 'Higher Vocational Training',
+              start_date: '2021-09',
+              end_date: '2023-06',
+              location: '',
+              summary: null,
+              highlights: [],
+            },
+          ],
+        },
       },
-    ],
-    sections: {
-      professional_summary: [
-        'Full-stack software engineer with 5+ years of experience building scalable web applications. Passionate about clean code, performance optimization, and mentoring junior developers. Strong background in React, Node.js, and cloud infrastructure.',
-      ],
-      experience: [
-        {
-          company: 'TechCorp Inc.',
-          position: 'Senior Software Engineer',
-          start_date: '2023-01',
-          end_date: 'present',
-          location: 'San Francisco, CA',
-          summary: null,
-          highlights: [
-            'Led migration of legacy monolith to microservices architecture, reducing deployment time by 60%.',
-            'Implemented real-time analytics dashboard using React and WebSockets, serving 50k+ daily active users.',
-            'Mentored 3 junior developers through code reviews and pair programming sessions.',
-            'Introduced automated testing pipeline increasing test coverage from 45% to 85%.',
-          ],
-        },
-        {
-          company: 'StartupXYZ',
-          position: 'Full-stack Developer',
-          start_date: '2021-03',
-          end_date: '2022-12',
-          location: 'Remote',
-          summary: null,
-          highlights: [
-            'Built customer-facing dashboard with React and TypeScript, improving user engagement by 30%.',
-            'Designed and implemented RESTful APIs using Node.js and PostgreSQL.',
-            'Optimized database queries reducing average response time from 800ms to 120ms.',
-            'Collaborated with product team to define technical requirements and roadmap.',
-          ],
-        },
-        {
-          company: 'Digital Solutions LLC',
-          position: 'Frontend Developer',
-          start_date: '2019-06',
-          end_date: '2021-02',
-          location: 'New York, NY',
-          summary: null,
-          highlights: [
-            'Developed responsive web applications using React and Redux for enterprise clients.',
-            'Created reusable component library used across 5+ projects.',
-            'Implemented CI/CD pipeline with GitHub Actions reducing manual deployment effort.',
-            'Participated in agile ceremonies and sprint planning with cross-functional teams.',
-          ],
-        },
-      ],
-      technologies: [
-        {
-          label: 'Frontend',
-          details: 'React, TypeScript, Next.js, Redux, Tailwind CSS',
-        },
-        {
-          label: 'Backend',
-          details: 'Node.js, Express, Python, Django, REST APIs, GraphQL',
-        },
-        {
-          label: 'Databases',
-          details: 'PostgreSQL, MongoDB, Redis, Elasticsearch',
-        },
-        {
-          label: 'Cloud & DevOps',
-          details: 'AWS (EC2, S3, Lambda), Docker, Kubernetes, CI/CD, Terraform',
-        },
-        {
-          label: 'Tools & Methodologies',
-          details: 'Git, Agile/Scrum, Jira, Figma, Jest, Cypress',
-        },
-      ],
-      projects: [
-        {
-          name: '[E-commerce Platform](https://github.com/johndoe/ecommerce)',
-          highlights: [
-            'Full-stack e-commerce solution with cart, checkout, and payment integration.',
-            'Built with React, Node.js, and Stripe API handling 100+ daily transactions.',
-            'Implemented real-time inventory management and order tracking.',
-          ],
-        },
-        {
-          name: '[Task Management App](https://github.com/johndoe/task-manager)',
-          highlights: [
-            'Collaborative task management tool with drag-and-drop interface.',
-            'Real-time updates using Socket.io and offline-first capabilities.',
-            'Deployed on AWS with auto-scaling for handling peak loads.',
-          ],
-        },
-        {
-          name: '[Weather Dashboard](https://github.com/johndoe/weather-dashboard)',
-          highlights: [
-            'Interactive weather visualization dashboard with historical data analysis.',
-            'Uses multiple weather APIs with caching layer for performance.',
-            'Responsive design with PWA support for mobile devices.',
-          ],
-        },
-      ],
-      education: [
-        {
-          institution: 'Stanford University',
-          area: 'Computer Science',
-          degree: 'Master of Science (MS)',
-          start_date: '2017-09',
-          end_date: '2019-05',
-          location: 'Stanford, CA',
-          summary: null,
-          highlights: [
-            'Specialized in Distributed Systems and Machine Learning',
-            'Graduated with honors (GPA 3.8/4.0)',
-            'Teaching Assistant for Algorithms course',
-          ],
-        },
-        {
-          institution: 'MIT',
-          area: 'Computer Engineering',
-          degree: 'Bachelor of Science (BS)',
-          start_date: '2013-09',
-          end_date: '2017-05',
-          location: 'Cambridge, MA',
-          summary: null,
-          highlights: [
-            'Minor in Mathematics',
-            'President of Computer Science Club',
-            'Capstone project: Real-time traffic prediction system',
-          ],
-        },
-      ],
     },
     sort_entries: 'none',
   },
@@ -154,7 +327,7 @@ const SAMPLE = {
     },
   },
   locale: {
-    language: 'en',
+    language: 'es',
     phone_number_format: 'national',
     page_numbering_template: 'NAME - Page PAGE_NUMBER of TOTAL_PAGES',
     last_updated_date_template: 'Last updated in TODAY',
@@ -195,7 +368,7 @@ const SAMPLE = {
     ],
   },
   rendercv_settings: {
-    date: '2026-01-19',
+    date: '2026-05-31',
     bold_keywords: [],
     sort_entries: 'none',
   },

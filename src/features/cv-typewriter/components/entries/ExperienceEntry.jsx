@@ -7,11 +7,11 @@ import {
   renderTextWithLinks,
 } from '../../cvUtils.jsx';
 
-export default function ExperienceEntry({ entry, withHighlights = true }) {
+export default function ExperienceEntry({ entry, labels, withHighlights = true }) {
   const title = nonEmpty(entry.position) ? entry.position : '';
   const org = nonEmpty(entry.company) ? entry.company : '';
   const location = nonEmpty(entry.location) ? entry.location : '';
-  const date = formatDateRange(entry.start_date, entry.end_date);
+  const date = formatDateRange(entry.start_date, entry.end_date, labels?.present);
   const sub = joinNonEmpty([org, location]);
 
   return (

@@ -6,56 +6,73 @@ import ProjectEntry from './entries/ProjectEntry';
 import TechBlock from './blocks/TechBlock';
 import Section, { SectionHeader } from './sections/Section';
 
+function getDisplayUrl(url) {
+  return String(url)
+    .replace(/^https?:\/\//, '')
+    .replace(/\/$/, '');
+}
+
+function getSocialDisplay(network, username) {
+  const net = String(network).toLowerCase();
+  if (net.includes('linkedin')) return `linkedin.com/in/${username}`;
+  if (net.includes('github')) return `github.com/${username}`;
+  return `${network}: ${username}`;
+}
+
 const CVContent = forwardRef(function CVContent(
   { cv, paged = false, layoutBlocks = [], pageIndex = 0 },
   ref
 ) {
   const blocks = paged ? layoutBlocks : null;
+  const contactItems = [
+    cv.basics.location ? { label: cv.basics.location } : null,
+    cv.basics.email ? { label: cv.basics.email, href: `mailto:${cv.basics.email}` } : null,
+    cv.basics.phone ? { label: cv.basics.phone, href: `tel:${cv.basics.phone}` } : null,
+    cv.basics.website ? { label: getDisplayUrl(cv.basics.website), href: cv.basics.website } : null,
+    ...asArray(cv.basics.social).map((social) => {
+      const url = getSocialUrl(social.network, social.username);
+      return {
+        label: getSocialDisplay(social.network, social.username),
+        href: url,
+      };
+    }),
+  ].filter(Boolean);
 
   return (
-    <div ref={ref} className="cv-content-inner">
+    <div ref={ref} lang={cv.language} className="cv-content-inner">
       {(!paged || pageIndex === 0) && (
         <div
-          className="text-center"
+          className="mb-5 text-center"
           data-block="header"
           data-block-id="header"
           data-section="header"
         >
-          <div className="text-[30px] sm:text-[34px] font-semibold text-slate-900 leading-[1.15] mb-5 tracking-tight">
+          <div className="mb-2 text-[27px] font-bold leading-none tracking-[-0.015em] text-slate-950">
             {cv.basics.name}
           </div>
 
-          <div className="flex flex-wrap justify-between text-[12.5px] mb-3 w-full">
-            {cv.basics.location ? (
-              <span className="flex items-center text-slate-600 font-medium">
-                <span className="font-bold text-slate-900">Location:</span>
-                <span className="ml-1">{cv.basics.location}</span>
+          <div className="flex flex-wrap justify-center gap-x-2 gap-y-1 text-[11.5px] font-medium leading-snug text-slate-700">
+            {contactItems.map((item, index) => (
+              <span key={`${item.label}-${index}`} className="inline-flex items-center gap-x-2">
+                {index > 0 ? (
+                  <span aria-hidden="true" className="text-slate-400">
+                    |
+                  </span>
+                ) : null}
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                    className="underline-offset-2 hover:text-primary hover:underline"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <span>{item.label}</span>
+                )}
               </span>
-            ) : null}
-            {asArray(cv.basics.social).map((s, i) => {
-              const url = getSocialUrl(s.network, s.username);
-              const content = (
-                <>
-                  <span className="font-bold text-slate-900">{s.network}:</span>
-                  <span className="text-slate-600 font-medium ml-1">{s.username}</span>
-                </>
-              );
-              return url ? (
-                <a
-                  key={i}
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-primary transition-all flex items-center"
-                >
-                  {content}
-                </a>
-              ) : (
-                <span key={i} className="flex items-center">
-                  {content}
-                </span>
-              );
-            })}
+            ))}
           </div>
         </div>
       )}
@@ -63,34 +80,32 @@ const CVContent = forwardRef(function CVContent(
       {!paged ? (
         <div>
           {cv.sections.summary.length ? (
-            <Section title="Professional Summary">
-              <div className="text-[13.5px] text-left leading-[1.6] text-slate-800 font-medium tracking-tight">
-                {cv.sections.summary.map((s, i) => (
-                  <p key={i}>{s}</p>
-                ))}
-              </div>
-            </Section>
+            <div className="mt-4 text-[13.5px] text-left leading-[1.6] text-slate-800 font-medium tracking-tight">
+              {cv.sections.summary.map((s, i) => (
+                <p key={i}>{s}</p>
+              ))}
+            </div>
           ) : null}
 
           {cv.sections.experience.length ? (
-            <Section title="Experience">
+            <Section title={cv.labels.sections.experience}>
               <div className="space-y-0 line-clamp-none">
                 {cv.sections.experience.map((e, i) => (
-                  <ExperienceEntry key={i} entry={e} />
+                  <ExperienceEntry key={i} entry={e} labels={cv.labels} />
                 ))}
               </div>
             </Section>
           ) : null}
 
           {cv.sections.technologies.length ? (
-            <Section title="Technical Expertise">
+            <Section title={cv.labels.sections.technologies}>
               <TechBlock items={cv.sections.technologies} />
             </Section>
           ) : null}
 
           {cv.sections.projects.length ? (
-            <Section title="Featured Projects">
-              {cv.sections.projects.slice(0, 2).map((p, i) => (
+            <Section title={cv.labels.sections.projects}>
+              {cv.sections.projects.slice(0, 3).map((p, i) => (
                 <ProjectEntry
                   key={i}
                   entry={{
@@ -103,10 +118,10 @@ const CVContent = forwardRef(function CVContent(
           ) : null}
 
           {cv.sections.education.length ? (
-            <Section title="Education">
+            <Section title={cv.labels.sections.education}>
               <div className="space-y-0">
                 {cv.sections.education.map((e, i) => (
-                  <EducationEntry key={i} entry={e} />
+                  <EducationEntry key={i} entry={e} labels={cv.labels} />
                 ))}
               </div>
             </Section>
@@ -134,7 +149,7 @@ const CVContent = forwardRef(function CVContent(
                 <p
                   key={blockId}
                   data-block-id={blockId}
-                  className="text-[13px] leading-relaxed text-foreground/80"
+                  className="mt-4 text-[13px] leading-relaxed text-foreground/80"
                 >
                   {block.content}
                 </p>
@@ -144,7 +159,11 @@ const CVContent = forwardRef(function CVContent(
             if (block.type === 'experience-entry') {
               return (
                 <div key={blockId} data-block-id={blockId}>
-                  <ExperienceEntry entry={block.entry} withHighlights={!block.splitHighlights} />
+                  <ExperienceEntry
+                    entry={block.entry}
+                    labels={cv.labels}
+                    withHighlights={!block.splitHighlights}
+                  />
                 </div>
               );
             }
@@ -192,7 +211,7 @@ const CVContent = forwardRef(function CVContent(
             if (block.type === 'education-entry') {
               return (
                 <div key={blockId} data-block-id={blockId}>
-                  <EducationEntry entry={block.entry} />
+                  <EducationEntry entry={block.entry} labels={cv.labels} />
                 </div>
               );
             }
