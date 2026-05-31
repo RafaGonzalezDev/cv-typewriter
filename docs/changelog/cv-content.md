@@ -1,3 +1,9 @@
+## 2026-05-31 — Add Banc Sabadell agentic pipeline POC
+
+**What**: Renamed the current client reference to Banc Sabadell and added a concise POC highlight about integrating OpenCode into a Linux runner inside Bitbucket Pipelines for PR review, Bitbucket/JIRA audit workflows, and issue-resolution actions triggered through agent mentions.  
+**Where**: `src/features/cv-typewriter/sample.js`  
+**Why**: Reflect applied AI tooling work performed in the current role while keeping the wording clearly scoped as a POC.
+
 ## 2026-05-31 — Clarify frontend role titles
 
 **What**: Updated previous role titles from generic software developer labels to frontend-focused titles that better reflect the actual responsibilities performed.  

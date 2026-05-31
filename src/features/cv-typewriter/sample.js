@@ -14,12 +14,12 @@ const SAMPLE = {
     ],
     sections: {
       professional_summary: [
-        'Frontend Engineer en entornos enterprise bancarios. Trabajo con Angular, TypeScript y microfrontends, aplicando tooling agéntico, MCPs e inferencia local con LLMs para acelerar análisis técnico, desarrollo y entrega continua.',
+        'Frontend Engineer en entornos enterprise bancarios. Trabajo con Angular, TypeScript y microfrontends, aplicando tooling agéntico, MCPs e inferencia local con LLMs para acelerar análisis técnico, desarrollo y entrega continua.'
       ],
       experience: [
         {
           company: '.es formación y consultoría',
-          position: 'Frontend Architect - Banco Sabadell',
+          position: 'Frontend Architect - Banc Sabadell',
           start_date: '2026-03',
           end_date: 'present',
           location: 'Madrid, España · En remoto',
@@ -28,6 +28,7 @@ const SAMPLE = {
             'Incorporación al equipo de Arquitectura Frontend con responsabilidad en la definición y gobernanza del ecosistema técnico del banco.',
             'Rol híbrido que combina diseño estratégico de arquitecturas con implementación hands-on en entornos enterprise.',
             'Uso de workflows agénticos propios con Pi/OpenCode, MCPs y extensiones custom para acelerar análisis de código, documentación técnica, revisión de cambios y tareas recurrentes de arquitectura frontend.',
+            'Desarrollo de una POC para integrar OpenCode en un runner Linux dentro de pipelines Bitbucket, explorando auditoría de paneles Bitbucket/JIRA, revisión de pull requests y resolución asistida de issues mediante menciones al agente configurado.'
           ],
         },
         {
