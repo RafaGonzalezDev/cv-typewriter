@@ -129,19 +129,19 @@ const SAMPLE = {
           ],
           projects: [
             {
-              name: `[Angular i18n Translator](${projectUrls.angularI18nTranslator})`,
+              name: `[angular-i18n-translator](${projectUrls.angularI18nTranslator})`,
               highlights: [
                 'CLI en Node.js para automatizar traducciones Angular XLF con LLMs, batch processing, preservación de interpolaciones y soporte multi-provider.',
               ],
             },
             {
-              name: `[Local LLM Inference Lab](${projectUrls.localLlmInferenceLab})`,
+              name: `[local-llm-inference-lab](${projectUrls.localLlmInferenceLab})`,
               highlights: [
                 'Repositorio público para ejecutar modelos GGUF locales con llama.cpp-compatible serving, perfiles reutilizables, checks OpenAI-compatible y documentación de integración con OpenWebUI.',
               ],
             },
             {
-              name: `[CV Typewriter](${projectUrls.cvTypewriter})`,
+              name: `[cv-typewriter](${projectUrls.cvTypewriter})`,
               highlights: [
                 'Editor de CV data-first en React/Vite con JSON bilingüe, preview A4 paginado y exportación PDF para iterar contenido profesional versionable.',
               ],
@@ -271,19 +271,19 @@ const SAMPLE = {
           ],
           projects: [
             {
-              name: `[Angular i18n Translator](${projectUrls.angularI18nTranslator})`,
+              name: `[angular-i18n-translator](${projectUrls.angularI18nTranslator})`,
               highlights: [
                 'Node.js CLI for automating Angular XLF translations with LLMs, batch processing, interpolation preservation and multi-provider support.',
               ],
             },
             {
-              name: `[Local LLM Inference Lab](${projectUrls.localLlmInferenceLab})`,
+              name: `[local-llm-inference-lab](${projectUrls.localLlmInferenceLab})`,
               highlights: [
                 'Public repository for running local GGUF models with llama.cpp-compatible serving, reusable profiles, OpenAI-compatible checks and OpenWebUI integration docs.',
               ],
             },
             {
-              name: `[CV Typewriter](${projectUrls.cvTypewriter})`,
+              name: `[cv-typewriter](${projectUrls.cvTypewriter})`,
               highlights: [
                 'Data-first CV editor built with React/Vite, bilingual JSON content, paginated A4 preview and PDF export for version-controlled professional content.',
               ],
