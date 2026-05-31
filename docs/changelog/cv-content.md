@@ -1,3 +1,9 @@
+## 2026-05-31 — Add bilingual CV preview
+
+**What**: Added Spanish/English CV content variants inside the sample JSON, localized section labels, localized present-date labels, and a preview language selector in the editor panel. PDF export titles now include the active language suffix.  
+**Where**: `src/features/cv-typewriter/sample.js`, `src/features/cv-typewriter/cvUtils.jsx`, `src/features/cv-typewriter/hooks/useCVData.jsx`, `src/CVTypewriter.jsx`, `src/features/cv-typewriter/components/EditorPanel.jsx`, `src/features/cv-typewriter/components/CVContent.jsx`, `src/features/cv-typewriter/components/entries/ExperienceEntry.jsx`, `src/features/cv-typewriter/components/entries/EducationEntry.jsx`, `src/features/cv-typewriter/services/blockBuilder.js`  
+**Why**: Allow separate Spanish and English CV previews/exports from a single bilingual JSON source while keeping legacy JSON compatibility.
+
 ## 2026-05-31 — Improve ATS positioning and tech pagination
 
 **What**: Added ATS-oriented keywords around AI Developer Tooling, Developer Automation, Model Context Protocol, Playwright, and local LLM inference. Reordered featured projects to prioritize a public LLM automation CLI and grouped technical expertise rows during pagination so the section moves as one unit when needed.  
