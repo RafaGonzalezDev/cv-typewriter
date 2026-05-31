@@ -63,13 +63,11 @@ const CVContent = forwardRef(function CVContent(
       {!paged ? (
         <div>
           {cv.sections.summary.length ? (
-            <Section title="Professional Summary">
-              <div className="text-[13.5px] text-left leading-[1.6] text-slate-800 font-medium tracking-tight">
-                {cv.sections.summary.map((s, i) => (
-                  <p key={i}>{s}</p>
-                ))}
-              </div>
-            </Section>
+            <div className="mt-4 text-[13.5px] text-left leading-[1.6] text-slate-800 font-medium tracking-tight">
+              {cv.sections.summary.map((s, i) => (
+                <p key={i}>{s}</p>
+              ))}
+            </div>
           ) : null}
 
           {cv.sections.experience.length ? (
@@ -90,7 +88,7 @@ const CVContent = forwardRef(function CVContent(
 
           {cv.sections.projects.length ? (
             <Section title="Featured Projects">
-              {cv.sections.projects.slice(0, 2).map((p, i) => (
+              {cv.sections.projects.slice(0, 3).map((p, i) => (
                 <ProjectEntry
                   key={i}
                   entry={{
@@ -134,7 +132,7 @@ const CVContent = forwardRef(function CVContent(
                 <p
                   key={blockId}
                   data-block-id={blockId}
-                  className="text-[13px] leading-relaxed text-foreground/80"
+                  className="mt-4 text-[13px] leading-relaxed text-foreground/80"
                 >
                   {block.content}
                 </p>
