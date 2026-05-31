@@ -9,6 +9,12 @@ const socialNetworks = [
   },
 ];
 
+const projectUrls = {
+  angularI18nTranslator: 'https://github.com/RafaGonzalezDev/angular-i18n-translator',
+  localLlmInferenceLab: 'https://github.com/RafaGonzalezDev/local-llm-inference-lab',
+  cvTypewriter: 'https://github.com/RafaGonzalezDev/cv-typewriter',
+};
+
 const SAMPLE = {
   cv: {
     active_language: 'es',
@@ -123,28 +129,21 @@ const SAMPLE = {
           ],
           projects: [
             {
-              name: 'Stride Agent',
-              highlights: [
-                'Diseño e implementación de un coding-agent MVP en TypeScript/Node.js con provider OpenAI-compatible, CLI auditable, ejecución de herramientas bajo política y salida JSON estable para automatización.',
-                'Implementación de runtime con herramientas de filesystem/bash, permisos allow/ask/deny, sesiones append-only, audit logging, redacción de secretos y soporte para plugins.',
-              ],
-            },
-            {
-              name: 'Angular i18n Translator',
+              name: `[Angular i18n Translator](${projectUrls.angularI18nTranslator})`,
               highlights: [
                 'CLI en Node.js para automatizar traducciones Angular XLF con LLMs, batch processing, preservación de interpolaciones y soporte multi-provider.',
               ],
             },
             {
-              name: 'Agentic Developer Tooling',
+              name: `[Local LLM Inference Lab](${projectUrls.localLlmInferenceLab})`,
               highlights: [
-                'Desarrollo de extensiones Pi y frameworks OpenCode para integrar MCPs, agentes especializados, security guards, renderers compactos y workflows multiagente de desarrollo.',
+                'Repositorio público para ejecutar modelos GGUF locales con llama.cpp-compatible serving, perfiles reutilizables, checks OpenAI-compatible y documentación de integración con OpenWebUI.',
               ],
             },
             {
-              name: 'Local LLM Inference Lab',
+              name: `[CV Typewriter](${projectUrls.cvTypewriter})`,
               highlights: [
-                'Experimentación sirviendo modelos locales con llama.cpp para varios usuarios en la misma red, controlando concurrencia, presupuesto de tokens, reparto CPU/GPU, KV cache reuse y MTP.',
+                'Editor de CV data-first en React/Vite con JSON bilingüe, preview A4 paginado y exportación PDF para iterar contenido profesional versionable.',
               ],
             },
           ],
@@ -272,28 +271,21 @@ const SAMPLE = {
           ],
           projects: [
             {
-              name: 'Stride Agent',
-              highlights: [
-                'Designed and implemented a TypeScript/Node.js coding-agent MVP with an OpenAI-compatible provider, auditable CLI, policy-gated tool execution and stable JSON output for automation.',
-                'Implemented a runtime with filesystem/bash tools, allow/ask/deny permissions, append-only sessions, audit logging, secret redaction and plugin support.',
-              ],
-            },
-            {
-              name: 'Angular i18n Translator',
+              name: `[Angular i18n Translator](${projectUrls.angularI18nTranslator})`,
               highlights: [
                 'Node.js CLI for automating Angular XLF translations with LLMs, batch processing, interpolation preservation and multi-provider support.',
               ],
             },
             {
-              name: 'Agentic Developer Tooling',
+              name: `[Local LLM Inference Lab](${projectUrls.localLlmInferenceLab})`,
               highlights: [
-                'Built Pi extensions and OpenCode frameworks to integrate MCPs, specialized agents, security guards, compact renderers and multi-agent development workflows.',
+                'Public repository for running local GGUF models with llama.cpp-compatible serving, reusable profiles, OpenAI-compatible checks and OpenWebUI integration docs.',
               ],
             },
             {
-              name: 'Local LLM Inference Lab',
+              name: `[CV Typewriter](${projectUrls.cvTypewriter})`,
               highlights: [
-                'Experimented with local model serving through llama.cpp for multiple users on the same network, tuning concurrency, token budgets, CPU/GPU offload, KV cache reuse and MTP.',
+                'Data-first CV editor built with React/Vite, bilingual JSON content, paginated A4 preview and PDF export for version-controlled professional content.',
               ],
             },
           ],
