@@ -14,7 +14,7 @@ const SAMPLE = {
     ],
     sections: {
       professional_summary: [
-        'Frontend Engineer en entornos enterprise bancarios. Trabajo con Angular, TypeScript y microfrontends, aplicando tooling agéntico, MCPs e inferencia local con LLMs para acelerar análisis técnico, desarrollo y entrega continua.'
+        'Frontend Engineer en entornos enterprise bancarios, enfocado en AI Developer Tooling y Developer Automation. Trabajo con Angular, TypeScript y microfrontends, aplicando agentic workflows, Model Context Protocol (MCP), Playwright e inferencia local con LLMs para acelerar análisis técnico, testing, documentación y entrega continua.',
       ],
       experience: [
         {
@@ -28,7 +28,7 @@ const SAMPLE = {
             'Incorporación al equipo de Arquitectura Frontend con responsabilidad en la definición y gobernanza del ecosistema técnico del banco.',
             'Rol híbrido que combina diseño estratégico de arquitecturas con implementación hands-on en entornos enterprise.',
             'Uso de workflows agénticos propios con Pi/OpenCode, MCPs y extensiones custom para acelerar análisis de código, documentación técnica, revisión de cambios y tareas recurrentes de arquitectura frontend.',
-            'Desarrollo de una POC para integrar OpenCode en un runner Linux dentro de pipelines Bitbucket, explorando auditoría de paneles Bitbucket/JIRA, revisión de pull requests y resolución asistida de issues mediante menciones al agente configurado.'
+            'Exploración de automatizaciones agénticas aplicadas a flujos de CI/CD, revisión de cambios e integración con herramientas colaborativas en entornos enterprise.',
           ],
         },
         {
@@ -43,6 +43,7 @@ const SAMPLE = {
             'Diseño y evolución de soluciones frontend en entorno bancario de alta disponibilidad con Angular y TypeScript.',
             'Diseño e implementación de una herramienta CLI (Node.js + TypeScript) para i18n end-to-end de microfrontends, basada en pipeline .xlf → CSV → traducción por batches vía API → consolidación → generación de locales.',
             'Reducción drástica del esfuerzo de internacionalización de días a minutos, habilitando entregas rápidas y adopción transversal en el equipo.',
+            'Implementación de testing automatizado asistido por agente mediante Playwright MCP para validar flujos E2E y reforzar la calidad funcional.',
             'Colaboración transversal con equipos de QA, desarrollo y negocio para asegurar calidad y entrega continua.',
             'Aplicación de tooling agéntico propio para acelerar tareas de análisis, documentación, generación de cambios y automatización dentro del ciclo de desarrollo frontend.',
             'Mentorización 1:1 a compañeros para estandarizar y agilizar procesos de desarrollo mediante workflows con MCPs y agentes de coding.',
@@ -91,15 +92,18 @@ const SAMPLE = {
         },
         {
           label: 'AI Tooling',
-          details: 'OpenCode, Pi, MCPs, coding agents, AGENTS.md, prompt systems, tool permissions',
+          details:
+            'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, prompt systems, tool permissions',
         },
         {
-          label: 'Local AI Inference',
-          details: 'llama.cpp, local LLM serving, concurrency control, token budgeting, CPU/GPU layer tuning, KV cache reuse, MTP configuration',
+          label: 'Local LLM Inference',
+          details:
+            'llama.cpp, local model serving, concurrency control, token budgeting, CPU/GPU layer tuning, KV cache reuse, MTP configuration',
         },
         {
           label: 'Developer Tooling',
-          details: 'Node.js, TypeScript, CLI tools, Ink, automation workflows, audit logging, secret redaction',
+          details:
+            'Node.js, TypeScript, CLI tools, Ink, automation workflows, audit logging, secret redaction',
         },
       ],
       projects: [
@@ -111,24 +115,21 @@ const SAMPLE = {
           ],
         },
         {
+          name: 'Angular i18n Translator',
+          highlights: [
+            'CLI en Node.js para automatizar traducciones Angular XLF con LLMs, batch processing, preservación de interpolaciones y soporte multi-provider.',
+          ],
+        },
+        {
+          name: 'Agentic Developer Tooling',
+          highlights: [
+            'Desarrollo de extensiones Pi y frameworks OpenCode para integrar MCPs, agentes especializados, security guards, renderers compactos y workflows multiagente de desarrollo.',
+          ],
+        },
+        {
           name: 'Local LLM Inference Lab',
           highlights: [
-            'Experimentación sirviendo modelos locales con llama.cpp para varios usuarios en la misma red, controlando concurrencia, presupuesto de tokens y parámetros de ejecución.',
-            'Ajuste de flags para reparto CPU/GPU, reutilización de caché en chunks y configuración MTP para acelerar la inferencia en escenarios locales.',
-          ],
-        },
-        {
-          name: 'Pi Agent Extensions & Setup',
-          highlights: [
-            'Desarrollo de extensiones para Pi, incluyendo carga de servidores MCP, herramienta web_fetch, renderers compactos y security-guard para bloquear paths sensibles y comandos peligrosos.',
-            'Construcción de una CLI interactiva en TypeScript/Ink para instalar, verificar y mantener configuraciones reproducibles de Pi con backups y validación de extensiones.',
-          ],
-        },
-        {
-          name: 'OpenCode Agentic Frameworks',
-          highlights: [
-            'Diseño de frameworks reutilizables para OpenCode con workflows multiagente orientados a planificación, exploración, implementación, testing, debugging y review.',
-            'Construcción de una CLI interactiva para distribuir configuraciones de equipo con instalación transaccional, backups, rollback y verificación automática.',
+            'Experimentación sirviendo modelos locales con llama.cpp para varios usuarios en la misma red, controlando concurrencia, presupuesto de tokens, reparto CPU/GPU, KV cache reuse y MTP.',
           ],
         },
       ],
