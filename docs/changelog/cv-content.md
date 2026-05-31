@@ -1,3 +1,9 @@
+## 2026-05-31 — Link public project evidence
+
+**What**: Updated the bilingual CV project section to feature public GitHub-backed projects: Angular i18n Translator, Local LLM Inference Lab, and CV Typewriter. Project names now use Markdown links to their repositories in both Spanish and English variants.  
+**Where**: `src/features/cv-typewriter/sample.js`, `docs/changelog/cv-content.md`, `docs/overview/portfolio-showcase-roadmap.md`, `docs/handoff.md`  
+**Why**: Make the selected projects verifiable from the CV and promote the new local LLM inference lab as public AI tooling evidence.
+
 ## 2026-05-31 — Document portfolio evidence phase
 
 **What**: Added a portfolio showcase roadmap and updated the handoff to make the current phase explicit: the CV structure and AI tooling positioning are in place, but featured projects remain provisional until the external evidence plan is executed.  
