@@ -79,6 +79,16 @@ export function usePagination(allBlocks, pageMetrics, contentRef) {
         return { blocks: blocks.slice(startIndex, j), height: total, nextIndex: j };
       }
 
+      if (block.type === 'tech-item') {
+        let total = h;
+        let j = startIndex + 1;
+        while (j < blocks.length && blocks[j].type === 'tech-item') {
+          total += heights.get(blocks[j].id) ?? 0;
+          j++;
+        }
+        return { blocks: blocks.slice(startIndex, j), height: total, nextIndex: j };
+      }
+
       return { blocks: [block], height: h, nextIndex: startIndex + 1 };
     };
 
