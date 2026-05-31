@@ -17,7 +17,7 @@ The target profile is not pure AI/ML Engineering. The intended narrative is: fro
 - The visible professional summary header was removed; the summary is rendered as direct text below the personal header.
 - The CV header now follows a compact Oxford/engineering resume style: centered name plus one contact line with pipe separators.
 - Pagination groups experience/project highlights and technical expertise rows to avoid awkward page splits.
-- The current `projects` section in `src/features/cv-typewriter/sample.js` is provisional. Do not treat the featured projects as final until the portfolio plan in `~/workspace/plan.md` has been executed.
+- The current visible `projects` section in `src/features/cv-typewriter/sample.js` prioritizes public GitHub evidence: Angular i18n Translator, Local LLM Inference Lab, and CV Typewriter.
 
 ## Professional positioning
 
@@ -54,6 +54,7 @@ The next phase is to align project evidence with the CV. The CV can mention stro
 Public or showcase-ready candidates:
 
 - `angular-i18n-translator`: public, strong evidence for LLM-based Angular i18n automation.
+- `local-llm-inference-lab`: public, strong evidence for local LLM serving, GGUF profiles, OpenAI-compatible checks, and OpenWebUI integration.
 - `cv-typewriter`: public, demonstrates developer tooling, JSON-first workflows, PDF export, React/Vite/Tailwind.
 - `wcag_design`: public, secondary evidence for accessibility and frontend tooling.
 - `mfe-architecture` / `angular-native-federation`: public, useful for frontend platform/architecture roles.
@@ -63,11 +64,11 @@ Private or sanitize-before-showing candidates:
 - `stride-agent`: strongest AI tooling evidence; TypeScript/Node coding-agent MVP with provider integration, policy-gated tools, audit logging, secret redaction, sessions, and plugins.
 - `dotfiles-pi`: valuable Pi extensions and setup CLI; sanitize before publishing.
 - `dotfiles-opencode`: valuable OpenCode frameworks and agent orchestration; sanitize before publishing.
-- Local LLM inference setup: create a sanitized `~/workspace/local-llm-inference-lab` rather than copying the full `~/llama-cpp-turboquant` fork.
+- Additional local LLM experiments should continue to be documented through sanitized updates to `local-llm-inference-lab` rather than copying the full local inference fork.
 
 Do not show client-tied demos or operational dashboards as-is. Create generic, sanitized versions if needed.
 
-Current caveat: the CV's featured projects are useful for positioning, but some are not yet ideal proof points. `Angular i18n Translator` is the strongest public AI automation project today; `Stride Agent`, Pi/OpenCode tooling, and local LLM inference need sanitization or dedicated public showcases before becoming primary external evidence.
+Current caveat: the CV's visible projects now favor public proof points. `Stride Agent` and Pi/OpenCode tooling remain strong private evidence, but need sanitization or dedicated public showcases before becoming primary external links.
 
 ## Artifacts to reference
 
@@ -90,7 +91,7 @@ Current caveat: the CV's featured projects are useful for positioning, but some 
 - Should the CV render three or four featured projects by default after the portfolio evidence phase is complete?
 - Should JSON export produce the full bilingual source or a localized JSON for the active language?
 - Should `stride-agent` become public after sanitization or be split into a smaller public preview?
-- Should `local-llm-inference-lab` be created before applying to AI tooling roles?
+- Should `local-llm-inference-lab` become one of the primary projects for all AI tooling applications, or only for local-inference/platform-focused roles?
 - Should the README remain project-generic or mention the AI tooling sample CV as a showcase?
 
 ## Verification steps
@@ -101,4 +102,4 @@ Current caveat: the CV's featured projects are useful for positioning, but some 
 4. Open the app and switch ES/EN in the preview selector.
 5. Export both PDFs and visually inspect page breaks, especially `Stack técnico` / `Technical Stack`.
 6. Ensure no sensitive POC details are present in `src/features/cv-typewriter/sample.js`, README, or docs.
-7. Before finalizing the CV's featured projects, verify that each visible project has a public, sanitized, or intentionally explainable evidence source.
+7. Before finalizing the CV's featured projects, verify that each visible project links to a public GitHub repository or an intentionally explainable evidence source.
