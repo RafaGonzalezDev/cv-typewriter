@@ -1,3 +1,9 @@
+## 2026-05-31 — Refine Oxford-style CV header
+
+**What**: Updated the CV header to use a compact Oxford/engineering resume style: centered bold name and a single contact line with pipe separators and clickable links.  
+**Where**: `src/features/cv-typewriter/components/CVContent.jsx`  
+**Why**: Improve alignment with minimalist software engineering CV templates while keeping contact details ATS-friendly and readable.
+
 ## 2026-05-31 — Add bilingual CV preview
 
 **What**: Added Spanish/English CV content variants inside the sample JSON, localized section labels, localized present-date labels, and a preview language selector in the editor panel. PDF export titles now include the active language suffix.  
