@@ -1,3 +1,9 @@
+## 2026-05-31 — Add professional handoff and README refresh
+
+**What**: Added `docs/handoff.md` with professional positioning, target roles, sensitive wording rules, project evidence, and continuation context. Rewrote the project README to describe the bilingual CV model, A4 preview, smart pagination, and current architecture more professionally.  
+**Where**: `docs/handoff.md`, `README.md`, `docs/changelog/cv-content.md`  
+**Why**: Preserve context for future agents and present the project more clearly as a professional data-first CV editor.
+
 ## 2026-05-31 — Refine Oxford-style CV header
 
 **What**: Updated the CV header to use a compact Oxford/engineering resume style: centered bold name and a single contact line with pipe separators and clickable links.  
