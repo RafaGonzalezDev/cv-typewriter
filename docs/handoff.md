@@ -9,6 +9,7 @@ The target profile is not pure AI/ML Engineering. The intended narrative is: fro
 ## Current status
 
 - Active branch: `feature/ui-improvements`.
+- Current phase: **portfolio evidence preparation**. The CV structure and positioning are mostly in place; the next work should focus on making the featured projects publicly credible through sanitization, curated previews, or new showcase repositories.
 - The app supports bilingual CV content through `cv.languages.es` and `cv.languages.en` in `src/features/cv-typewriter/sample.js`.
 - The editor panel includes an ES/EN preview selector.
 - PDF export titles include the active language suffix.
@@ -16,6 +17,7 @@ The target profile is not pure AI/ML Engineering. The intended narrative is: fro
 - The visible professional summary header was removed; the summary is rendered as direct text below the personal header.
 - The CV header now follows a compact Oxford/engineering resume style: centered name plus one contact line with pipe separators.
 - Pagination groups experience/project highlights and technical expertise rows to avoid awkward page splits.
+- The current `projects` section in `src/features/cv-typewriter/sample.js` is provisional. Do not treat the featured projects as final until the portfolio plan in `~/workspace/plan.md` has been executed.
 
 ## Professional positioning
 
@@ -47,6 +49,8 @@ Avoid concrete client-sensitive implementation details in CV bullets, README fil
 
 ## Project evidence to reference
 
+The next phase is to align project evidence with the CV. The CV can mention strong private work, but public-facing project links should only point to repos that are sanitized and intentionally presented.
+
 Public or showcase-ready candidates:
 
 - `angular-i18n-translator`: public, strong evidence for LLM-based Angular i18n automation.
@@ -63,11 +67,14 @@ Private or sanitize-before-showing candidates:
 
 Do not show client-tied demos or operational dashboards as-is. Create generic, sanitized versions if needed.
 
+Current caveat: the CV's featured projects are useful for positioning, but some are not yet ideal proof points. `Angular i18n Translator` is the strongest public AI automation project today; `Stride Agent`, Pi/OpenCode tooling, and local LLM inference need sanitization or dedicated public showcases before becoming primary external evidence.
+
 ## Artifacts to reference
 
 - `docs/overview/cv-typewriter.md` — current architecture overview.
 - `docs/adr/ADR-0001-client-side-pagination-for-cv-rendering.md` — pagination decision.
 - `docs/changelog/cv-content.md` — CV content and positioning changes.
+- `docs/overview/portfolio-showcase-roadmap.md` — current portfolio evidence phase and project-showcase roadmap.
 - `~/workspace/plan.md` — broader portfolio/showcase plan, including sanitization guidance and local LLM inference notes.
 
 ## Suggested skills
@@ -80,7 +87,7 @@ Do not show client-tied demos or operational dashboards as-is. Create generic, s
 
 ## Open questions
 
-- Should the CV render three or four featured projects by default?
+- Should the CV render three or four featured projects by default after the portfolio evidence phase is complete?
 - Should JSON export produce the full bilingual source or a localized JSON for the active language?
 - Should `stride-agent` become public after sanitization or be split into a smaller public preview?
 - Should `local-llm-inference-lab` be created before applying to AI tooling roles?
@@ -94,3 +101,4 @@ Do not show client-tied demos or operational dashboards as-is. Create generic, s
 4. Open the app and switch ES/EN in the preview selector.
 5. Export both PDFs and visually inspect page breaks, especially `Stack técnico` / `Technical Stack`.
 6. Ensure no sensitive POC details are present in `src/features/cv-typewriter/sample.js`, README, or docs.
+7. Before finalizing the CV's featured projects, verify that each visible project has a public, sanitized, or intentionally explainable evidence source.

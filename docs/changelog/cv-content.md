@@ -1,3 +1,9 @@
+## 2026-05-31 — Document portfolio evidence phase
+
+**What**: Added a portfolio showcase roadmap and updated the handoff to make the current phase explicit: the CV structure and AI tooling positioning are in place, but featured projects remain provisional until the external evidence plan is executed.  
+**Where**: `docs/overview/portfolio-showcase-roadmap.md`, `docs/handoff.md`, `docs/changelog/cv-content.md`  
+**Why**: Ensure future sessions understand that the next priority is sanitizing or preparing public project evidence before finalizing the CV's project section.
+
 ## 2026-05-31 — Add professional handoff and README refresh
 
 **What**: Added `docs/handoff.md` with professional positioning, target roles, sensitive wording rules, project evidence, and continuation context. Rewrote the project README to describe the bilingual CV model, A4 preview, smart pagination, and current architecture more professionally.  
