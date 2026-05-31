@@ -1,3 +1,9 @@
+## 2026-05-31 — Add OpenCode showcase evidence
+
+**What**: Added `dotfiles-opencode-showcase` to the bilingual CV project section and increased the rendered project limit from three to four so the new public OpenCode profile installer appears in the CV.  
+**Where**: `src/features/cv-typewriter/sample.js`, `src/features/cv-typewriter/components/CVContent.jsx`, `src/features/cv-typewriter/services/blockBuilder.js`, `docs/changelog/cv-content.md`, `docs/overview/portfolio-showcase-roadmap.md`  
+**Why**: Promote the new public OpenCode showcase as verifiable evidence for AI Developer Tooling, role-based agentic workflows, TypeScript/Ink CLI work, and safe managed configuration automation.
+
 ## 2026-05-31 — Link public project evidence
 
 **What**: Updated the bilingual CV project section to feature public GitHub-backed projects: Angular i18n Translator, Local LLM Inference Lab, and CV Typewriter. Project names now use Markdown links to their repositories in both Spanish and English variants.  
@@ -6,7 +12,7 @@
 
 ## 2026-05-31 — Document portfolio evidence phase
 
-**What**: Added a portfolio showcase roadmap and updated the handoff to make the current phase explicit: the CV structure and AI tooling positioning are in place, but featured projects remain provisional until the external evidence plan is executed.  
+**What**: Added a portfolio showcase roadmap and updated the handoff to make the current phase explicit: the CV structure and positioning are mostly in place, but featured projects remain provisional until the external evidence plan is executed.  
 **Where**: `docs/overview/portfolio-showcase-roadmap.md`, `docs/handoff.md`, `docs/changelog/cv-content.md`  
 **Why**: Ensure future sessions understand that the next priority is sanitizing or preparing public project evidence before finalizing the CV's project section.
 

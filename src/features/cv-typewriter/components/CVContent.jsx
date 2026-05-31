@@ -105,7 +105,7 @@ const CVContent = forwardRef(function CVContent(
 
           {cv.sections.projects.length ? (
             <Section title={cv.labels.sections.projects}>
-              {cv.sections.projects.slice(0, 3).map((p, i) => (
+              {cv.sections.projects.slice(0, 4).map((p, i) => (
                 <ProjectEntry
                   key={i}
                   entry={{

@@ -13,6 +13,7 @@ const projectUrls = {
   angularI18nTranslator: 'https://github.com/RafaGonzalezDev/angular-i18n-translator',
   localLlmInferenceLab: 'https://github.com/RafaGonzalezDev/local-llm-inference-lab',
   strideAgentShowcase: 'https://github.com/RafaGonzalezDev/stride-agent-showcase',
+  dotfilesOpencodeShowcase: 'https://github.com/RafaGonzalezDev/dotfiles-opencode-showcase',
   cvTypewriter: 'https://github.com/RafaGonzalezDev/cv-typewriter',
 };
 
@@ -145,6 +146,12 @@ const SAMPLE = {
               name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
               highlights: [
                 'Runtime de coding agent en TypeScript/Node con tools policy-gated, audit logging, redacción de secretos, proveedor fake/OpenAI-compatible y carga de plugins.',
+              ],
+            },
+            {
+              name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
+              highlights: [
+                'Instalador de perfiles OpenCode con CLI TypeScript/Ink, workflows agénticos por rol, backups/rollback transaccionales y verificación de configuración gestionada.',
               ],
             },
             {
@@ -293,6 +300,12 @@ const SAMPLE = {
               name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
               highlights: [
                 'TypeScript/Node coding-agent runtime with policy-gated tools, audit logging, secret redaction, fake/OpenAI-compatible providers and plugin loading.',
+              ],
+            },
+            {
+              name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
+              highlights: [
+                'OpenCode profile installer with a TypeScript/Ink CLI, role-based agentic workflows, transactional backups/rollback and managed config verification.',
               ],
             },
             {
