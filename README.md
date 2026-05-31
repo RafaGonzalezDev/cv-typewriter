@@ -149,3 +149,7 @@ Useful references:
 - PDF export depends on the browser print dialog. Use A4 and disable browser headers/footers for best results.
 - Large editor dependencies can produce a Vite chunk-size warning during build; the build still completes successfully.
 - The current JSON export downloads the full source JSON, including both language variants.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
