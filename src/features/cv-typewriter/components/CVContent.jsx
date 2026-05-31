@@ -13,7 +13,7 @@ const CVContent = forwardRef(function CVContent(
   const blocks = paged ? layoutBlocks : null;
 
   return (
-    <div ref={ref} className="cv-content-inner">
+    <div ref={ref} lang={cv.language} className="cv-content-inner">
       {(!paged || pageIndex === 0) && (
         <div
           className="text-center"
@@ -28,7 +28,7 @@ const CVContent = forwardRef(function CVContent(
           <div className="flex flex-wrap justify-between text-[12.5px] mb-3 w-full">
             {cv.basics.location ? (
               <span className="flex items-center text-slate-600 font-medium">
-                <span className="font-bold text-slate-900">Location:</span>
+                <span className="font-bold text-slate-900">{cv.labels.location}:</span>
                 <span className="ml-1">{cv.basics.location}</span>
               </span>
             ) : null}
@@ -71,23 +71,23 @@ const CVContent = forwardRef(function CVContent(
           ) : null}
 
           {cv.sections.experience.length ? (
-            <Section title="Experience">
+            <Section title={cv.labels.sections.experience}>
               <div className="space-y-0 line-clamp-none">
                 {cv.sections.experience.map((e, i) => (
-                  <ExperienceEntry key={i} entry={e} />
+                  <ExperienceEntry key={i} entry={e} labels={cv.labels} />
                 ))}
               </div>
             </Section>
           ) : null}
 
           {cv.sections.technologies.length ? (
-            <Section title="Technical Expertise">
+            <Section title={cv.labels.sections.technologies}>
               <TechBlock items={cv.sections.technologies} />
             </Section>
           ) : null}
 
           {cv.sections.projects.length ? (
-            <Section title="Featured Projects">
+            <Section title={cv.labels.sections.projects}>
               {cv.sections.projects.slice(0, 3).map((p, i) => (
                 <ProjectEntry
                   key={i}
@@ -101,10 +101,10 @@ const CVContent = forwardRef(function CVContent(
           ) : null}
 
           {cv.sections.education.length ? (
-            <Section title="Education">
+            <Section title={cv.labels.sections.education}>
               <div className="space-y-0">
                 {cv.sections.education.map((e, i) => (
-                  <EducationEntry key={i} entry={e} />
+                  <EducationEntry key={i} entry={e} labels={cv.labels} />
                 ))}
               </div>
             </Section>
@@ -142,7 +142,11 @@ const CVContent = forwardRef(function CVContent(
             if (block.type === 'experience-entry') {
               return (
                 <div key={blockId} data-block-id={blockId}>
-                  <ExperienceEntry entry={block.entry} withHighlights={!block.splitHighlights} />
+                  <ExperienceEntry
+                    entry={block.entry}
+                    labels={cv.labels}
+                    withHighlights={!block.splitHighlights}
+                  />
                 </div>
               );
             }
@@ -190,7 +194,7 @@ const CVContent = forwardRef(function CVContent(
             if (block.type === 'education-entry') {
               return (
                 <div key={blockId} data-block-id={blockId}>
-                  <EducationEntry entry={block.entry} />
+                  <EducationEntry entry={block.entry} labels={cv.labels} />
                 </div>
               );
             }
