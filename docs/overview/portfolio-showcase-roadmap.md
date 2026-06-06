@@ -7,7 +7,7 @@ This document tracks the current portfolio evidence phase for Rafa's CV position
 - `~/workspace/plan.md` — Source plan for portfolio/showcase work, including project visibility, sanitization strategy, and local LLM inference notes.
 - `src/features/cv-typewriter/sample.js` — Current bilingual CV content. The `projects` section is provisional until the portfolio plan is executed.
 - `docs/handoff.md` — Professional positioning, sensitive wording rules, project evidence, and continuation context for future sessions.
-- Public GitHub projects — Current public evidence includes `angular-i18n-translator`, `local-llm-inference-lab`, `stride-agent-showcase`, `dotfiles-opencode-showcase`, `cv-typewriter`, `wcag_design`, `mfe-architecture`, and `angular-native-federation`.
+- Public GitHub projects — Current public evidence includes `angular-i18n-translator`, `local-llm-inference-lab`, `stride-agent-showcase`, `dotfiles-opencode-showcase`, `agentic-pr-reviewer-action`, `cv-typewriter`, `wcag_design`, `mfe-architecture`, and `angular-native-federation`.
 - Private/sensitive projects — `dotfiles-pi` still requires sanitization or a curated public preview before it should be used as primary project evidence.
 
 ## Current phase
@@ -20,12 +20,13 @@ The CV now prioritizes visible projects that have public GitHub evidence. The cu
 - `local-llm-inference-lab` — public local inference and model-serving showcase.
 - `stride-agent-showcase` — public coding-agent runtime showcase.
 - `dotfiles-opencode-showcase` — public OpenCode profile installer and role-based agentic workflow showcase.
+- `agentic-pr-reviewer-action` — public GitHub Action for agentic, diff-scoped PR review automation.
 
 Private projects remain useful for positioning, but should not be linked as primary CV evidence until they are public-safe. The main remaining candidate is `dotfiles-pi`.
 
 ## Recommended sequence
 
-1. Keep `local-llm-inference-lab`, `stride-agent-showcase`, and `dotfiles-opencode-showcase` aligned with the CV as public AI tooling evidence.
+1. Keep `local-llm-inference-lab`, `stride-agent-showcase`, `dotfiles-opencode-showcase`, and `agentic-pr-reviewer-action` aligned with the CV as public AI tooling evidence.
 2. Extract or sanitize Pi material into `dotfiles-pi-showcase` if it remains valuable as a separate public project.
 3. Re-evaluate whether the CV should keep four public projects or introduce role-specific project presets.
 4. Export Spanish and English PDFs and confirm that the project section is both credible and backed by accessible evidence.

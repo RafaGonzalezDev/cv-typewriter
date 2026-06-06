@@ -62,7 +62,7 @@ export function buildBlocks(cv) {
 
   const pushProjects = () => {
     pushSectionHeader('projects', cv.labels.sections.projects);
-    cv.sections.projects.slice(0, 4).forEach((entry, entryIndex) => {
+    cv.sections.projects.slice(0, 6).forEach((entry, entryIndex) => {
       const entryId = `project-${entryIndex}`;
       const highlights = Array.isArray(entry.highlights) ? entry.highlights.slice(0, 1) : [];
       push({

@@ -14,6 +14,7 @@ const projectUrls = {
   localLlmInferenceLab: 'https://github.com/RafaGonzalezDev/local-llm-inference-lab',
   strideAgentShowcase: 'https://github.com/RafaGonzalezDev/stride-agent-showcase',
   dotfilesOpencodeShowcase: 'https://github.com/RafaGonzalezDev/dotfiles-opencode-showcase',
+  agenticPrReviewerAction: 'https://github.com/RafaGonzalezDev/agentic-pr-reviewer-action',
   cvTypewriter: 'https://github.com/RafaGonzalezDev/cv-typewriter',
 };
 
@@ -152,6 +153,12 @@ const SAMPLE = {
               name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
               highlights: [
                 'Instalador de perfiles OpenCode con CLI TypeScript/Ink, workflows agénticos por rol, backups/rollback transaccionales y verificación de configuración gestionada.',
+              ],
+            },
+            {
+              name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
+              highlights: [
+                'GitHub Action agéntica para revisar Pull Requests sobre diffs acotados usando endpoints LLM OpenAI-compatible y feedback accionable dentro de CI/CD.',
               ],
             },
             {
@@ -306,6 +313,12 @@ const SAMPLE = {
               name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
               highlights: [
                 'OpenCode profile installer with a TypeScript/Ink CLI, role-based agentic workflows, transactional backups/rollback and managed config verification.',
+              ],
+            },
+            {
+              name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
+              highlights: [
+                'Agentic GitHub Action for diff-scoped Pull Request reviews using OpenAI-compatible LLM endpoints and actionable CI/CD code-review feedback.',
               ],
             },
             {

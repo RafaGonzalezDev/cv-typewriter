@@ -1,3 +1,9 @@
+## 2026-06-06 — Add agentic PR reviewer evidence
+
+**What**: Added `agentic-pr-reviewer-action` to the bilingual CV project section and increased the rendered project limit from four to six so the new public GitHub Action appears without removing existing project entries.  
+**Where**: `src/features/cv-typewriter/sample.js`, `src/features/cv-typewriter/components/CVContent.jsx`, `src/features/cv-typewriter/services/blockBuilder.js`, `docs/changelog/cv-content.md`, `docs/overview/portfolio-showcase-roadmap.md`  
+**Why**: Promote the new public PR review automation project as verifiable evidence for AI Developer Tooling, CI/CD automation, GitHub Actions, and OpenAI-compatible LLM workflows.
+
 ## 2026-05-31 — Add OpenCode showcase evidence
 
 **What**: Added `dotfiles-opencode-showcase` to the bilingual CV project section and increased the rendered project limit from three to four so the new public OpenCode profile installer appears in the CV.  
