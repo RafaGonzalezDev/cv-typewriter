@@ -132,6 +132,12 @@ const SAMPLE = {
           ],
           projects: [
             {
+              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
+              highlights: [
+                'Runtime de coding agent en TypeScript/Node con tools policy-gated, audit logging, redacción de secretos, proveedor fake/OpenAI-compatible y carga de plugins.',
+              ],
+            },
+            {
               name: `[angular-i18n-translator](${projectUrls.angularI18nTranslator})`,
               highlights: [
                 'CLI en Node.js para automatizar traducciones Angular XLF con LLMs, batch processing, preservación de interpolaciones y soporte multi-provider.',
@@ -144,21 +150,15 @@ const SAMPLE = {
               ],
             },
             {
-              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
+              name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
               highlights: [
-                'Runtime de coding agent en TypeScript/Node con tools policy-gated, audit logging, redacción de secretos, proveedor fake/OpenAI-compatible y carga de plugins.',
+                'GitHub Action agéntica para revisar Pull Requests sobre diffs acotados usando endpoints LLM OpenAI-compatible y feedback accionable dentro de CI/CD.',
               ],
             },
             {
               name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
               highlights: [
                 'Instalador de perfiles OpenCode con CLI TypeScript/Ink, workflows agénticos por rol, backups/rollback transaccionales y verificación de configuración gestionada.',
-              ],
-            },
-            {
-              name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
-              highlights: [
-                'GitHub Action agéntica para revisar Pull Requests sobre diffs acotados usando endpoints LLM OpenAI-compatible y feedback accionable dentro de CI/CD.',
               ],
             },
             {
@@ -292,6 +292,12 @@ const SAMPLE = {
           ],
           projects: [
             {
+              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
+              highlights: [
+                'TypeScript/Node coding-agent runtime with policy-gated tools, audit logging, secret redaction, fake/OpenAI-compatible providers and plugin loading.',
+              ],
+            },
+            {
               name: `[angular-i18n-translator](${projectUrls.angularI18nTranslator})`,
               highlights: [
                 'Node.js CLI for automating Angular XLF translations with LLMs, batch processing, interpolation preservation and multi-provider support.',
@@ -304,21 +310,15 @@ const SAMPLE = {
               ],
             },
             {
-              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
+              name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
               highlights: [
-                'TypeScript/Node coding-agent runtime with policy-gated tools, audit logging, secret redaction, fake/OpenAI-compatible providers and plugin loading.',
+                'Agentic GitHub Action for diff-scoped Pull Request reviews using OpenAI-compatible LLM endpoints and actionable CI/CD code-review feedback.',
               ],
             },
             {
               name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
               highlights: [
                 'OpenCode profile installer with a TypeScript/Ink CLI, role-based agentic workflows, transactional backups/rollback and managed config verification.',
-              ],
-            },
-            {
-              name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
-              highlights: [
-                'Agentic GitHub Action for diff-scoped Pull Request reviews using OpenAI-compatible LLM endpoints and actionable CI/CD code-review feedback.',
               ],
             },
             {
