@@ -11,7 +11,7 @@ const socialNetworks = [
 
 const projectUrls = {
   angularI18nTranslator: 'https://github.com/RafaGonzalezDev/angular-i18n-translator',
-  localLlmInferenceLab: 'https://github.com/RafaGonzalezDev/local-llm-inference-lab',
+  mcpSchemaRunner: 'https://github.com/RafaGonzalezDev/mcp-schema-runner',
   strideAgentShowcase: 'https://github.com/RafaGonzalezDev/stride-agent-showcase',
   dotfilesOpencodeShowcase: 'https://github.com/RafaGonzalezDev/dotfiles-opencode-showcase',
   agenticPrReviewerAction: 'https://github.com/RafaGonzalezDev/agentic-pr-reviewer-action',
@@ -138,9 +138,9 @@ const SAMPLE = {
               ],
             },
             {
-              name: `[local-llm-inference-lab](${projectUrls.localLlmInferenceLab})`,
+              name: `[mcp-schema-runner](${projectUrls.mcpSchemaRunner})`,
               highlights: [
-                'Repositorio público para ejecutar modelos GGUF locales con llama.cpp-compatible serving, perfiles reutilizables, checks OpenAI-compatible y documentación de integración con OpenWebUI.',
+                'Herramienta local en TypeScript/React para depurar servidores MCP stdio con inspección de schemas de tools, tool calls manuales y traces request/response/error.',
               ],
             },
             {
@@ -298,9 +298,9 @@ const SAMPLE = {
               ],
             },
             {
-              name: `[local-llm-inference-lab](${projectUrls.localLlmInferenceLab})`,
+              name: `[mcp-schema-runner](${projectUrls.mcpSchemaRunner})`,
               highlights: [
-                'Public repository for running local GGUF models with llama.cpp-compatible serving, reusable profiles, OpenAI-compatible checks and OpenWebUI integration docs.',
+                'Local TypeScript/React tool for debugging stdio MCP servers with tool schema inspection, manual tool calls and raw request/response/error traces.',
               ],
             },
             {
