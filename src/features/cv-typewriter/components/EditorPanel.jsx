@@ -1,12 +1,14 @@
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useEffect, useRef, useState } from 'react';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Download, Printer, RotateCcw, FileJson } from 'lucide-react';
+import { Check, CircleAlert, Download, RotateCcw } from 'lucide-react';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 import { EditorView } from '@codemirror/view';
+import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
+import { tags as t } from '@lezer/highlight';
+import { cn } from '@/lib/utils';
 
 const jsonEditorTheme = EditorView.theme({
   '&': {
@@ -32,6 +34,19 @@ const jsonEditorTheme = EditorView.theme({
   },
 });
 
+// Calm, corporate syntax palette: steel blue strings, navy numbers,
+// slate punctuation. Replaces the harsh default red/green scheme.
+const jsonHighlight = HighlightStyle.define([
+  { tag: t.propertyName, color: '#334155' },
+  { tag: t.string, color: '#3e6392' },
+  { tag: t.number, color: '#123a63' },
+  { tag: [t.bool, t.null], color: '#64748b' },
+  { tag: [t.punctuation, t.bracket], color: '#64748b' },
+  { tag: t.invalid, color: '#b91c1c' },
+]);
+
+const fieldLabel = 'text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500';
+
 export default function EditorPanel({
   fileName,
   onFileNameChange,
@@ -41,11 +56,23 @@ export default function EditorPanel({
   language,
   availableLanguages = [],
   onLanguageChange,
-  onPrint,
   onDownloadJson,
   onLoadSample,
   pageMetrics,
+  numPages,
 }) {
+  const [downloaded, setDownloaded] = useState(false);
+  const feedbackTimer = useRef(null);
+
+  useEffect(() => () => window.clearTimeout(feedbackTimer.current), []);
+
+  const handleDownload = () => {
+    onDownloadJson();
+    setDownloaded(true);
+    window.clearTimeout(feedbackTimer.current);
+    feedbackTimer.current = window.setTimeout(() => setDownloaded(false), 1600);
+  };
+
   return (
     <div className="no-print">
       <div
@@ -55,47 +82,46 @@ export default function EditorPanel({
           height: `${pageMetrics.heightPx}px`,
         }}
       >
-        <Card className="border border-slate-200 shadow-none rounded-none overflow-hidden bg-white h-full w-full flex flex-col">
-          <CardHeader className="bg-white text-slate-900 p-5 border-b border-slate-200/70">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-base font-semibold tracking-tight">
-                CV Typewriter
-              </CardTitle>
-              <FileJson className="w-4 h-4 text-slate-400" />
-            </div>
-          </CardHeader>
-          <CardContent className="p-6 space-y-6 flex-1 overflow-hidden flex flex-col">
-            <div className="space-y-5">
+        <Card className="flex h-full w-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-panel">
+          <div className="border-b border-slate-200/70 p-5">
+            <div className="grid grid-cols-[1fr_auto] items-end gap-4">
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
+                <label htmlFor="document-name" className={cn(fieldLabel, 'block pl-1')}>
                   Document Name
                 </label>
                 <Input
+                  id="document-name"
                   value={fileName}
                   onChange={onFileNameChange}
                   placeholder="CV"
-                  className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-primary focus-visible:border-none text-base font-medium w-full"
+                  className="h-10 w-full border-slate-200 bg-slate-50 text-sm font-medium focus-visible:ring-brand"
                 />
               </div>
-              <fieldset className="space-y-2">
-                <legend className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
-                  Preview Language
-                </legend>
-                <div className="grid grid-cols-2 gap-2">
+              <fieldset>
+                <legend className={cn(fieldLabel, 'mb-2 pl-1')}>Preview Language</legend>
+                <div className="grid grid-cols-2 gap-1 rounded-lg border border-slate-200 bg-slate-100 p-1">
                   {availableLanguages.map((option) => {
                     const isActive = option.code === language;
                     return (
                       <Button
                         key={option.code}
                         type="button"
-                        variant={isActive ? 'default' : 'outline'}
+                        variant="ghost"
                         aria-pressed={isActive}
                         onClick={() => onLanguageChange(option.code)}
-                        className="h-11 px-3 gap-1.5 font-bold"
+                        className={cn(
+                          'h-8 gap-1.5 rounded-md px-4 text-xs font-semibold transition-colors',
+                          isActive
+                            ? 'bg-brand text-brand-foreground shadow-sm hover:bg-brand hover:text-brand-foreground'
+                            : 'text-slate-600 hover:bg-white hover:text-slate-900'
+                        )}
                       >
                         <span>{option.label}</span>
                         <span
-                          className={isActive ? 'text-white/80 text-xs' : 'text-slate-500 text-xs'}
+                          className={cn(
+                            'text-[10px] font-medium',
+                            isActive ? 'text-brand-foreground/70' : 'text-slate-400'
+                          )}
                         >
                           {option.name}
                         </span>
@@ -104,74 +130,83 @@ export default function EditorPanel({
                   })}
                 </div>
               </fieldset>
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
-                  Quick Actions
-                </label>
-                <div className="grid grid-cols-1 gap-2">
-                  <Button
-                    onClick={onPrint}
-                    className="h-12 px-4 shadow-md hover:shadow-lg transition-all gap-2 font-bold"
-                  >
-                    <Printer className="w-4 h-4" />
-                    Export PDF ({language.toUpperCase()})
-                  </Button>
-                  <div className="grid grid-cols-2 gap-2">
-                    <Button
-                      variant="secondary"
-                      onClick={onDownloadJson}
-                      className="h-12 px-4 gap-2 font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition-colors"
-                    >
-                      <Download className="w-4 h-4" />
-                      JSON
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      onClick={onLoadSample}
-                      className="h-12 px-4 gap-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all font-semibold"
-                    >
-                      <RotateCcw className="w-4 h-4" />
-                      Reset
-                    </Button>
-                  </div>
-                </div>
+            </div>
+          </div>
+
+          <div className="flex min-h-0 flex-1 flex-col gap-3 p-5">
+            <div className="flex items-center justify-between">
+              <label className={cn(fieldLabel, 'pl-1')}>JSON Editor</label>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  onClick={handleDownload}
+                  className="h-8 gap-2 px-3 text-xs font-semibold text-slate-700"
+                >
+                  {downloaded ? (
+                    <Check className="h-3.5 w-3.5 text-emerald-600" />
+                  ) : (
+                    <Download className="h-3.5 w-3.5" />
+                  )}
+                  {downloaded ? 'Downloaded' : 'JSON'}
+                </Button>
+                <Button
+                  variant="ghost"
+                  onClick={onLoadSample}
+                  className="h-8 gap-2 px-3 text-xs font-semibold text-slate-500 hover:text-slate-900"
+                >
+                  <RotateCcw className="h-3.5 w-3.5" />
+                  Reset
+                </Button>
               </div>
             </div>
 
-            <div className="space-y-4 flex-1 flex flex-col min-h-0">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
-                  JSON Editor
-                </label>
-                <Badge
-                  variant="outline"
-                  className="bg-white/50 backdrop-blur-sm border-slate-200 text-slate-400 text-[10px] font-jetbrains-mono"
-                >
-                  {jsonText.length} chars
-                </Badge>
-              </div>
-              <div className="relative group overflow-hidden border border-slate-200 bg-white flex-1 min-h-0 json-editor font-jetbrains-mono">
-                <CodeMirror
-                  value={jsonText}
-                  height="100%"
-                  extensions={[json(), jsonEditorTheme]}
-                  onChange={(value) => onJsonTextChange({ target: { value } })}
-                  basicSetup={{
-                    lineNumbers: true,
-                    foldGutter: false,
-                    highlightActiveLine: false,
-                    highlightActiveLineGutter: false,
-                  }}
-                  className="h-full text-[13px]"
-                />
-              </div>
-              {!parsed.ok && (
-                <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-lg text-sm text-red-700 font-semibold animate-in fade-in slide-in-from-top-2">
-                  ⚠️ SYNTAX ERROR: {parsed.error}
-                </div>
-              )}
+            <div className="json-editor font-jetbrains-mono relative min-h-0 flex-1 overflow-hidden rounded-md border border-slate-200 bg-white">
+              <CodeMirror
+                value={jsonText}
+                height="100%"
+                extensions={[json(), jsonEditorTheme, syntaxHighlighting(jsonHighlight)]}
+                onChange={(value) => onJsonTextChange({ target: { value } })}
+                basicSetup={{
+                  lineNumbers: true,
+                  foldGutter: false,
+                  highlightActiveLine: false,
+                  highlightActiveLineGutter: false,
+                  syntaxHighlighting: false,
+                }}
+                className="h-full text-[13px]"
+              />
             </div>
-          </CardContent>
+
+            {!parsed.ok && (
+              <div
+                role="alert"
+                className="animate-in fade-in slide-in-from-top-2 flex items-start gap-2.5 rounded-md border border-red-200 bg-red-50 px-3.5 py-2.5 text-sm text-red-700"
+              >
+                <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+                <p>
+                  <span className="font-semibold">Syntax error:</span> {parsed.error}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <footer className="flex h-9 shrink-0 items-center justify-between border-t border-slate-200/70 bg-slate-50 px-5 font-mono text-[11px] text-slate-500">
+            <span className="flex items-center gap-2">
+              <span
+                aria-hidden="true"
+                className={cn(
+                  'h-1.5 w-1.5 rounded-full',
+                  parsed.ok ? 'bg-emerald-500' : 'bg-red-500'
+                )}
+              />
+              <span className="uppercase tracking-[0.14em]">
+                {parsed.ok ? 'Valid JSON' : 'Syntax error'}
+              </span>
+            </span>
+            <span className="tabular-nums">
+              {jsonText.length} chars · {numPages} {numPages === 1 ? 'page' : 'pages'}
+            </span>
+          </footer>
         </Card>
       </div>
     </div>
