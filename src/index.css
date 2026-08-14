@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -32,7 +32,10 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 215 65% 35%;
+
+    --brand: 215 65% 22%;
+    --brand-foreground: 210 40% 98%;
 
     --radius: 0.5rem;
     --cv-section-gap: 1.2rem;
@@ -106,6 +109,9 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
+    --brand: 215 60% 55%;
+    --brand-foreground: 222.2 47.4% 11.2%;
   }
 }
 
@@ -115,5 +121,13 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .work-surface {
+    background-color: hsl(210 40% 96.1%);
+    background-image: radial-gradient(hsl(222.2 84% 4.9% / 0.045) 1px, transparent 1px);
+    background-size: 22px 22px;
   }
 }
