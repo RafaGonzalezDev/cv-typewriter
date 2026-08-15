@@ -15,7 +15,7 @@ CV Typewriter is a data-first CV editor for maintaining a professional resume as
 
 - **Data-first CV content**: maintain the CV as JSON instead of coupling content to layout.
 - **Bilingual preview**: switch between Spanish and English CV variants from the editor panel.
-- **Oxford-inspired resume layout**: compact header, minimal section treatment, and readable hierarchy.
+- **Harvard-style resume layout**: serif document typography, compact two-row contact header, minimal section treatment and readable hierarchy.
 - **A4 print preview**: render fixed-size A4 pages in the browser before exporting.
 - **Smart pagination**: measure content blocks and avoid awkward page splits across entries and technical sections.
 - **PDF export**: export the selected language variant through the browser print-to-PDF flow.

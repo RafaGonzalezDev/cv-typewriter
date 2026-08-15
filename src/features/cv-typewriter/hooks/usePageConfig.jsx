@@ -56,6 +56,11 @@ export function usePageConfig(parsed) {
             .no-print {
                 display: none !important;
             }
+            .animate-in {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
             .no-print,
             .print-root {
                 box-sizing: border-box;

@@ -11,16 +11,16 @@ export default function EducationEntry({ entry, labels }) {
   return (
     <div className="grid grid-cols-[1fr_auto] gap-3 pt-[var(--cv-entry-pad-y)] pb-[var(--cv-entry-pad-y)] first:pt-0 last:pb-0 text-left">
       <div>
-        <div className="text-[14px] font-bold leading-snug">
+        <div className="text-[14.5px] font-bold leading-snug">
           {title}
           {sub ? (
-            <span className="text-[12.5px] font-medium text-muted-foreground italic ml-2">
+            <span className="cv-soft text-[13px] italic ml-2">
               {sub}
             </span>
           ) : null}
         </div>
       </div>
-      <div className="text-[12.5px] font-medium text-muted-foreground italic whitespace-nowrap pt-0.5">
+      <div className="cv-soft text-[13px] italic whitespace-nowrap pt-0.5">
         {date}
       </div>
     </div>

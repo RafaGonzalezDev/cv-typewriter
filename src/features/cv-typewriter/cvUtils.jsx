@@ -62,13 +62,7 @@ export function renderTextWithLinks(text) {
     const match = part.match(/\[(.*?)\]\((.*?)\)/);
     if (match) {
       return (
-        <a
-          key={i}
-          href={match[2]}
-          target="_blank"
-          rel="noreferrer"
-          className="underline underline-offset-2 hover:text-primary transition-colors"
-        >
+        <a key={i} href={match[2]} target="_blank" rel="noreferrer">
           {match[1]}
         </a>
       );
@@ -83,6 +77,18 @@ export function getSocialUrl(network, username) {
   if (net.includes('linkedin')) return `https://linkedin.com/in/${username}`;
   if (net.includes('github')) return `https://github.com/${username}`;
   return null;
+}
+
+export function deriveDocumentName(cv) {
+  const base = String(cv?.basics?.name ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  const language = String(cv?.language ?? '').toUpperCase();
+  if (!base) return 'CV';
+  return language ? `${base}_${language}` : base;
 }
 
 export const DEFAULT_LANGUAGE = 'es';
