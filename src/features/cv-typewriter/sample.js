@@ -13,9 +13,9 @@ const projectUrls = {
   angularI18nTranslator: 'https://github.com/RafaGonzalezDev/angular-i18n-translator',
   mcpSchemaRunner: 'https://github.com/RafaGonzalezDev/mcp-schema-runner',
   strideAgentShowcase: 'https://github.com/RafaGonzalezDev/stride-agent-showcase',
-  dotfilesOpencodeShowcase: 'https://github.com/RafaGonzalezDev/dotfiles-opencode-showcase',
   agenticPrReviewerAction: 'https://github.com/RafaGonzalezDev/agentic-pr-reviewer-action',
-  cvTypewriter: 'https://github.com/RafaGonzalezDev/cv-typewriter',
+  angularNativeFederation: 'https://github.com/RafaGonzalezDev/angular-native-federation',
+  localInferenceSetup: 'https://github.com/RafaGonzalezDev/local-inference-setup',
 };
 
 const SAMPLE = {
@@ -106,63 +106,58 @@ const SAMPLE = {
             },
             {
               label: 'Arquitectura',
-              details: 'Microfrontends, Module Federation',
+              details: 'Microfrontends, Module Federation, Native Federation',
             },
             {
               label: 'Backend / Cloud',
               details: 'Node.js, GraphQL/REST, AWS',
             },
             {
-              label: 'AI Tooling',
+              label: 'AI & Agentic Tooling',
               details:
-                'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, prompt systems, tool permissions',
+                'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, GitHub Actions agénticas',
             },
             {
               label: 'Local LLM Inference',
               details:
-                'llama.cpp, local model serving, concurrency control, token budgeting, CPU/GPU layer tuning, KV cache reuse, MTP configuration',
-            },
-            {
-              label: 'Developer Tooling',
-              details:
-                'Node.js, TypeScript, CLI tools, Ink, automation workflows, audit logging, secret redaction',
+                'llama.cpp, GGUF, serving OpenAI-compatible, quantización, tuning CPU/GPU, KV cache reuse',
             },
           ],
           projects: [
             {
-              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
-              highlights: [
-                'Runtime de coding agent en TypeScript/Node con tools policy-gated, audit logging, redacción de secretos, proveedor fake/OpenAI-compatible y carga de plugins.',
-              ],
-            },
-            {
               name: `[angular-i18n-translator](${projectUrls.angularI18nTranslator})`,
               highlights: [
-                'CLI en Node.js para automatizar traducciones Angular XLF con LLMs, batch processing, preservación de interpolaciones y soporte multi-provider.',
+                'CLI en Node.js que automatiza traducciones Angular XLF con LLMs: batch processing, preservación de interpolaciones y multi-provider; nacido de un caso real en banca.',
               ],
             },
             {
-              name: `[mcp-schema-runner](${projectUrls.mcpSchemaRunner})`,
+              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
               highlights: [
-                'Herramienta local en TypeScript/React para depurar servidores MCP stdio con inspección de schemas de tools, tool calls manuales y traces request/response/error.',
+                'Runtime de coding agent en TypeScript/Node con tools policy-gated, audit logging, redacción de secretos y proveedores OpenAI-compatible.',
               ],
             },
             {
               name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
               highlights: [
-                'GitHub Action agéntica para revisar Pull Requests sobre diffs acotados usando endpoints LLM OpenAI-compatible y feedback accionable dentro de CI/CD.',
+                'GitHub Action agéntica que revisa Pull Requests sobre diffs acotados con endpoints LLM OpenAI-compatible y feedback accionable dentro de CI/CD.',
               ],
             },
             {
-              name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
+              name: `[mcp-schema-runner](${projectUrls.mcpSchemaRunner})`,
               highlights: [
-                'Instalador de perfiles OpenCode con CLI TypeScript/Ink, workflows agénticos por rol, backups/rollback transaccionales y verificación de configuración gestionada.',
+                'Herramienta local en TypeScript/React para depurar servidores MCP stdio: inspección de schemas de tools, tool calls manuales y traces request/response/error.',
               ],
             },
             {
-              name: `[cv-typewriter](${projectUrls.cvTypewriter})`,
+              name: `[angular-native-federation](${projectUrls.angularNativeFederation})`,
               highlights: [
-                'Editor de CV data-first en React/Vite con JSON bilingüe, preview A4 paginado y exportación PDF para iterar contenido profesional versionable.',
+                'Playground de Native Federation en Angular 21 que valida runtime sharing de Angular como singleton entre shell y remotes y resolución de versiones por dependencia.',
+              ],
+            },
+            {
+              name: `[local-inference-setup](${projectUrls.localInferenceSetup})`,
+              highlights: [
+                'Configuración declarativa y scripts para launchers autocontenidos de LLMs locales: manifiestos de descarga, validación de integridad, perfiles por modelo y ADRs.',
               ],
             },
           ],
@@ -264,63 +259,58 @@ const SAMPLE = {
             },
             {
               label: 'Architecture',
-              details: 'Microfrontends, Module Federation',
+              details: 'Microfrontends, Module Federation, Native Federation',
             },
             {
               label: 'Backend / Cloud',
               details: 'Node.js, GraphQL/REST, AWS',
             },
             {
-              label: 'AI Tooling',
+              label: 'AI & Agentic Tooling',
               details:
-                'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, prompt systems, tool permissions',
+                'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, agentic GitHub Actions',
             },
             {
               label: 'Local LLM Inference',
               details:
-                'llama.cpp, local model serving, concurrency control, token budgeting, CPU/GPU layer tuning, KV cache reuse, MTP configuration',
-            },
-            {
-              label: 'Developer Tooling',
-              details:
-                'Node.js, TypeScript, CLI tools, Ink, automation workflows, audit logging, secret redaction',
+                'llama.cpp, GGUF, OpenAI-compatible serving, quantization, CPU/GPU tuning, KV cache reuse',
             },
           ],
           projects: [
             {
-              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
-              highlights: [
-                'TypeScript/Node coding-agent runtime with policy-gated tools, audit logging, secret redaction, fake/OpenAI-compatible providers and plugin loading.',
-              ],
-            },
-            {
               name: `[angular-i18n-translator](${projectUrls.angularI18nTranslator})`,
               highlights: [
-                'Node.js CLI for automating Angular XLF translations with LLMs, batch processing, interpolation preservation and multi-provider support.',
+                'Node.js CLI automating Angular XLF translations with LLMs: batch processing, interpolation preservation and multi-provider support; born from a real banking use case.',
               ],
             },
             {
-              name: `[mcp-schema-runner](${projectUrls.mcpSchemaRunner})`,
+              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
               highlights: [
-                'Local TypeScript/React tool for debugging stdio MCP servers with tool schema inspection, manual tool calls and raw request/response/error traces.',
+                'TypeScript/Node coding-agent runtime with policy-gated tools, audit logging, secret redaction and OpenAI-compatible providers.',
               ],
             },
             {
               name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
               highlights: [
-                'Agentic GitHub Action for diff-scoped Pull Request reviews using OpenAI-compatible LLM endpoints and actionable CI/CD code-review feedback.',
+                'Agentic GitHub Action reviewing Pull Requests over scoped diffs with OpenAI-compatible LLM endpoints and actionable CI/CD feedback.',
               ],
             },
             {
-              name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
+              name: `[mcp-schema-runner](${projectUrls.mcpSchemaRunner})`,
               highlights: [
-                'OpenCode profile installer with a TypeScript/Ink CLI, role-based agentic workflows, transactional backups/rollback and managed config verification.',
+                'Local TypeScript/React tool for debugging stdio MCP servers: tool schema inspection, manual tool calls and request/response/error traces.',
               ],
             },
             {
-              name: `[cv-typewriter](${projectUrls.cvTypewriter})`,
+              name: `[angular-native-federation](${projectUrls.angularNativeFederation})`,
               highlights: [
-                'Data-first CV editor built with React/Vite, bilingual JSON content, paginated A4 preview and PDF export for version-controlled professional content.',
+                'Native Federation playground on Angular 21 validating Angular singleton runtime sharing between shell and remotes and per-dependency version resolution.',
+              ],
+            },
+            {
+              name: `[local-inference-setup](${projectUrls.localInferenceSetup})`,
+              highlights: [
+                'Declarative configuration and scripts for self-contained local LLM launchers: download manifests, integrity validation, per-model profiles and ADRs.',
               ],
             },
           ],
