@@ -24,19 +24,42 @@ const CVContent = forwardRef(function CVContent(
   ref
 ) {
   const blocks = paged ? layoutBlocks : null;
-  const contactItems = [
+  const primaryContactItems = [
     cv.basics.location ? { label: cv.basics.location } : null,
     cv.basics.email ? { label: cv.basics.email, href: `mailto:${cv.basics.email}` } : null,
     cv.basics.phone ? { label: cv.basics.phone, href: `tel:${cv.basics.phone}` } : null,
     cv.basics.website ? { label: getDisplayUrl(cv.basics.website), href: cv.basics.website } : null,
-    ...asArray(cv.basics.social).map((social) => {
-      const url = getSocialUrl(social.network, social.username);
-      return {
-        label: getSocialDisplay(social.network, social.username),
-        href: url,
-      };
-    }),
   ].filter(Boolean);
+
+  const socialContactItems = asArray(cv.basics.social).map((social) => ({
+    label: getSocialDisplay(social.network, social.username),
+    href: getSocialUrl(social.network, social.username),
+  }));
+
+  const renderContactRow = (items) => (
+    <div className="flex flex-wrap justify-center gap-x-2 gap-y-1 text-[12.5px] leading-snug">
+      {items.map((item, index) => (
+        <span key={`${item.label}-${index}`} className="inline-flex items-center gap-x-2">
+          {index > 0 ? (
+            <span aria-hidden="true" className="cv-soft">
+              |
+            </span>
+          ) : null}
+          {item.href ? (
+            <a
+              href={item.href}
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span>{item.label}</span>
+          )}
+        </span>
+      ))}
+    </div>
+  );
 
   return (
     <div ref={ref} lang={cv.language} className="cv-content-inner">
@@ -47,40 +70,21 @@ const CVContent = forwardRef(function CVContent(
           data-block-id="header"
           data-section="header"
         >
-          <div className="mb-2 text-[27px] font-bold leading-none tracking-[-0.015em] text-slate-950">
+          <div className="mb-2 text-[24px] font-bold leading-none">
             {cv.basics.name}
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-2 gap-y-1 text-[11.5px] font-medium leading-snug text-slate-700">
-            {contactItems.map((item, index) => (
-              <span key={`${item.label}-${index}`} className="inline-flex items-center gap-x-2">
-                {index > 0 ? (
-                  <span aria-hidden="true" className="text-slate-400">
-                    |
-                  </span>
-                ) : null}
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
-                    className="underline-offset-2 hover:text-primary hover:underline"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <span>{item.label}</span>
-                )}
-              </span>
-            ))}
-          </div>
+          {renderContactRow(primaryContactItems)}
+          {socialContactItems.length ? (
+            <div className="mt-1">{renderContactRow(socialContactItems)}</div>
+          ) : null}
         </div>
       )}
 
       {!paged ? (
         <div>
           {cv.sections.summary.length ? (
-            <div className="mt-4 text-[13.5px] text-left leading-[1.6] text-slate-800 font-medium tracking-tight">
+            <div className="mt-4 text-[13.5px] text-left leading-[1.5]">
               {cv.sections.summary.map((s, i) => (
                 <p key={i}>{s}</p>
               ))}
