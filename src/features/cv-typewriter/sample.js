@@ -1,7 +1,7 @@
 const socialNetworks = [
   {
     network: 'LinkedIn',
-    username: 'rafa-gonzález-rubio-2977aa171',
+    username: 'rafa-gonzalez-rubio',
   },
   {
     network: 'GitHub',
@@ -25,6 +25,8 @@ const SAMPLE = {
       es: {
         name: 'Rafa González Rubio',
         location: 'Córdoba, España (ES)',
+        email: 'rafagonzalezdeveloper@gmail.com',
+        phone: '+34 618 09 62 35',
         social_networks: socialNetworks,
         labels: {
           present: 'Actualidad',
@@ -185,6 +187,8 @@ const SAMPLE = {
       en: {
         name: 'Rafa González Rubio',
         location: 'Córdoba, Spain (ES)',
+        email: 'rafagonzalezdeveloper@gmail.com',
+        phone: '+34 618 09 62 35',
         social_networks: socialNetworks,
         labels: {
           present: 'Present',
