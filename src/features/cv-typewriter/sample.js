@@ -40,7 +40,7 @@ const SAMPLE = {
         },
         sections: {
           professional_summary: [
-            'Frontend Engineer en entornos enterprise bancarios, enfocado en AI Developer Tooling y Developer Automation. Trabajo con Angular, TypeScript y microfrontends, aplicando agentic workflows, Model Context Protocol (MCP), Playwright e inferencia local con LLMs para acelerar análisis técnico, testing, documentación y entrega continua.',
+            'Frontend Engineer con más de 3 años en entornos enterprise bancarios, especializado en AI Developer Tooling y Developer Automation. Angular, TypeScript y microfrontends; workflows agénticos, Model Context Protocol (MCP), Playwright e inferencia local con LLMs para acelerar análisis, testing, documentación y entrega continua.',
           ],
           experience: [
             {
@@ -51,10 +51,10 @@ const SAMPLE = {
               location: 'Madrid, España · En remoto',
               summary: null,
               highlights: [
-                'Incorporación al equipo de Arquitectura Frontend con responsabilidad en la definición y gobernanza del ecosistema técnico del banco.',
-                'Rol híbrido que combina diseño estratégico de arquitecturas con implementación hands-on en entornos enterprise.',
-                'Uso de workflows agénticos propios con Pi/OpenCode, MCPs y extensiones custom para acelerar análisis de código, documentación técnica, revisión de cambios y tareas recurrentes de arquitectura frontend.',
-                'Exploración de automatizaciones agénticas aplicadas a flujos de CI/CD, revisión de cambios e integración con herramientas colaborativas en entornos enterprise.',
+                'Defino la gobernanza y evolución del ecosistema técnico frontend del banco desde el equipo de Arquitectura Frontend.',
+                'Combino el diseño estratégico de arquitecturas con implementación hands-on en entornos enterprise.',
+                'Despliego workflows agénticos propios (Pi/OpenCode, MCPs y extensiones custom) para acelerar análisis de código, documentación técnica y revisión de cambios.',
+                'Automatizo flujos de CI/CD y revisión de cambios con agentes integrados en las herramientas colaborativas del entorno enterprise.',
               ],
             },
             {
@@ -65,14 +65,10 @@ const SAMPLE = {
               location: 'Madrid, España',
               summary: null,
               highlights: [
-                'Ownership end-to-end de 2 microfrontends: desarrollo, mantenimiento, releases y despliegues.',
-                'Diseño y evolución de soluciones frontend en entorno bancario de alta disponibilidad con Angular y TypeScript.',
-                'Diseño e implementación de una herramienta CLI (Node.js + TypeScript) para i18n end-to-end de microfrontends, basada en pipeline .xlf → CSV → traducción por batches vía API → consolidación → generación de locales.',
-                'Reducción drástica del esfuerzo de internacionalización de días a minutos, habilitando entregas rápidas y adopción transversal en el equipo.',
-                'Implementación de testing automatizado asistido por agente mediante Playwright MCP para validar flujos E2E y reforzar la calidad funcional.',
-                'Colaboración transversal con equipos de QA, desarrollo y negocio para asegurar calidad y entrega continua.',
-                'Aplicación de tooling agéntico propio para acelerar tareas de análisis, documentación, generación de cambios y automatización dentro del ciclo de desarrollo frontend.',
-                'Mentorización 1:1 a compañeros para estandarizar y agilizar procesos de desarrollo mediante workflows con MCPs y agentes de coding.',
+                'Lideré end-to-end 2 microfrontends en un entorno bancario de alta disponibilidad (Angular, TypeScript): desarrollo, releases y despliegues.',
+                'Diseñé e implementé una CLI (Node.js + TypeScript) para i18n end-to-end (.xlf → CSV → traducción por batches vía API → locales) que redujo el esfuerzo de internacionalización de días a minutos, adoptada como herramienta transversal del equipo.',
+                'Implementé testing E2E asistido por agente mediante Playwright MCP para validar flujos críticos y reforzar la calidad funcional.',
+                'Mentoricé 1:1 a compañeros en workflows con MCPs y agentes de coding, estandarizando los procesos de desarrollo del equipo.',
               ],
             },
             {
@@ -87,7 +83,7 @@ const SAMPLE = {
                 'Implementé NgRx y un sistema de estado propio, mejorando rendimiento y consistencia.',
                 'Diseñé un sistema de routing a medida para micro frontends encapsulados mediante Module Federation.',
                 'Mejoré estabilidad y calidad del microfrontend reforzando el testing unitario (Jasmine/Karma) para cumplir con quality gates de SonarQube y validaciones del pipeline (Jenkins).',
-                'Onboarding y mentorización de una nueva incorporación, facilitando ramp-up técnico y alineación con estándares del proyecto.',
+                'Mentoricé a una nueva incorporación, acelerando su ramp-up técnico y su alineación con los estándares del proyecto.',
               ],
             },
             {
@@ -202,7 +198,7 @@ const SAMPLE = {
         },
         sections: {
           professional_summary: [
-            'Frontend Engineer in enterprise banking environments, focused on AI Developer Tooling and Developer Automation. I work with Angular, TypeScript and microfrontends, applying agentic workflows, Model Context Protocol (MCP), Playwright and local LLM inference to accelerate technical analysis, testing, documentation and continuous delivery.',
+            'Frontend Engineer with 3+ years in enterprise banking environments, specialized in AI Developer Tooling and Developer Automation. Angular, TypeScript and microfrontends; agentic workflows, Model Context Protocol (MCP), Playwright and local LLM inference to accelerate analysis, testing, documentation and continuous delivery.',
           ],
           experience: [
             {
@@ -213,10 +209,10 @@ const SAMPLE = {
               location: 'Madrid, Spain · Remote',
               summary: null,
               highlights: [
-                "Joined the Frontend Architecture team with responsibility for defining and governing the bank's technical frontend ecosystem.",
-                'Hybrid role combining strategic architecture design with hands-on implementation in enterprise environments.',
-                'Used custom agentic workflows with Pi/OpenCode, MCPs and custom extensions to accelerate code analysis, technical documentation, change review and recurring frontend architecture tasks.',
-                'Explored agentic automations applied to CI/CD workflows, change review and integrations with collaborative tools in enterprise environments.',
+                "Define the governance and evolution of the bank's frontend technical ecosystem from the Frontend Architecture team.",
+                'Combine strategic architecture design with hands-on implementation in enterprise environments.',
+                'Deploy custom agentic workflows (Pi/OpenCode, MCPs and custom extensions) to accelerate code analysis, technical documentation and change review.',
+                'Automate CI/CD flows and change review with agents integrated into collaborative enterprise tooling.',
               ],
             },
             {
@@ -227,14 +223,10 @@ const SAMPLE = {
               location: 'Madrid, Spain',
               summary: null,
               highlights: [
-                'End-to-end ownership of 2 microfrontends: development, maintenance, releases and deployments.',
-                'Designed and evolved frontend solutions in a high-availability banking environment with Angular and TypeScript.',
-                'Designed and implemented a CLI tool (Node.js + TypeScript) for end-to-end microfrontend i18n, based on an .xlf → CSV → batch API translation → consolidation → locale generation pipeline.',
-                'Reduced internationalization effort from days to minutes, enabling faster deliveries and broader adoption across the team.',
-                'Implemented agent-assisted automated testing with Playwright MCP to validate E2E flows and strengthen functional quality.',
-                'Collaborated cross-functionally with QA, development and business teams to ensure quality and continuous delivery.',
-                'Applied custom agentic tooling to accelerate analysis, documentation, change generation and automation within the frontend development lifecycle.',
-                'Provided 1:1 mentoring to standardize and speed up development processes through MCP workflows and coding agents.',
+                'Led end-to-end 2 microfrontends in a high-availability banking environment (Angular, TypeScript): development, releases and deployments.',
+                "Designed and implemented a CLI (Node.js + TypeScript) for end-to-end i18n (.xlf → CSV → batch API translation → locales) that reduced internationalization effort from days to minutes, adopted as the team's standard tool.",
+                'Implemented agent-assisted E2E testing with Playwright MCP to validate critical flows and strengthen functional quality.',
+                'Mentored teammates 1:1 on MCP workflows and coding agents, standardizing the team\'s development processes.',
               ],
             },
             {
