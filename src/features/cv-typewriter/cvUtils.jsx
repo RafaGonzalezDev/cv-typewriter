@@ -62,13 +62,7 @@ export function renderTextWithLinks(text) {
     const match = part.match(/\[(.*?)\]\((.*?)\)/);
     if (match) {
       return (
-        <a
-          key={i}
-          href={match[2]}
-          target="_blank"
-          rel="noreferrer"
-          className="underline underline-offset-2 hover:text-primary transition-colors"
-        >
+        <a key={i} href={match[2]} target="_blank" rel="noreferrer">
           {match[1]}
         </a>
       );

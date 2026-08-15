@@ -149,7 +149,7 @@ const CVContent = forwardRef(function CVContent(
                 <p
                   key={blockId}
                   data-block-id={blockId}
-                  className="mt-4 text-[13px] leading-relaxed text-foreground/80"
+                  className="mt-4 text-[13.5px] leading-[1.5]"
                 >
                   {block.content}
                 </p>
@@ -176,7 +176,7 @@ const CVContent = forwardRef(function CVContent(
                   className={`bullet-block ${block.index === 0 ? 'bullet-block--first' : ''}`}
                 >
                   <ul className="list-disc pl-5">
-                    <li className="text-[13px] leading-[1.25] text-foreground/80">
+                    <li className="text-[13.5px] leading-[1.35]">
                       {block.content}
                     </li>
                   </ul>
@@ -200,7 +200,7 @@ const CVContent = forwardRef(function CVContent(
                   className={`bullet-block ${block.index === 0 ? 'bullet-block--first' : ''}`}
                 >
                   <ul className="list-disc pl-5 space-y-[1.25px]">
-                    <li className="text-[13px] leading-[1.25] text-foreground/80">
+                    <li className="text-[13.5px] leading-[1.35]">
                       {block.content}
                     </li>
                   </ul>
@@ -223,8 +223,8 @@ const CVContent = forwardRef(function CVContent(
                   data-block-id={blockId}
                   className="grid grid-cols-[160px_1fr] gap-2"
                 >
-                  <div className="text-[13px] font-bold text-primary/80">{block.item.label}</div>
-                  <div className="text-[13px] leading-[1.25] text-foreground/90">
+                  <div className="text-[13.5px] font-bold">{block.item.label}</div>
+                  <div className="text-[13.5px] leading-[1.35]">
                     {block.item.details}
                   </div>
                 </div>
@@ -240,8 +240,8 @@ const CVContent = forwardRef(function CVContent(
                 >
                   {block.items.map((it, idx) => (
                     <div key={idx} className="grid grid-cols-[160px_1fr] gap-4">
-                      <div className="text-[13px] font-bold text-primary/80">{it.label}</div>
-                      <div className="text-[13px] leading-relaxed text-foreground/90">
+                      <div className="text-[13.5px] font-bold">{it.label}</div>
+                      <div className="text-[13.5px] leading-[1.35]">
                         {it.details}
                       </div>
                     </div>

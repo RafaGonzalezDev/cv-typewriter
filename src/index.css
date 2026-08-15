@@ -48,6 +48,9 @@
     --cv-block-gap: 0.5rem;
     --cv-bullet-gap: 0.2rem;
     --cv-bullet-first-gap: 0.4rem;
+    --cv-font: 'Times New Roman', Times, 'Liberation Serif', Georgia, serif;
+    --cv-ink: #141414;
+    --cv-ink-soft: #464646;
   }
 
   .paged-content > * {
@@ -125,9 +128,23 @@
 }
 
 @layer utilities {
+  .cv-soft {
+    color: var(--cv-ink-soft);
+  }
+
   .work-surface {
     background-color: hsl(210 40% 96.1%);
     background-image: radial-gradient(hsl(222.2 84% 4.9% / 0.045) 1px, transparent 1px);
     background-size: 22px 22px;
   }
+}
+
+.cv-content-inner {
+  font-family: var(--cv-font);
+  color: var(--cv-ink);
+}
+
+.cv-content-inner a {
+  color: inherit;
+  text-decoration: none;
 }
