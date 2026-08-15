@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import SAMPLE from '@/features/cv-typewriter/sample';
 import {
+  deriveDocumentName,
   getAvailableLanguages,
   getDefaultLanguage,
   normalizeCV,
@@ -9,7 +10,7 @@ import {
 
 export function useCVData(initialJsonText = JSON.stringify(SAMPLE, null, 2)) {
   const [jsonText, setJsonText] = useState(initialJsonText);
-  const [fileName, setFileName] = useState('CV');
+  const [manualFileName, setManualFileName] = useState(null);
   const [language, setLanguage] = useState(() => getDefaultLanguage(SAMPLE));
 
   const parsed = useMemo(() => safeJsonParse(jsonText), [jsonText]);
@@ -17,11 +18,14 @@ export function useCVData(initialJsonText = JSON.stringify(SAMPLE, null, 2)) {
   const availableLanguages = useMemo(() => getAvailableLanguages(raw), [raw]);
   const cv = useMemo(() => normalizeCV(raw, language), [raw, language]);
 
+  const fileName = manualFileName ?? deriveDocumentName(cv);
+
   return {
     jsonText,
     setJsonText,
     fileName,
-    setFileName,
+    setFileName: setManualFileName,
+    resetFileName: () => setManualFileName(null),
     parsed,
     language: cv.language,
     setLanguage,

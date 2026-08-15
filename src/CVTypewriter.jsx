@@ -28,6 +28,7 @@ export default function CVTypewriter() {
     setLanguage,
     availableLanguages,
     cv,
+    resetFileName,
   } = useCVData();
 
   const { pageMetrics, printCss } = usePageConfig(parsed);
@@ -38,12 +39,15 @@ export default function CVTypewriter() {
 
   const handlePrint = usePrint({
     contentRef: printRef,
-    documentTitle: `${fileName || 'CV'}-${language.toUpperCase()}`,
+    documentTitle: fileName || 'CV',
     pageStyle: printCss,
   });
 
   const handleDownloadJson = () => downloadJson(jsonText, fileName);
-  const handleLoadSample = () => setJsonText(getSampleJson(SAMPLE));
+  const handleLoadSample = () => {
+    setJsonText(getSampleJson(SAMPLE));
+    resetFileName();
+  };
 
   return (
     <div className="work-surface min-h-screen w-full print-root">

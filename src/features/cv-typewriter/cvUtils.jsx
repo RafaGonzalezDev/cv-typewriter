@@ -79,6 +79,18 @@ export function getSocialUrl(network, username) {
   return null;
 }
 
+export function deriveDocumentName(cv) {
+  const base = String(cv?.basics?.name ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  const language = String(cv?.language ?? '').toUpperCase();
+  if (!base) return 'CV';
+  return language ? `${base}_${language}` : base;
+}
+
 export const DEFAULT_LANGUAGE = 'es';
 
 const LANGUAGE_LABELS = {
