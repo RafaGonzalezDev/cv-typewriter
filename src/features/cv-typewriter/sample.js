@@ -10,17 +10,23 @@ const socialNetworks = [
 ];
 
 const projectUrls = {
+  cvTypewriter: 'https://github.com/RafaGonzalezDev/cv-typewriter',
+  wcagDesign: 'https://github.com/RafaGonzalezDev/wcag_design',
+  angularNativeFederation: 'https://github.com/RafaGonzalezDev/angular-native-federation',
+  strideAgentShowcase: 'https://github.com/RafaGonzalezDev/stride-agent-showcase',
+  dotfilesOpencodeShowcase: 'https://github.com/RafaGonzalezDev/dotfiles-opencode-showcase',
+  agenticPrReviewerAction: 'https://github.com/RafaGonzalezDev/agentic-pr-reviewer-action',
   angularI18nTranslator: 'https://github.com/RafaGonzalezDev/angular-i18n-translator',
   mcpSchemaRunner: 'https://github.com/RafaGonzalezDev/mcp-schema-runner',
-  strideAgentShowcase: 'https://github.com/RafaGonzalezDev/stride-agent-showcase',
-  agenticPrReviewerAction: 'https://github.com/RafaGonzalezDev/agentic-pr-reviewer-action',
-  angularNativeFederation: 'https://github.com/RafaGonzalezDev/angular-native-federation',
   localInferenceSetup: 'https://github.com/RafaGonzalezDev/local-inference-setup',
 };
 
 const SAMPLE = {
   cv: {
-    active_language: 'es',
+    active_language: 'en',
+    // Both language variants cover the frontend engineering keyword set while
+    // keeping custom agent orchestration as the differentiator
+    // (see docs/changelog/cv-content.md).
     languages: {
       es: {
         name: 'Rafa González Rubio',
@@ -40,7 +46,7 @@ const SAMPLE = {
         },
         sections: {
           professional_summary: [
-            'Frontend Engineer con más de 3 años en entornos enterprise bancarios, especializado en AI Developer Tooling y Developer Automation. Angular, TypeScript y microfrontends; workflows agénticos, Model Context Protocol (MCP), Playwright e inferencia local con LLMs para acelerar análisis, testing, documentación y entrega continua.',
+            'Frontend Engineer con más de 3 años en banca, especializado en Angular y TypeScript. Enfocado en UI accesible y responsive, calidad frontend y entrega continua; diferenciado por diseñar frameworks propios de orquestación de agentes.',
           ],
           experience: [
             {
@@ -51,10 +57,10 @@ const SAMPLE = {
               location: 'Madrid, España · En remoto',
               summary: null,
               highlights: [
-                'Defino la gobernanza y evolución del ecosistema técnico frontend del banco desde el equipo de Arquitectura Frontend.',
-                'Combino el diseño estratégico de arquitecturas con implementación hands-on en entornos enterprise.',
-                'Despliego workflows agénticos propios (Pi/OpenCode, MCPs y extensiones custom) para acelerar análisis de código, documentación técnica y revisión de cambios.',
-                'Automatizo flujos de CI/CD y revisión de cambios con agentes integrados en las herramientas colaborativas del entorno enterprise.',
+                'Defino la gobernanza y evolución del ecosistema técnico frontend del banco desde el equipo de Arquitectura Frontend, incluyendo estándares Angular/TypeScript, requisitos de accesibilidad (WCAG/ARIA), fundamentos de UI compartidos y herramientas de build.',
+                'Combino el diseño estratégico de arquitecturas con implementación práctica en entornos corporativos.',
+                'Diseño y mantengo orquestaciones propias de agentes (perfiles por rol, integraciones MCP y extensiones a medida) aplicadas a análisis de código, documentación técnica y revisión de cambios.',
+                'Automatizo flujos de CI/CD y revisión de cambios con agentes integrados en las herramientas colaborativas de la organización.',
               ],
             },
             {
@@ -65,10 +71,11 @@ const SAMPLE = {
               location: 'Madrid, España',
               summary: null,
               highlights: [
-                'Lideré end-to-end 2 microfrontends en un entorno bancario de alta disponibilidad (Angular, TypeScript): desarrollo, releases y despliegues.',
-                'Diseñé e implementé una CLI (Node.js + TypeScript) para i18n end-to-end (.xlf → CSV → traducción por batches vía API → locales) que redujo el esfuerzo de internacionalización de días a minutos, adoptada como herramienta transversal del equipo.',
+                'Lideré de principio a fin 2 microfrontends en un entorno bancario de alta disponibilidad (Angular, TypeScript, HTML5/CSS3, RxJS): desarrollo, releases y despliegues.',
+                'Construí interfaces responsive y accesibles con la librería de componentes corporativa del banco y su Storybook, cumpliendo requisitos cross-browser y WCAG/ARIA.',
+                'Diseñé e implementé una CLI (Node.js + TypeScript) para i18n de principio a fin (.xlf → CSV → traducción por lotes vía API → locales) que redujo el esfuerzo de internacionalización de días a minutos, adoptada como herramienta transversal del equipo.',
                 'Implementé testing E2E asistido por agente mediante Playwright MCP para validar flujos críticos y reforzar la calidad funcional.',
-                'Mentoricé 1:1 a compañeros en workflows con MCPs y agentes de coding, estandarizando los procesos de desarrollo del equipo.',
+                'Mentoricé 1:1 a compañeros en flujos de desarrollo, prácticas de testing y agentes de coding, estandarizando los procesos de entrega del equipo.',
               ],
             },
             {
@@ -79,10 +86,10 @@ const SAMPLE = {
               location: 'Madrid, España · En remoto',
               summary: null,
               highlights: [
-                'Lideré el desarrollo integral y optimización de un micro frontend con Angular y TypeScript.',
-                'Implementé NgRx y un sistema de estado propio, mejorando rendimiento y consistencia.',
-                'Diseñé un sistema de routing a medida para micro frontends encapsulados mediante Module Federation.',
-                'Mejoré estabilidad y calidad del microfrontend reforzando el testing unitario (Jasmine/Karma) para cumplir con quality gates de SonarQube y validaciones del pipeline (Jenkins).',
+                'Lideré el desarrollo integral y la optimización de un microfrontend con Angular (TypeScript, HTML5/CSS3, SCSS, diseños responsive, Webpack, lazy loading) en un producto bancario de alta disponibilidad.',
+                'Implementé NgRx (store, effects, selectors) y gestión de estado basada en RxJS, mejorando rendimiento y consistencia.',
+                'Diseñé un sistema de routing a medida para microfrontends encapsulados mediante Module Federation y route guards.',
+                'Mejoré la estabilidad y la calidad del microfrontend reforzando el testing unitario (Jasmine, Karma, TestBed) para cumplir con los umbrales de calidad de SonarQube y las validaciones del pipeline (Jenkins).',
                 'Mentoricé a una nueva incorporación, acelerando su ramp-up técnico y su alineación con los estándares del proyecto.',
               ],
             },
@@ -101,63 +108,78 @@ const SAMPLE = {
           ],
           technologies: [
             {
-              label: 'Frontend',
-              details: 'Angular, TypeScript, React, NgRx',
-            },
-            {
-              label: 'Arquitectura',
-              details: 'Microfrontends, Module Federation, Native Federation',
-            },
-            {
-              label: 'Backend / Cloud',
-              details: 'Node.js, GraphQL/REST, AWS',
-            },
-            {
-              label: 'AI & Agentic Tooling',
+              label: 'Core Frontend',
               details:
-                'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, GitHub Actions agénticas',
+                'TypeScript, JavaScript (ES6+), Angular (standalone components, Signals), RxJS, NgRx',
             },
             {
-              label: 'Local LLM Inference',
+              label: 'UI y Accesibilidad',
               details:
-                'llama.cpp, GGUF, serving OpenAI-compatible, quantización, tuning CPU/GPU, KV cache reuse',
+                'HTML5, CSS3, SCSS/Sass, diseño responsive, design systems, Storybook (librería de componentes corporativa), WCAG 2.2 AA / EN 301 549, ARIA, auditorías axe / Lighthouse',
+            },
+            {
+              label: 'Calidad y Rendimiento',
+              details:
+                'Jasmine, Karma, TestBed, Playwright, Cypress, Jest, Vitest, SonarQube, lazy loading, code splitting, optimización de bundle, Core Web Vitals',
+            },
+            {
+              label: 'Build y Tooling',
+              details: 'Vite, Webpack, Nx, npm, ESLint, Prettier, Git',
+            },
+            {
+              label: 'Backend, Cloud y Seguridad',
+              details: 'Node.js, Express, REST APIs, GraphQL, AWS, OIDC / JWT, CSP, OWASP',
+            },
+            {
+              label: 'Entrega y Proceso',
+              details:
+                'CI/CD (Jenkins, Bitbucket Pipelines, GitHub Actions), Docker, code review, Scrum',
+            },
+            {
+              label: 'Ingeniería Agéntica',
+              details:
+                'Model Context Protocol (MCP), orquestación de agentes propia, agentes de coding, workflows agénticos, OpenCode, Pi, inferencia local de LLM (llama.cpp, GGUF)',
+            },
+            {
+              label: 'Frontend Adicional',
+              details: 'React, Vue.js, Next.js, Redux Toolkit, Tailwind CSS',
             },
           ],
           projects: [
             {
-              name: `[angular-i18n-translator](${projectUrls.angularI18nTranslator})`,
+              name: `[cv-typewriter](${projectUrls.cvTypewriter})`,
               highlights: [
-                'CLI en Node.js que automatiza traducciones Angular XLF con LLMs: batch processing, preservación de interpolaciones y multi-provider; nacido de un caso real en banca.',
+                'Editor de página única en React 19 + Vite para crear CVs con enfoque data-first: modelo de contenido JSON, paginación A4 en cliente y exportación a PDF, con Tailwind CSS.',
+              ],
+            },
+            {
+              name: `[angular-native-federation](${projectUrls.angularNativeFederation})`,
+              highlights: [
+                'Playground de Native Federation en Angular 21 que valida el runtime sharing de Angular como singleton entre shell y remotes y la resolución de versiones por dependencia.',
+              ],
+            },
+            {
+              name: `[wcag_design](${projectUrls.wcagDesign})`,
+              highlights: [
+                'Herramienta de accesibilidad que genera paletas de color conformes con WCAG 2.2 con validación automática de contraste.',
               ],
             },
             {
               name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
               highlights: [
-                'Runtime de coding agent en TypeScript/Node con tools policy-gated, audit logging, redacción de secretos y proveedores OpenAI-compatible.',
+                'Runtime de agente de coding en TypeScript/Node: orquestación de agentes propia con tools policy-gated, audit logging, redacción de secretos y proveedores OpenAI-compatible.',
+              ],
+            },
+            {
+              name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
+              highlights: [
+                'Framework de orquestación de agentes distribuido como instalador: perfiles de agente por rol, rollback transaccional de configuración y CLI en TypeScript/Ink.',
               ],
             },
             {
               name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
               highlights: [
                 'GitHub Action agéntica que revisa Pull Requests sobre diffs acotados con endpoints LLM OpenAI-compatible y feedback accionable dentro de CI/CD.',
-              ],
-            },
-            {
-              name: `[mcp-schema-runner](${projectUrls.mcpSchemaRunner})`,
-              highlights: [
-                'Herramienta local en TypeScript/React para depurar servidores MCP stdio: inspección de schemas de tools, tool calls manuales y traces request/response/error.',
-              ],
-            },
-            {
-              name: `[angular-native-federation](${projectUrls.angularNativeFederation})`,
-              highlights: [
-                'Playground de Native Federation en Angular 21 que valida runtime sharing de Angular como singleton entre shell y remotes y resolución de versiones por dependencia.',
-              ],
-            },
-            {
-              name: `[local-inference-setup](${projectUrls.localInferenceSetup})`,
-              highlights: [
-                'Configuración declarativa y scripts para launchers autocontenidos de LLMs locales: manifiestos de descarga, validación de integridad, perfiles por modelo y ADRs.',
               ],
             },
           ],
@@ -193,7 +215,7 @@ const SAMPLE = {
         },
         sections: {
           professional_summary: [
-            'Frontend Engineer with 3+ years in enterprise banking environments, specialized in AI Developer Tooling and Developer Automation. Angular, TypeScript and microfrontends; agentic workflows, Model Context Protocol (MCP), Playwright and local LLM inference to accelerate analysis, testing, documentation and continuous delivery.',
+            'Frontend Engineer with 3+ years in enterprise banking, specialized in Angular and TypeScript. Focused on accessible, responsive UI, frontend quality and continuous delivery; differentiated by designing custom agent orchestration frameworks.',
           ],
           experience: [
             {
@@ -204,10 +226,10 @@ const SAMPLE = {
               location: 'Madrid, Spain · Remote',
               summary: null,
               highlights: [
-                "Define the governance and evolution of the bank's frontend technical ecosystem from the Frontend Architecture team.",
+                "Define the governance and evolution of the bank's frontend technical ecosystem from the Frontend Architecture team, including Angular/TypeScript standards, accessibility requirements (WCAG/ARIA), shared UI foundations and build tooling.",
                 'Combine strategic architecture design with hands-on implementation in enterprise environments.',
-                'Deploy custom agentic workflows (Pi/OpenCode, MCPs and custom extensions) to accelerate code analysis, technical documentation and change review.',
-                'Automate CI/CD flows and change review with agents integrated into collaborative enterprise tooling.',
+                'Design and maintain custom agent orchestration frameworks (role-based agent profiles, MCP integrations and custom extensions) applied to code analysis, technical documentation and change review.',
+                'Automate CI/CD and change review workflows with agents integrated into collaborative engineering tooling.',
               ],
             },
             {
@@ -218,10 +240,11 @@ const SAMPLE = {
               location: 'Madrid, Spain',
               summary: null,
               highlights: [
-                'Led end-to-end 2 microfrontends in a high-availability banking environment (Angular, TypeScript): development, releases and deployments.',
+                'Led 2 microfrontends end-to-end in a high-availability banking environment (Angular, TypeScript, HTML5/CSS3, RxJS): development, releases and deployments.',
+                "Built responsive and accessible interfaces with the bank's corporate component library and its Storybook, meeting cross-browser and WCAG/ARIA requirements.",
                 "Designed and implemented a CLI (Node.js + TypeScript) for end-to-end i18n (.xlf → CSV → batch API translation → locales) that reduced internationalization effort from days to minutes, adopted as the team's standard tool.",
                 'Implemented agent-assisted E2E testing with Playwright MCP to validate critical flows and strengthen functional quality.',
-                'Mentored teammates 1:1 on MCP workflows and coding agents, standardizing the team\'s development processes.',
+                "Mentored teammates 1:1 on development workflows, testing practices and coding agents, standardizing the team's delivery processes.",
               ],
             },
             {
@@ -232,10 +255,10 @@ const SAMPLE = {
               location: 'Madrid, Spain · Remote',
               summary: null,
               highlights: [
-                'Led end-to-end development and optimization of an Angular and TypeScript microfrontend.',
-                'Implemented NgRx and a custom state management system, improving performance and consistency.',
-                'Designed a custom routing system for encapsulated microfrontends using Module Federation.',
-                'Improved microfrontend stability and quality by reinforcing unit testing (Jasmine/Karma) to meet SonarQube quality gates and Jenkins pipeline validations.',
+                'Led the development and optimization of an Angular microfrontend (TypeScript, HTML5/CSS3, SCSS, responsive layouts, Webpack, lazy loading) in a high-availability banking product.',
+                'Implemented NgRx (store, effects, selectors) and RxJS-based state management, improving performance and consistency.',
+                'Designed a custom routing system for encapsulated microfrontends using Module Federation and route guards.',
+                'Improved microfrontend stability and quality by reinforcing unit testing (Jasmine, Karma, TestBed) to meet SonarQube quality gates and Jenkins pipeline validations.',
                 'Onboarded and mentored a new team member, accelerating technical ramp-up and alignment with project standards.',
               ],
             },
@@ -254,51 +277,48 @@ const SAMPLE = {
           ],
           technologies: [
             {
-              label: 'Frontend',
-              details: 'Angular, TypeScript, React, NgRx',
-            },
-            {
-              label: 'Architecture',
-              details: 'Microfrontends, Module Federation, Native Federation',
-            },
-            {
-              label: 'Backend / Cloud',
-              details: 'Node.js, GraphQL/REST, AWS',
-            },
-            {
-              label: 'AI & Agentic Tooling',
+              label: 'Core Frontend',
               details:
-                'OpenCode, Pi, Model Context Protocol (MCP), Playwright MCP, coding agents, agentic workflows, agentic GitHub Actions',
+                'TypeScript, JavaScript (ES6+), Angular (standalone components, Signals), RxJS, NgRx',
             },
             {
-              label: 'Local LLM Inference',
+              label: 'UI & Accessibility',
               details:
-                'llama.cpp, GGUF, OpenAI-compatible serving, quantization, CPU/GPU tuning, KV cache reuse',
+                'HTML5, CSS3, SCSS/Sass, responsive design, design systems, Storybook (corporate component library), WCAG 2.2 AA / EN 301 549, ARIA, axe / Lighthouse audits',
+            },
+            {
+              label: 'Quality & Performance',
+              details:
+                'Jasmine, Karma, TestBed, Playwright, Cypress, Jest, Vitest, SonarQube, lazy loading, code splitting, bundle optimization, Core Web Vitals',
+            },
+            {
+              label: 'Build & Tooling',
+              details: 'Vite, Webpack, Nx, npm, ESLint, Prettier, Git',
+            },
+            {
+              label: 'Backend, Cloud & Security',
+              details: 'Node.js, Express, REST APIs, GraphQL, AWS, OIDC / JWT, CSP, OWASP',
+            },
+            {
+              label: 'Delivery & Process',
+              details:
+                'CI/CD (Jenkins, Bitbucket Pipelines, GitHub Actions), Docker, code review, Scrum',
+            },
+            {
+              label: 'Agentic Engineering',
+              details:
+                'Model Context Protocol (MCP), custom agent orchestration, coding agents, agentic workflows, OpenCode, Pi, local LLM inference (llama.cpp, GGUF)',
+            },
+            {
+              label: 'Additional Frontend',
+              details: 'React, Vue.js, Next.js, Redux Toolkit, Tailwind CSS',
             },
           ],
           projects: [
             {
-              name: `[angular-i18n-translator](${projectUrls.angularI18nTranslator})`,
+              name: `[cv-typewriter](${projectUrls.cvTypewriter})`,
               highlights: [
-                'Node.js CLI automating Angular XLF translations with LLMs: batch processing, interpolation preservation and multi-provider support; born from a real banking use case.',
-              ],
-            },
-            {
-              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
-              highlights: [
-                'TypeScript/Node coding-agent runtime with policy-gated tools, audit logging, secret redaction and OpenAI-compatible providers.',
-              ],
-            },
-            {
-              name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
-              highlights: [
-                'Agentic GitHub Action reviewing Pull Requests over scoped diffs with OpenAI-compatible LLM endpoints and actionable CI/CD feedback.',
-              ],
-            },
-            {
-              name: `[mcp-schema-runner](${projectUrls.mcpSchemaRunner})`,
-              highlights: [
-                'Local TypeScript/React tool for debugging stdio MCP servers: tool schema inspection, manual tool calls and request/response/error traces.',
+                'React 19 + Vite single-page editor for data-first CV authoring: JSON content model, client-side A4 pagination and print-to-PDF export, styled with Tailwind CSS.',
               ],
             },
             {
@@ -308,9 +328,27 @@ const SAMPLE = {
               ],
             },
             {
-              name: `[local-inference-setup](${projectUrls.localInferenceSetup})`,
+              name: `[wcag_design](${projectUrls.wcagDesign})`,
               highlights: [
-                'Declarative configuration and scripts for self-contained local LLM launchers: download manifests, integrity validation, per-model profiles and ADRs.',
+                'Accessibility tool that generates WCAG 2.2 compliant colour palettes with automated contrast validation.',
+              ],
+            },
+            {
+              name: `[stride-agent-showcase](${projectUrls.strideAgentShowcase})`,
+              highlights: [
+                'TypeScript/Node coding-agent runtime: custom agent orchestration with policy-gated tools, audit logging, secret redaction and OpenAI-compatible providers.',
+              ],
+            },
+            {
+              name: `[dotfiles-opencode-showcase](${projectUrls.dotfilesOpencodeShowcase})`,
+              highlights: [
+                'Agent orchestration framework shipped as an installer: role-based agent profiles, transactional configuration rollback and a TypeScript/Ink CLI.',
+              ],
+            },
+            {
+              name: `[agentic-pr-reviewer-action](${projectUrls.agenticPrReviewerAction})`,
+              highlights: [
+                'Agentic GitHub Action reviewing Pull Requests over scoped diffs with OpenAI-compatible LLM endpoints and actionable CI/CD feedback.',
               ],
             },
           ],
