@@ -61,7 +61,7 @@ docs/
 ├── adr/                                   # Architecture Decision Records
 ├── changelog/                             # Documentation and content changes
 ├── overview/                              # Architecture overview
-└── handoff.md                             # Professional positioning and continuation context
+└── handoff.md                             # Continuation context and CV content rules
 ```
 
 ## Getting started
