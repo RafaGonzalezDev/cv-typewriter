@@ -1,3 +1,27 @@
+## 2026-09-29 — Remove dead plan references and public positioning notes
+
+**What**: Removed the three `~/workspace/plan.md` references, which pointed at a file that does not exist, from `docs/overview/portfolio-showcase-roadmap.md` and `docs/handoff.md`, and corrected the roadmap goal statement that still described the AI Developer Tooling positioning. Dropped the claim-provenance section from the handoff so the public repository no longer records which CV claims are weaker, replacing it with a rule that keeps such doubts out of the repo rather than writing them down. Recorded the feature-branch-plus-PR workflow and cleared the open question it answered.  
+**Where**: `docs/handoff.md`, `docs/overview/portfolio-showcase-roadmap.md`, `docs/changelog/cv-content.md`  
+**Why**: A public repository should not carry dangling pointers to local files, nor notes that weaken the CV it publishes.
+
+## 2026-09-29 — Regenerate handoff and correct the portfolio project list
+
+**What**: Regenerated `docs/handoff.md` with the `handoff` skill, replacing the previous version, which named a non-existent `feature/ui-improvements` branch and duplicated portfolio content. The new document carries the CV content rules that live nowhere else (sensitive wording, skill tiering, summary length, project render limits and the headless export caveat), and references other artifacts by path instead of copying them. Corrected the visible project set in `docs/overview/portfolio-showcase-roadmap.md` to the six projects actually rendered, recorded the three that left the set, and updated the README description of the handoff file.  
+**Where**: `docs/handoff.md`, `docs/overview/portfolio-showcase-roadmap.md`, `README.md`, `docs/changelog/cv-content.md`  
+**Why**: Keep the continuation context truthful after the CV content rework, so a future session does not act on a stale branch name, a stale project list, or content rules it cannot find.
+
+## 2026-09-29 — Cover the frontend engineering keyword set, keep agent orchestration as differentiator
+
+**What**: Expanded both language variants with the frontend engineering keyword set that Rafa confirmed as technologies he has worked with: RxJS, Angular standalone components and Signals, lazy loading, code splitting, bundle optimization, Core Web Vitals, route guards, SCSS/Sass, WCAG 2.2 AA / EN 301 549, axe/Lighthouse audits, OIDC/JWT, CSP, OWASP, Nx, Vite, Webpack, Docker, Scrum and the CI/CD tooling. Rewrote the experience highlights so the mechanisms are named instead of implied. Grew the technical stack from five to eight rows, adding dedicated `Quality & Performance` and `Build & Tooling` rows and a separate `Additional Frontend` row (React, Vue.js, Next.js, Redux Toolkit, Tailwind CSS) so secondary skills stay visibly apart from the banking stack. Storybook is credited as professional experience, through consuming the bank's corporate component library, instead of as a secondary skill. Replaced `angular-i18n-translator` and `mcp-schema-runner` in the featured projects with agent-orchestration evidence (`dotfiles-opencode-showcase`, `agentic-pr-reviewer-action`) and reframed the current role's agentic highlight around custom agent orchestration frameworks. The professional summary was then synthesised to two lines and both variants received a language coherence pass (unified `microfrontend`, `agentes de coding`, `de principio a fin` and `umbrales de calidad` in Spanish; removed the duplicated `end-to-end` in English), verified to keep every keyword present elsewhere in the document.  
+**Where**: `src/features/cv-typewriter/sample.js`, `docs/changelog/cv-content.md`, `docs/handoff.md`  
+**Why**: Pass literal ATS keyword screening on generic frontend engineering postings while keeping the custom agent-orchestration work visible as the main differentiator, without implying professional use of technologies only explored outside work.
+
+## 2026-09-29 — Rebalance CV content for a frontend engineering application
+
+**What**: Rebalanced the bilingual professional summary, experience highlights and technical stack towards frontend engineering (Angular/TypeScript, HTML5/CSS3, responsive design, design systems, WCAG/ARIA, testing and build tooling) in both language variants, keeping AI tooling and agentic workflows as a secondary differentiator. React is referenced only as complementary experience, never as part of the banking stack. Added `Core Frontend`, `UI & Accessibility` and `Quality & Build` rows to the technical stack, replaced the featured project selection with frontend-facing public evidence (`cv-typewriter`, `wcag_design`) plus Angular Native Federation, and set `active_language` to `en`. The `agentic-pr-reviewer-action` and `local-inference-setup` URLs remain defined in `projectUrls` for easy restoration.  
+**Where**: `src/features/cv-typewriter/sample.js`, `docs/changelog/cv-content.md`, `docs/handoff.md`  
+**Why**: Target a generic frontend engineering role whose requirements are HTML5/CSS3, responsive design, accessibility, state management, build tools and testing frameworks, instead of the AI-first developer-tooling positioning used for previous applications.
+
 ## 2026-06-06 — Add agentic PR reviewer evidence
 
 **What**: Added `agentic-pr-reviewer-action` to the bilingual CV project section and increased the rendered project limit from four to six so the new public GitHub Action appears without removing existing project entries.  
