@@ -1,6 +1,12 @@
+## 2026-09-29 — Remove dead plan references and public positioning notes
+
+**What**: Removed the three `~/workspace/plan.md` references, which pointed at a file that does not exist, from `docs/overview/portfolio-showcase-roadmap.md` and `docs/handoff.md`, and corrected the roadmap goal statement that still described the AI Developer Tooling positioning. Dropped the claim-provenance section from the handoff so the public repository no longer records which CV claims are weaker, replacing it with a rule that keeps such doubts out of the repo rather than writing them down. Recorded the feature-branch-plus-PR workflow and cleared the open question it answered.  
+**Where**: `docs/handoff.md`, `docs/overview/portfolio-showcase-roadmap.md`, `docs/changelog/cv-content.md`  
+**Why**: A public repository should not carry dangling pointers to local files, nor notes that weaken the CV it publishes.
+
 ## 2026-09-29 — Regenerate handoff and correct the portfolio project list
 
-**What**: Regenerated `docs/handoff.md` with the `handoff` skill, replacing the previous version, which named a non-existent `feature/ui-improvements` branch and duplicated portfolio content. The new document carries the CV content rules that live nowhere else (sensitive wording, skill tiering, summary length, project render limits and the headless export caveat), records claim provenance and uncertainty, and references other artifacts by path instead of copying them. Corrected the visible project set in `docs/overview/portfolio-showcase-roadmap.md` to the six projects actually rendered, recorded the three that left the set, and updated the README description of the handoff file.  
+**What**: Regenerated `docs/handoff.md` with the `handoff` skill, replacing the previous version, which named a non-existent `feature/ui-improvements` branch and duplicated portfolio content. The new document carries the CV content rules that live nowhere else (sensitive wording, skill tiering, summary length, project render limits and the headless export caveat), and references other artifacts by path instead of copying them. Corrected the visible project set in `docs/overview/portfolio-showcase-roadmap.md` to the six projects actually rendered, recorded the three that left the set, and updated the README description of the handoff file.  
 **Where**: `docs/handoff.md`, `docs/overview/portfolio-showcase-roadmap.md`, `README.md`, `docs/changelog/cv-content.md`  
 **Why**: Keep the continuation context truthful after the CV content rework, so a future session does not act on a stale branch name, a stale project list, or content rules it cannot find.
 

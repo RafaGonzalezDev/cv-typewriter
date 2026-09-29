@@ -7,23 +7,20 @@ non-existent `feature/ui-improvements` branch and duplicated the portfolio roadm
 
 Keep `sample.js` aligned with each incoming job posting before applying. The target profile is
 frontend engineering (Angular-first for Spanish enterprise and banking, React-friendly for
-international postings), with custom agent orchestration frameworks as the differentiator. The
-pending administrative step is committing the current uncommitted content work.
+international postings), with custom agent orchestration frameworks as the differentiator.
+PR #4 is open on `feature/cv-frontend-positioning` and waiting for review.
 
 ## Current status
 
-- Branch: `main`, the only branch, in sync with `origin/main` at `69d01e3`.
-- Uncommitted working-tree changes in:
-  - `src/features/cv-typewriter/sample.js`
-  - `docs/changelog/cv-content.md`
-  - `docs/handoff.md`
-  - `docs/overview/portfolio-showcase-roadmap.md`
-  - `README.md`
+- Branch: `feature/cv-frontend-positioning`, pushed to `origin`, with PR #4 open against `main`.
+  `main` is at `69d01e3` and is the only other branch.
+- Repository workflow: work on a `feature/...` branch and open a PR into `main`. Do not commit
+  to `main` directly.
+- Commits from 2026-09-29: `refactor(cv): target frontend engineering roles` and
+  `docs: update handoff, roadmap and changelog`.
 - `active_language` is `en`; the editor's ES/EN selector still switches the preview.
 - The ES and EN variants are deliberately kept aligned in content, structure and stack rows.
 - Both variants render at 2 pages. `npm run build`, `eslint` and `prettier` are clean.
-- The 2026-09-29 content work (frontend keyword coverage, agent-orchestration positioning,
-  two-line summary, language coherence pass) is itemised in `docs/changelog/cv-content.md`.
 
 ## Key context
 
@@ -42,10 +39,12 @@ These rules are not documented anywhere else. Apply them when editing CV content
   "agent-assisted validation and developer automation". No concrete client-sensitive
   implementation details in CV bullets, README copy, screenshots, demos or public repositories
   without explicit approval.
-- **Skill tiers**: skills only explored outside professional work live in the separate
-  `Additional Frontend` / `Frontend Adicional` stack row. Never promote them into the banking
-  experience bullets or the professional summary as professional use. React is never presented
-  as used in banking.
+- **This repository is public**: never commit anything that undercuts the CV's claims. Positively,
+  skills that were only explored outside professional work live in the separate
+  `Additional Frontend` / `Frontend Adicional` stack row; never promote them into the banking
+  experience bullets or the professional summary as professional use, and never present React as
+  used in banking. Any doubt about how strong a claim is stays out of the repository rather than
+  being written down here.
 - **Summary length**: the professional summary is deliberately held at two lines. The ATS keyword
   load is carried by the stack rows and the experience highlights, so shortening the summary does
   not reduce coverage. Prove it by literal term matching against `sample.js` instead of assuming it.
@@ -56,19 +55,6 @@ These rules are not documented anywhere else. Apply them when editing CV content
   does not apply the app's `@media print` stylesheet, so the editor panel leaks into the output.
   Export from the app's own "Export PDF" button instead.
 
-### Claim provenance and uncertainty
-
-The stack rows reflect what Rafa confirmed he has worked with, but not every item was split by
-where it was used:
-
-- Solid professional banking evidence: Angular, TypeScript, RxJS, NgRx, SCSS/Sass, HTML5/CSS3,
-  accessibility work, Jasmine/Karma, TestBed, Playwright, SonarQube, Jenkins, Vite, Webpack, Nx,
-  and Storybook (consumed through Banco Santander's corporate component library).
-- He stated that Jest, Cypress, Vitest and Redux Toolkit are genuinely used rather than tutorials,
-  but their context (banking vs outside) was not separated out.
-- `Additional Frontend` (React, Vue.js, Next.js, Redux Toolkit, Tailwind CSS) is the row most
-  likely to be probed in interview. Treat it as the fragile part of the document.
-
 ## Artifacts to reference
 
 - `docs/overview/cv-typewriter.md` — architecture, key components and dependencies.
@@ -77,7 +63,6 @@ where it was used:
 - `docs/changelog/cv-content.md` — every CV content and positioning change, newest first.
 - `docs/adr/ADR-0001-client-side-pagination-for-cv-rendering.md` — client-side pagination decision.
 - `README.md` — repo overview, docs index and scripts.
-- `~/workspace/plan.md` — broader portfolio and showcase plan, including sanitization guidance.
 
 ## Suggested skills
 
@@ -89,7 +74,6 @@ where it was used:
 
 ## Open questions
 
-- Commit the current content work on a `feature/...` branch with a PR, or leave it on `main`?
 - Should the six-project limit be raised, or should project selection become per-offer presets?
 - Is `dotfiles-pi-showcase` worth publishing as public evidence?
 - Should the ES variant ever diverge from EN for Spanish-market postings, or stay aligned?

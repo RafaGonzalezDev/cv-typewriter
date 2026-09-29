@@ -1,11 +1,10 @@
 # Portfolio showcase roadmap
 
-This document tracks the current portfolio evidence phase for Rafa's CV positioning. The goal is to make the CV credible for AI Developer Tooling, Developer Automation, Agentic Workflows, and Software Engineering roles by aligning the featured projects with public or sanitized evidence.
+This document tracks the current portfolio evidence phase for Rafa's CV positioning. The goal is to make the CV credible for frontend engineering roles, with custom agent orchestration as the differentiator, by aligning the featured projects with public or sanitized evidence.
 
 ## Key components
 
-- `~/workspace/plan.md` — Source plan for portfolio/showcase work, including project visibility, sanitization strategy, and local LLM inference notes.
-- `src/features/cv-typewriter/sample.js` — Current bilingual CV content. The `projects` section is provisional until the portfolio plan is executed.
+- `src/features/cv-typewriter/sample.js` — Current bilingual CV content. The `projects` section is provisional until the evidence work in this roadmap is complete.
 - `docs/handoff.md` — Continuation context, CV content rules, sensitive wording rules and verification steps for future sessions.
 - Public GitHub projects — Current public evidence includes `angular-i18n-translator`, `local-llm-inference-lab`, `stride-agent-showcase`, `dotfiles-opencode-showcase`, `agentic-pr-reviewer-action`, `cv-typewriter`, `wcag_design`, `mfe-architecture`, and `angular-native-federation`.
 - Private/sensitive projects — `dotfiles-pi` still requires sanitization or a curated public preview before it should be used as primary project evidence.
@@ -36,7 +35,6 @@ Private projects remain useful for positioning, but should not be linked as prim
 
 ## Dependencies
 
-- The project choices depend on the outcome of `~/workspace/plan.md`.
 - Public project references should be rechecked with the GitHub CLI before finalizing links or README copy.
 - Sensitive client-related demos must not be exposed directly; create neutral clones or documentation-only showcases instead.
 
