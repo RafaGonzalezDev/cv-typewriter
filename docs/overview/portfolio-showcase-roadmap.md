@@ -13,25 +13,23 @@ This document tracks the current portfolio evidence phase for Rafa's CV position
 
 The CV structure, bilingual preview, ATS-oriented wording and frontend engineering positioning are in place, with custom agent orchestration as the differentiator. The current phase is converting the strongest private AI tooling work into public-safe evidence.
 
-The CV renders six projects, one highlight each. The current visible project set mixes frontend evidence with agent-orchestration evidence:
+As of 2026-10-04, the CV includes four projects, one highlight each, within the existing six-project rendering limit:
 
-- `cv-typewriter` — frontend evidence: React 19 + Vite, client-side A4 pagination and PDF export.
-- `angular-native-federation` — Angular platform evidence: Native Federation runtime sharing.
-- `wcag_design` — accessibility evidence: WCAG 2.2 palette generation and contrast validation.
-- `stride-agent-showcase` — coding-agent runtime with custom agent orchestration.
-- `dotfiles-opencode-showcase` — OpenCode profile installer and role-based agentic workflow showcase.
-- `agentic-pr-reviewer-action` — agentic, diff-scoped PR review automation in CI/CD.
+- `angular-i18n-translator` — Node.js/JavaScript CLI linking Angular internationalization with LLM batch translation, validation and resumable processing.
+- `angular-native-federation` — Angular 21 microfrontend PoC with lazy remote components and runtime/dependency sharing policies.
+- `dsh-codex-oauth` — React/TypeScript integration plugin with OAuth/PKCE onboarding, model catalog UI and cancellable streaming.
+- `mcp-schema-runner` — local React/TypeScript developer tool for schema inspection and manual stdio MCP calls, backed by Express and TanStack Query.
 
-`angular-i18n-translator`, `mcp-schema-runner` and `local-inference-setup` left the visible set on 2026-09-29 to make room for frontend-facing evidence. Their URLs stay defined in `projectUrls` in `sample.js`, so restoring any of them is a one-line edit.
+`cv-typewriter` and `builder-differences` are role-specific alternatives when product UI or Angular build tooling deserves more emphasis. Other existing project URLs remain available in `projectUrls` in `sample.js`.
 
-Private projects remain useful for positioning, but should not be linked as primary CV evidence until they are public-safe. The main remaining candidate is `dotfiles-pi`.
+Private projects remain useful for positioning, but should not be linked as primary CV evidence until they are public-safe. `dotfiles-pi-showcase` is now public; it remains an optional extension showcase rather than part of the selected four.
 
 ## Recommended sequence
 
-1. Keep `stride-agent-showcase`, `dotfiles-opencode-showcase` and `agentic-pr-reviewer-action` aligned with the CV as public agent-orchestration evidence.
-2. Extract or sanitize Pi material into `dotfiles-pi-showcase` if it remains valuable as a separate public project.
-3. Re-evaluate whether the CV should keep six public projects or introduce role-specific project presets.
-4. Export Spanish and English PDFs and confirm that the project section is both credible and backed by accessible evidence.
+1. Keep the four selected public projects aligned with their implementations and the bilingual CV descriptions.
+2. Adapt optional projects to each posting rather than filling all six available slots by default.
+3. Keep LLM integrations, MCP developer tooling and agent runtimes distinct in project descriptions.
+4. Export Spanish and English PDFs and confirm page breaks and readable project descriptions.
 
 ## Dependencies
 
